@@ -43,7 +43,7 @@
     return svg;
   };
 
-  var estado = { scanner: null, mitos: {}, ultimo: null };
+  var estado = { scanner: null, mitos: {}, ultimo: null, listas: null, consultaId: 0 };
 
   function lerJSON(url) {
     return fetch(url, { cache: 'no-store' }).then(function (r) {
@@ -53,11 +53,23 @@
   }
 
   function iniciar() {
-    Promise.all([lerJSON('data/signals.json'), lerJSON('data/scanner-config.json'), lerJSON('data/scenarios.json')])
+    Promise.all([lerJSON('data/signals.json'), lerJSON('data/scanner-config.json'), lerJSON('data/scenarios.json'), lerJSON('data/jogo-config.json')])
       .then(function (d) {
         estado.scanner = AnzolScanner.criarScanner({ sinais: d[0], config: d[1] });
+        estado.listas = AnzolListas.criarConsulta({
+          urlRecorte: 'data/listas/phishing-database-br.json',
+          lerJSON: lerJSON,
+          lerTexto: function (url) {
+            return fetch(url, { cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer' }).then(function (r) {
+              if (!r.ok) throw new Error('HTTP ' + r.status);
+              return r.text();
+            });
+          }
+        });
         d[0].mitos.forEach(function (m) { estado.mitos[m.id] = m; });
         montarExemplos(d[2]);
+        if (window.AnzolJogoUI) AnzolJogoUI.iniciar({ sinais: d[0], conteudo: d[2], jogoConfig: d[3], scanner: estado.scanner });
+        rotear();
       })
       .catch(function (erro) {
         var r = document.getElementById('resultado');
@@ -82,6 +94,20 @@
       try { localStorage.setItem('anzol-texto-grande', grande ? '1' : '0'); } catch (e) {}
     });
   }
+
+  // Navegação entre abas pelo endereço (#scanner, #testes)
+  function rotear() {
+    var vista = (location.hash || '#scanner').slice(1);
+    if (['scanner', 'testes'].indexOf(vista) === -1) vista = 'scanner';
+    document.querySelectorAll('.vista').forEach(function (v) { v.hidden = v.id !== 'vista-' + vista; });
+    document.querySelectorAll('.aba[data-vista]').forEach(function (a) {
+      var ativa = a.getAttribute('data-vista') === vista;
+      a.classList.toggle('ativa', ativa);
+      if (ativa) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    if (vista === 'testes' && window.AnzolJogoUI) AnzolJogoUI.mostrar();
+  }
+  window.addEventListener('hashchange', rotear);
 
   function aplicarFonte(grande) {
     document.documentElement.classList.toggle('texto-grande', grande);
@@ -121,12 +147,46 @@
     if (!texto) { document.getElementById('entrada').focus(); return; }
     var res = estado.scanner.analisar(texto);
     estado.ultimo = res;
-    mostrar(res, r);
+    var alvos = estado.scanner.alvosParaListas(texto);
+    var id = ++estado.consultaId;
+    mostrar(res, r, alvos.length ? { carregando: true } : null);
     r.hidden = false;
     r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Camada externa: listas públicas de phishing (comparação feita no aparelho)
+    if (!alvos.length || !estado.listas) return;
+    estado.listas.consultar(alvos).then(function (info) {
+      if (id !== estado.consultaId) return; // a pessoa já analisou outra coisa
+      var temAchado = Object.keys(info.achados).length > 0;
+      var res2 = temAchado ? estado.scanner.analisar(texto, { listas: info.achados }) : res;
+      mostrar(res2, r, info, true);
+    });
   }
 
-  function mostrar(res, alvo) {
+  function blocoListas(info) {
+    var g = el('div', 'grupo');
+    g.appendChild(el('h3', null, 'Listas públicas de phishing'));
+    if (info.carregando) {
+      g.appendChild(el('p', 'motivo-desc', 'Consultando listas públicas… (seu link não é enviado: o Anzol baixa a lista e compara no seu aparelho)'));
+      return g;
+    }
+    var achou = Object.keys(info.achados);
+    g.appendChild(el('p', null, achou.length
+      ? 'Este endereço aparece em lista pública de phishing (veja o motivo acima).'
+      : 'Não apareceu nas listas consultadas. Listas demoram a incluir endereços novos: isso NÃO prova que o endereço é seguro.'));
+    var ul = el('ul', 'lupa');
+    info.fontes.forEach(function (f) {
+      var quando = f.atualizado ? new Date(f.atualizado).toLocaleDateString('pt-BR') : '';
+      ul.appendChild(el('li', null, f.ok
+        ? f.fonte + ' — ' + f.total.toLocaleString('pt-BR') + ' endereços' + (quando ? ', atualizada em ' + quando : '')
+        : f.fonte + ' — indisponível agora (' + f.erro + ')'));
+    });
+    g.appendChild(ul);
+    g.appendChild(el('p', 'motivo-desc', 'Fontes: Phishing.Database (licença MIT; recorte .br guardado só como impressões digitais) e OpenPhish Community Feed (baixado na hora, uso acadêmico/pessoal).'));
+    return g;
+  }
+
+  function mostrar(res, alvo, infoListas, atualizacao) {
     alvo.textContent = '';
     var alertas = res.motivos.filter(function (m) { return m.tipo === 'alerta'; });
     var confianca = res.motivos.filter(function (m) { return m.tipo === 'confianca'; });
@@ -184,6 +244,8 @@
       alvo.appendChild(gl);
     }
 
+    if (infoListas) alvo.appendChild(blocoListas(infoListas));
+
     // Mitos
     res.lembretes.forEach(function (id) {
       var m = estado.mitos[id];
@@ -217,7 +279,7 @@
 
     var aviso = el('p', 'aviso', res.aviso + ' ' + res.aviso_link + ' Radar de golpes reportados: em construção.');
     alvo.appendChild(aviso);
-    h.focus({ preventScroll: true });
+    if (!atualizacao) h.focus({ preventScroll: true });
   }
 
   function itemMotivo(m) {

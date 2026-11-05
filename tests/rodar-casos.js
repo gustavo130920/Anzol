@@ -9,7 +9,7 @@
   'use strict';
   function rodarCasos(scanner, casos) {
     return casos.map(function (c) {
-      var r = scanner.analisar(c.texto);
+      var r = scanner.analisar(c.texto, c.listas ? { listas: c.listas } : undefined);
       var ids = r.motivos.map(function (m) { return m.id; });
       var falhas = [];
       if (r.faixa !== c.faixa) falhas.push('faixa "' + r.faixa + '" (esperado "' + c.faixa + '"), pontuação interna ' + r.pontuacao_interna);

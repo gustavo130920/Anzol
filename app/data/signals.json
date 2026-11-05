@@ -53,6 +53,7 @@
     { "id": "arroba-na-url", "familia": "tecnica", "nome": "@ no endereço", "descricao": "Tudo o que vem antes do @ é ignorado pelo navegador; serve para disfarçar o destino.", "detectavel_por": ["dominio"], "peso_inicial": 20 },
     { "id": "excesso-hifens", "familia": "tecnica", "nome": "Muitos hífens ou endereço longo", "descricao": "Palavras como 'seguro', 'regulariza', 'atendimento' coladas com hífens.", "detectavel_por": ["dominio"], "peso_inicial": 8 },
     { "id": "tld-incomum", "familia": "tecnica", "nome": "Final de endereço incomum", "descricao": "Final diferente do que a organização usa de verdade.", "detectavel_por": ["dominio"], "peso_inicial": 8 },
+    { "id": "lista-publica-phishing", "familia": "tecnica", "nome": "Consta em lista pública de phishing", "descricao": "O endereço aparece numa lista pública de sites de phishing. Listas demoram a incluir endereços novos: não aparecer não prova nada.", "detectavel_por": ["externo"], "peso_inicial": 45 },
     { "id": "dominio-recente", "familia": "tecnica", "nome": "Site criado há poucos dias", "descricao": "Golpes usam endereços de vida curta. No MVP a consulta de idade (RDAP) é SIMULADA para domínios de exemplo.", "detectavel_por": ["externo"], "peso_inicial": 15 },
 
     { "id": "comprovante-inconsistente", "familia": "visual", "nome": "Comprovante que não confere", "descricao": "Comprovante mostrado, mas o valor não aparece no extrato do seu banco. Só o extrato confirma.", "detectavel_por": ["imagem", "contexto"], "peso_inicial": 20 },

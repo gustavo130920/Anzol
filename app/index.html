@@ -27,14 +27,19 @@
 </header>
 
 <nav class="abas" aria-label="Módulos">
-  <a href="#scanner" class="aba ativa" aria-current="page">Scanner</a>
-  <span class="aba em-breve" aria-disabled="true">Testes <small>em breve</small></span>
+  <a href="#scanner" class="aba ativa" data-vista="scanner" aria-current="page">Scanner</a>
+  <a href="#testes" class="aba" data-vista="testes">Testes</a>
   <span class="aba em-breve" aria-disabled="true">Radar <small>em breve</small></span>
   <span class="aba em-breve" aria-disabled="true">Caí no golpe <small>em breve</small></span>
   <span class="aba em-breve" aria-disabled="true">Escudo <small>em breve</small></span>
 </nav>
 
 <main id="conteudo">
+  <div id="vista-testes" class="vista" hidden>
+    <div id="jogo-raiz" class="pilha" aria-live="polite"></div>
+  </div>
+
+  <div id="vista-scanner" class="vista pilha">
   <section id="scanner" class="cartao" aria-labelledby="t-scanner">
     <h1 id="t-scanner">Recebeu algo estranho? Cole aqui.</h1>
     <p class="apoio">Cole a mensagem, o link ou os dois. O Anzol mostra um <strong>nível de risco e os motivos</strong> — e <strong>nunca abre o link</strong>.</p>
@@ -65,6 +70,7 @@
       <li><strong>Como confirmo por outro caminho?</strong> <span>Ligue você mesmo, abra o app oficial, fale com a família.</span></li>
     </ol>
   </section>
+  </div>
 </main>
 
 <footer class="rodape">
@@ -73,6 +79,9 @@
 </footer>
 
 <script src="js/scanner.js"></script>
+<script src="js/listas.js"></script>
+<script src="js/jogo.js"></script>
+<script src="js/jogo-ui.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

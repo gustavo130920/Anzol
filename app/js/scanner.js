@@ -188,6 +188,12 @@
 
       if (d.tlds_incomuns.lista.indexOf(e.tld) !== -1) anotar('tld-incomum', e.registravel, 'Final ".' + e.tld + '" é pouco usado por bancos e órgãos brasileiros.');
 
+      var naLista = (listasAtuais[e.host] || []).concat(listasAtuais[e.registravel] || []);
+      if (naLista.length) {
+        var nomes = naLista.map(function (l) { return l.fonte; }).filter(function (f, i, a) { return a.indexOf(f) === i; });
+        anotar('lista-publica-phishing', e.host, 'Este endereço aparece em: ' + nomes.join(', ') + '. Isso indica relato anterior de phishing, não certeza.');
+      }
+
       var dias = cfg.rdap_simulado.dominios[e.registravel];
       if (typeof dias === 'number' && dias <= cfg.rdap_simulado.dias_considerado_recente) {
         anotar('dominio-recente', e.registravel, 'SIMULAÇÃO: consulta de registro indica site criado há ' + dias + ' dias.', true);
@@ -195,7 +201,19 @@
       return e;
     }
 
-    function analisar(texto) {
+    var listasAtuais = {};
+
+    // Endereços que valem consultar em listas externas (para a camada assíncrona)
+    function alvosParaListas(texto) {
+      return extrairEnderecos(String(texto || '').slice(0, 5000))
+        .map(function (b) { return decomporEndereco(b.bruto, cfg.dominio); })
+        .filter(function (e) { return !e.email; })
+        .map(function (e) { return { host: e.host, registravel: e.registravel }; });
+    }
+
+    /** extras.listas: { dominio: [{fonte}] } vindo de AnzolListas (opcional). */
+    function analisar(texto, extras) {
+      listasAtuais = (extras && extras.listas) || {};
       texto = String(texto || '').slice(0, 5000);
       var achados = {}; // id -> {evidencias:[], simulado}
       function anotar(id, trecho, explicacao, simulado) {
@@ -295,7 +313,7 @@
       };
     }
 
-    return { analisar: analisar };
+    return { analisar: analisar, alvosParaListas: alvosParaListas };
   }
 
   return {

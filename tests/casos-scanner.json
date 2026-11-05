@@ -158,6 +158,25 @@
       "nao_pode_ter": []
     },
     {
+      "id": "T21-lista-publica",
+      "origem": "camada de listas (lista SIMULADA com domínio .test)",
+      "texto": "Atualize seu acesso: bancoexemplar-seguranca.test",
+      "listas": { "bancoexemplar-seguranca.test": [{ "fonte": "Lista de teste" }] },
+      "faixa": "alto",
+      "deve_ter": ["lista-publica-phishing", "dominio-parecido"],
+      "nao_pode_ter": []
+    },
+    {
+      "id": "T22-lista-nao-marca-oficial",
+      "origem": "camada de listas",
+      "_nota": "Lista apontando um OUTRO domínio não pode contaminar o endereço analisado.",
+      "texto": "internet.bancoexemplar.example",
+      "listas": { "outro-dominio.test": [{ "fonte": "Lista de teste" }] },
+      "faixa": "baixo",
+      "deve_ter": [],
+      "nao_pode_ter": ["lista-publica-phishing"]
+    },
+    {
       "id": "T20-detex-hifens",
       "origem": "D-02",
       "texto": "detex-cnh-regulariza.test",

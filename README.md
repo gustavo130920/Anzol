@@ -21,7 +21,10 @@ Protótipo acadêmico — Global Solution FIAP 2026 (CitizenTech).
 
 | O quê | Como rodar |
 |---|---|
-| Scanner (20 casos) pelo Node.js | `node tests/scanner.test.js` |
+| Scanner (22 casos) pelo Node.js | `node tests/scanner.test.js` |
+| Listas públicas de phishing (sem rede, sem domínios reais) | `node tests/listas.test.js` |
+| Jogo (XP, níveis, selos, sequência, reteste) | `node tests/jogo.test.js` |
+| Atualizar o recorte `.br` do Phishing.Database | `node tools/atualizar-listas.js` |
 | Scanner pelo navegador | servidor ligado → `http://localhost:8080/tests/` |
 | Dados (cenários, pistas, só domínios reservados) | `powershell -ExecutionPolicy Bypass -File tests\validar-dados.ps1` |
 | Regenerar `docs/cenarios.md` a partir do JSON | `powershell -ExecutionPolicy Bypass -File tools\gerar-cenarios-md.ps1` |
@@ -44,4 +47,10 @@ tools/                servidor local e gerador de documentação
 
 ## O que é regra e o que é IA
 
-O Scanner atual é **100% regras explicáveis** (cada motivo aponta para uma pista do motor de sinais). As partes de IA (agrupar variantes de campanhas no Radar) e de visão computacional (ler prints) entram nas próximas etapas.
+O Scanner atual é **100% regras explicáveis** (cada motivo aponta para uma pista do motor de sinais), mais uma camada de **listas públicas de phishing**. O "teste do dia" do jogo também é **regra** (mira a pista que a pessoa mais deixou passar). As partes de IA (agrupar variantes de campanhas no Radar) e de visão computacional (ler prints) entram nas próximas etapas.
+
+## Listas públicas de phishing (créditos)
+
+- **Phishing.Database** — licença MIT, Copyright (c) 2018-2025 Mitchell Krog, Nissar Chababy e contribuidores. O projeto guarda só um recorte `.br` como impressões digitais (SHA-256).
+- **OpenPhish Community Feed** — baixado na hora pelo navegador de quem usa, para uso pessoal/acadêmico, conforme os termos do OpenPhish. Nenhuma cópia é guardada ou redistribuída.
+- O endereço analisado **nunca é enviado** a essas fontes: a comparação é feita no aparelho.

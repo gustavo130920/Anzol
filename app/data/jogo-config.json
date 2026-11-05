@@ -1,0 +1,72 @@
+{
+  "_sobre": "Regras do jogo do Anzol (camada fina). TODOS os valores são PARÂMETROS INICIAIS SEM VALIDAÇÃO. O XP premia INVESTIGAR, não rapidez: não existe bônus por tempo.",
+  "_versao": "0.1.0",
+  "_atualizado_em": "2026-11-05",
+
+  "xp": {
+    "classificacao_correta": 10,
+    "passo_correto": 10,
+    "pista_correta": 5,
+    "pista_falsa": -3,
+    "lupa_antes_de_decidir": 5,
+    "dominio_correto": 20,
+    "procedimento_correto": 20,
+    "teste_do_dia_bonus": 10,
+    "_regra_repeticao": "XP só na primeira vez de cada item; repetir mostra o feedback de novo (revisão), sem XP. O subtotal de pistas nunca fica negativo."
+  },
+
+  "niveis": [
+    { "nome": "Curioso", "xp_minimo": 0, "frase": "Todo mundo começa aqui. Desconfiar é um hábito que se treina." },
+    { "nome": "Atento", "xp_minimo": 60, "frase": "Você já percebe os sinais mais comuns." },
+    { "nome": "Investigador", "xp_minimo": 160, "frase": "Você olha o pedido e o canal antes de agir." },
+    { "nome": "Caçador de iscas", "xp_minimo": 300, "frase": "Os golpes sutis também chamam sua atenção." },
+    { "nome": "Guardião", "xp_minimo": 480, "frase": "Ótimo! Mas lembre: qualquer pessoa pode cair. Confirmar por outro caminho continua valendo." }
+  ],
+
+  "selos": [
+    { "id": "selo-pix-loja", "nome": "Olho no Pix", "descricao": "Reconheceu os golpes de loja, comprovante e vaga.", "regra": "acertar_familias", "familias": ["loja-anuncio-falso", "comprovante-pix-falso", "falsa-vaga-emprego"] },
+    { "id": "selo-familia", "nome": "Família protegida", "descricao": "Reconheceu o falso parente.", "regra": "acertar_familias", "familias": ["falso-parente"] },
+    { "id": "selo-advogado", "nome": "Advogado de verdade", "descricao": "Reconheceu o falso advogado.", "regra": "acertar_familias", "familias": ["falso-advogado"] },
+    { "id": "selo-central", "nome": "Desliguei e liguei", "descricao": "Reconheceu a falsa central.", "regra": "acertar_familias", "familias": ["falsa-central"] },
+    { "id": "selo-sms", "nome": "SMS sob suspeita", "descricao": "Reconheceu os golpes de link por SMS.", "regra": "acertar_familias", "familias": ["link-sms-orgao-publico", "dinheiro-inesperado"] },
+    { "id": "selo-sem-paranoia", "nome": "Sem paranoia", "descricao": "Reconheceu as 4 mensagens legítimas.", "regra": "acertar_legitimas", "quantidade": 4 },
+    { "id": "selo-lupa", "nome": "Lupa afiada", "descricao": "Acertou os 4 testes de domínio.", "regra": "acertar_tipo", "tipo": "dominio", "quantidade": 4 },
+    { "id": "selo-procedimento", "nome": "Calma que eu confirmo", "descricao": "Acertou os 3 testes de procedimento.", "regra": "acertar_tipo", "tipo": "procedimento", "quantidade": 3 }
+  ],
+
+  "sequencia": {
+    "_nota": "Sequência diária COM PERDÃO: perder um único dia não zera a sequência, uma vez a cada 7 dias.",
+    "perdao_a_cada_dias": 7
+  },
+
+  "avaliacao": {
+    "_nota": "Teste inicial e reteste medem a taxa de 'interação' (dizer que um golpe é legítimo) e de falso alarme (dizer que uma legítima é golpe). Sem feedback até o fim. Os itens do reteste ficam FORA da prática até o reteste ser feito, para medir aprendizado e não memória. Amostra pequena: serve de indicador, não tem valor estatístico.",
+    "inicial": ["L3-01", "L2-01", "L1-01", "L1-04", "L3-03"],
+    "reteste": ["L3-02", "L2-02", "L1-03", "L2-04", "L3-04"],
+    "reteste_libera_apos_itens_praticados": 8
+  },
+
+  "sinais_parecidos": {
+    "_nota": "Se uma pista do grupo é certa no cenário, as outras do grupo NÃO podem aparecer como pista falsa (seria injusto). Além disso, nenhuma pista que o Scanner detecta no texto vira pista falsa.",
+    "grupos": [
+      ["pede-pix-pagamento", "pagamento-fora-plataforma", "taxa-antecipada"],
+      ["dominio-parecido", "homoglifo", "subdominio-enganoso", "excesso-hifens", "tld-incomum", "remetente-nao-bate"],
+      ["numero-novo", "remetente-nao-bate", "contato-nao-solicitado"],
+      ["autoridade", "canal-incompativel"],
+      ["evita-confirmacao", "sigilo"]
+    ]
+  },
+
+  "passos_errados": [
+    { "texto": "Clicar no link só para ver se é verdade.", "precisa_link": true, "explicacao": "Abrir o link já pode expor você. Confira pelo caminho oficial que você conhece." },
+    { "texto": "Responder pelo mesmo canal pedindo mais detalhes.", "precisa_link": false, "explicacao": "Quem está do outro lado vai confirmar a história. Confirmar pelo mesmo canal não confirma." },
+    { "texto": "Pagar logo para resolver e conferir depois.", "precisa_link": false, "explicacao": "Pagamento por Pix é instantâneo e difícil de desfazer. Primeiro confirme." },
+    { "texto": "Encaminhar para amigos e esperar a opinião deles.", "precisa_link": false, "explicacao": "Opinião ajuda, mas não confirma. E encaminhar pode espalhar o golpe." }
+  ],
+
+  "mensagens": {
+    "acerto": ["Boa! Você olhou os sinais antes de decidir.", "Isso! Investigar antes de agir é o caminho."],
+    "erro": ["Quase. Esse engana muita gente — por isso vale treinar.", "Não foi dessa vez. Errar aqui é de graça; veja as pistas abaixo."],
+    "falso_alarme": "Era legítima. Desconfiar é bom, mas confirmar pelo canal que você conhece evita perder mensagens reais."
+  }
+}

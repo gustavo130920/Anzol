@@ -167,7 +167,7 @@ Sempre diremos o que é **regra** e o que é **IA**.
 | **Visão computacional** | OCR (leitura de texto em imagem) de prints no scanner, no Kit de provas e no relato do Radar; "impressão digital" de imagem (*perceptual hash* via canvas) para achar imagens reaproveitadas | Visão computacional clássica (OCR é um modelo treinado; o *hash* perceptual é algoritmo) | OCR com Tesseract.js se houver rede; senão, exemplo pré-extraído rotulado **SIMULAÇÃO** |
 | **IA** | Agrupar variantes da mesma campanha por similaridade de texto (n-gramas/TF-IDF); detectar tendência de alta; escolher o próximo teste pela pista mais errada; explicações em linguagem simples, **pré-geradas e guardadas** (custo baixo) | IA leve / aprendizado estatístico (sem modelo pago) | Real em escala pequena, com dados semeados |
 | **Análise de dados** | Banco de indicadores, painel por região e tipo, funil do golpe, teste inicial × reteste | Estatística descritiva | Painel com dados de demonstração (**SIMULAÇÃO**) |
-| **Cloud** | Site estático no **GitHub Pages**; banco do Radar opcional em Postgres gerenciado (Supabase); consulta à idade do domínio pelo RDAP do Registro.br | Infraestrutura | Hospedagem real; banco em nuvem "se der tempo" |
+| **Cloud** | Site estático no **GitHub Pages**; banco do Radar opcional em Postgres gerenciado (Supabase); consulta à idade do domínio pelo RDAP do Registro.br; **listas públicas de phishing consultadas na nuvem** (OpenPhish ao vivo; recorte do Phishing.Database) | Infraestrutura | Hospedagem real; listas **reais** (comparação feita no aparelho, o link da pessoa não é enviado); banco em nuvem "se der tempo" |
 | *(Regras)* | Scanner: domínio parecido, subdomínio enganoso, homóglifos, `xn--`, encurtador, IP, `@`, hífens, final incomum; urgência, ameaça, pedido de código/Pix, canal incompatível | **Regra**, não IA | Real |
 
 ---
@@ -184,7 +184,9 @@ Sempre diremos o que é **regra** e o que é **IA**.
    │
    ├──► [RDAP Registro.br] idade de domínios .br  (consulta direta do navegador; CORS liberado)
    ├──► [Supabase / Postgres] Radar: indicadores, relatos, campanhas  (opcional; senão JSON)
-   └──► [Feeds de reputação: OpenPhish, PhishTank, URLhaus]  (roteiro futuro / SIMULAÇÃO)
+   ├──► [OpenPhish Community Feed] baixado AO VIVO pelo navegador (CORS liberado); comparação no aparelho
+   └──► [Phishing.Database (MIT)] recorte .br (3.333 domínios) guardado só como impressões digitais SHA-256
+        (gerado por tools/atualizar-listas.js; em produção, um agendamento na nuvem pode atualizar diariamente)
 ```
 
 **Limites verificados (05/11/2026):**
@@ -240,7 +242,7 @@ Sempre diremos o que é **regra** e o que é **IA**.
 - Notificação ativa (só para campanhas de alta confiança).
 - Integração com canais de denúncia.
 - Parcerias com bancos e operadoras.
-- Feeds de reputação.
+- Mais listas de reputação (URLhaus e PhishTank exigem chave/cadastro; uso comercial do OpenPhish exige autorização).
 - Agrupamento por IA em maior escala.
 
 ### 6.5 Sustentabilidade (**HIPÓTESES**, sem preço validado)

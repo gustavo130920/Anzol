@@ -36,4 +36,6 @@
 | 22 | Parâmetros do jogo (XP, níveis), pesos das pistas e limiar do alerta (≥ 3 relatos em 24 h) | **Gustavo** (decidir) | São valores iniciais sem validação; ajustar na sessão 2 com os testes; declarar no vídeo |
 | 23 | Mini-piloto (5 a 10 pessoas) | **Gustavo** | Só se sobrar tempo; termo de consentimento simples; sem dados pessoais |
 | 24 | URL oficial para "reclamação ao Banco Central" e consumidor.gov.br | Pesquisa | Conferir os endereços oficiais e o telefone 145 do BC |
-| 25 | Conteúdo de segurança dos 19 itens | **Gustavo** | Revisar `docs/cenarios.md` (seu olhar de analista de segurança) |
+| 25 | Conteúdo de segurança dos 19 itens | **Gustavo** | ✅ Aprovado em 05/11/2026 |
+| 26 | Listas públicas de phishing gratuitas | ✅ (05/11/2026) | **OpenPhish Community Feed:** 300 URLs, CORS liberado, termos = uso pessoal/pesquisa acadêmica, **proíbe redistribuir** → baixado ao vivo pelo navegador, sem cópia no projeto; uso comercial exige autorização escrita. **Phishing.Database:** MIT, 392 mil domínios (3.333 `.br`), última atualização da fonte 02/10/2026 → recorte `.br` como hash. **URLhaus:** download aberto retornou 410 (hoje exige chave). **PhishTank:** cadastro de novas chaves aparentemente fechado desde 2020 (fonte secundária). **phish.co.za:** 503 no teste. Fontes: openphish.com/terms.html; github.com/Phishing-Database/Phishing.Database |
+| 27 | Atualização automática das listas na nuvem | Pesquisa | Sessão 6: agendar `tools/atualizar-listas.js` (ex.: GitHub Actions, 1×/dia) — verificar limites gratuitos |
