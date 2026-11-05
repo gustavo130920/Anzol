@@ -1,0 +1,511 @@
+{
+  "_sobre": "Cenários e testes do Anzol (MVP). Todas as organizações, pessoas, números e domínios são FICTÍCIOS. Domínios usam apenas TLDs reservados (.test, .example, .invalid) e IPs de documentação (RFC 5737). Nenhum link é clicável no app.",
+  "_rotulo": "SIMULAÇÃO — material educativo",
+  "_versao": "0.1.0",
+  "_atualizado_em": "2026-11-05",
+  "_status": "RASCUNHO — aguardando revisão do conteúdo de segurança pelo usuário",
+  "_pistas_ids": "Todo 'pistas[].id' deve existir em app/data/signals.json",
+
+  "decisoes": {
+    "nao_comprar_e_verificar_no_canal_oficial": "Não comprar por esse anúncio; procurar a loja pelo endereço/app que você já conhece.",
+    "conferir_no_extrato_antes_de_entregar": "Não entregar nada até o valor aparecer no extrato do seu próprio banco.",
+    "nao_pagar_taxa_e_ignorar": "Não pagar nada para 'liberar' vaga, prêmio ou valor; ignorar e, se quiser, denunciar.",
+    "confirmar_por_outro_canal": "Não pagar ainda; confirmar com a pessoa por um caminho que você já tinha (número antigo, ligação, palavra de segurança).",
+    "confirmar_com_quem_voce_ja_conhece": "Falar com o seu advogado/empresa pelo contato que VOCÊ já tinha, não pelo que veio na mensagem.",
+    "desligar_e_ligar_no_numero_oficial": "Desligar e ligar você mesmo para o número oficial (verso do cartão ou app).",
+    "ignorar_e_verificar_no_canal_oficial": "Não clicar; consultar a situação pelo site/app oficial que você digita ou já usa.",
+    "seguir_com_cuidado": "Parece legítima. Pode seguir, conferindo pelo canal que você já usa se algo mudar."
+  },
+
+  "cenarios": [
+    {
+      "id": "L1-01",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "titulo": "Liquidação imperdível",
+      "linha": 1,
+      "familia": "loja-anuncio-falso",
+      "canal": "anuncio_rede_social",
+      "legitima": false,
+      "nivel": 1,
+      "organizacao_ficticia": "Loja Vitrine (site oficial fictício: lojavitrine.example)",
+      "mensagem": "Anúncio patrocinado — Liquidação de fábrica Loja Vitrine: tênis de R$ 499 por R$ 89. Só hoje! Pagamento apenas por Pix, com 10% de desconto.",
+      "link_exibido": "lojavitrine-oficial-liquida.test",
+      "contexto_simulado": "Consulta simulada de idade do domínio: criado há 6 dias.",
+      "pistas": [
+        { "id": "ganancia-oferta", "trecho": "R$ 499 por R$ 89", "explicacao": "Desconto de mais de 80% é isca. Oferta boa demais foi o motivo de 31% de quem desistiu de pagar (GASA 2026)." },
+        { "id": "urgencia", "trecho": "Só hoje!", "explicacao": "O prazo curto existe para você não pesquisar." },
+        { "id": "pede-pix-pagamento", "trecho": "Pagamento apenas por Pix", "explicacao": "Só aceitar Pix tira de você a proteção do cartão e da plataforma." },
+        { "id": "excesso-hifens", "trecho": "lojavitrine-oficial-liquida.test", "explicacao": "O site oficial é lojavitrine.example. Palavras como 'oficial' coladas com hífen não tornam nada oficial." },
+        { "id": "dominio-recente", "trecho": "criado há 6 dias", "explicacao": "Loja grande não nasce na semana passada." }
+      ],
+      "decisao_correta": "nao_comprar_e_verificar_no_canal_oficial",
+      "perguntas": {
+        "quem": "Um anúncio que diz ser da Loja Vitrine, mas aponta para outro endereço.",
+        "o_que": "Pagamento só por Pix, com desconto extra para Pix.",
+        "por_onde": "Anúncio em rede social, levando a um domínio diferente do oficial.",
+        "como_confirmo": "Abrir o app ou digitar o endereço oficial da loja e procurar a promoção lá."
+      },
+      "mito_relacionado": "aparencia",
+      "feedback": "A aparência do site não prova nada: copiar fotos e logotipo é fácil. O que entrega é o pedido (só Pix) e o endereço diferente do oficial.",
+      "baseado_em": "Compras é o tipo de golpe com mais interações (22%) no relatório GASA 2026; relatos de anúncios que levam a sites idênticos aos de marcas conhecidas.",
+      "fonte_url": "https://static.poder360.com.br/uploads/2026/08/estudo-golpes-digitais-GASA-O-Estado-dos-Golpes-Brasil-2026-pdf.pdf",
+      "fonte_verificada_em": "2026-11-05 (dados da pesquisa inicial, 04–05/11/2026)"
+    },
+    {
+      "id": "L1-02",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "titulo": "O comprovante chegou, o dinheiro não",
+      "linha": 1,
+      "familia": "comprovante-pix-falso",
+      "canal": "whatsapp",
+      "legitima": false,
+      "nivel": 2,
+      "organizacao_ficticia": "Você é quem vende (pessoa física, anúncio em marketplace fictício)",
+      "mensagem": "Pronto, fiz o Pix de R$ 350, segue o comprovante. Pode despachar hoje? Estou com pressa.",
+      "imagem_descricao": "Imagem estática de comprovante fictício com o selo 'SIMULAÇÃO'. O status diz 'agendado' em letra pequena; o valor ainda não aparece no seu extrato.",
+      "link_exibido": null,
+      "pistas": [
+        { "id": "comprovante-inconsistente", "trecho": "status 'agendado' / valor fora do extrato", "explicacao": "Pix cai na hora. Comprovante é só uma imagem; o que vale é o extrato do seu banco." },
+        { "id": "urgencia", "trecho": "Estou com pressa", "explicacao": "A pressa é para você entregar antes de conferir." },
+        { "id": "pagamento-fora-plataforma", "trecho": "negociação pelo WhatsApp", "explicacao": "A conversa saiu do marketplace, onde haveria registro e mediação." }
+      ],
+      "decisao_correta": "conferir_no_extrato_antes_de_entregar",
+      "perguntas": {
+        "quem": "Um comprador que você não conhece.",
+        "o_que": "Que você entregue o produto antes de o dinheiro aparecer.",
+        "por_onde": "WhatsApp, fora da plataforma de vendas.",
+        "como_confirmo": "Abrir o app do seu banco e ver o crédito no extrato."
+      },
+      "mito_relacionado": null,
+      "feedback": "Comprovante pode ser editado, agendado e cancelado depois. Regra simples: só entregue depois de ver o valor no seu extrato.",
+      "baseado_em": "Golpe do comprovante falso/agendado contra vendedores; orientações de bancos e fintechs para conferir sempre o extrato.",
+      "fonte_url": "https://blog.nubank.com.br/comprovante-de-pix-falso-como-identificar-esse-golpe/",
+      "fonte_verificada_em": "2026-11-05 (trecho via busca; página não lida na íntegra)"
+    },
+    {
+      "id": "L1-03",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "titulo": "Vaga dos sonhos com taxa de entrada",
+      "linha": 1,
+      "familia": "falsa-vaga-emprego",
+      "canal": "whatsapp",
+      "legitima": false,
+      "nivel": 2,
+      "organizacao_ficticia": "Avalia Fácil Exemplo (empresa fictícia)",
+      "mensagem": "Olá! Seu perfil foi selecionado para vaga home office de avaliador de produtos, R$ 300 por dia. Para ativar seu cadastro, pague a taxa do kit de treinamento de R$ 49,90.",
+      "link_exibido": null,
+      "pistas": [
+        { "id": "contato-nao-solicitado", "trecho": "Seu perfil foi selecionado", "explicacao": "Você não se candidatou a essa vaga." },
+        { "id": "ganancia-oferta", "trecho": "R$ 300 por dia", "explicacao": "Ganho alto para tarefa simples é isca." },
+        { "id": "taxa-antecipada", "trecho": "pague a taxa do kit", "explicacao": "Empresa séria não cobra para contratar. Pagar para trabalhar é o sinal central." }
+      ],
+      "decisao_correta": "nao_pagar_taxa_e_ignorar",
+      "perguntas": {
+        "quem": "Uma 'empresa' que você nunca procurou.",
+        "o_que": "Uma taxa antes de qualquer trabalho.",
+        "por_onde": "Mensagem direta, sem processo seletivo.",
+        "como_confirmo": "Procurar a empresa por conta própria (CNPJ, site, canais de vaga conhecidos) e desconfiar de qualquer cobrança."
+      },
+      "mito_relacionado": null,
+      "feedback": "Taxa para liberar vaga, prêmio ou valor é o mesmo padrão em vários golpes. Quem paga para receber normalmente só perde.",
+      "baseado_em": "Falsa vaga de emprego está entre os tipos com mais interações (17%) no relatório GASA 2026.",
+      "fonte_url": "https://static.poder360.com.br/uploads/2026/08/estudo-golpes-digitais-GASA-O-Estado-dos-Golpes-Brasil-2026-pdf.pdf",
+      "fonte_verificada_em": "2026-11-05 (dados da pesquisa inicial, 04–05/11/2026)"
+    },
+    {
+      "id": "L1-04",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "titulo": "Código que você pediu",
+      "linha": 1,
+      "familia": "legitima-codigo-verificacao",
+      "canal": "sms",
+      "legitima": true,
+      "nivel": 1,
+      "organizacao_ficticia": "Banco Exemplar (fictício)",
+      "mensagem": "Banco Exemplar: seu código de acesso é 482913. Não compartilhe este código com ninguém. O Banco Exemplar nunca pede este código por ligação ou mensagem.",
+      "contexto_simulado": "Você acabou de tentar entrar no app do Banco Exemplar no seu celular.",
+      "link_exibido": null,
+      "pistas": [
+        { "id": "canal-esperado", "trecho": "você acabou de pedir", "explicacao": "O código chegou porque VOCÊ iniciou o acesso." },
+        { "id": "avisa-nao-compartilhar", "trecho": "Não compartilhe este código", "explicacao": "Mensagens legítimas de código avisam que ninguém deve pedi-lo." },
+        { "id": "sem-link-pagamento", "trecho": "sem link", "explicacao": "Não há link nem pedido de pagamento." }
+      ],
+      "decisao_correta": "seguir_com_cuidado",
+      "perguntas": {
+        "quem": "O banco, num momento em que você mesmo pediu o código.",
+        "o_que": "Nada: só informa o código para você digitar no seu próprio app.",
+        "por_onde": "SMS, logo depois da sua ação.",
+        "como_confirmo": "Você está no app oficial esperando o código."
+      },
+      "mito_relacionado": null,
+      "feedback": "Legítima. Mas atenção: se esse código chegar SEM você ter pedido, alguém está tentando entrar na sua conta. Não repasse para ninguém.",
+      "baseado_em": "Padrão comum de SMS de verificação de bancos e apps; cenário de calibração (evitar paranoia).",
+      "fonte_url": null,
+      "fonte_verificada_em": null
+    },
+
+    {
+      "id": "L2-01",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "titulo": "Troquei de número",
+      "linha": 2,
+      "familia": "falso-parente",
+      "canal": "whatsapp",
+      "legitima": false,
+      "nivel": 1,
+      "organizacao_ficticia": "Contato desconhecido usando foto de um familiar",
+      "mensagem": "Oi mãe, troquei de número, salva esse. Tô com um problema e preciso de um Pix urgente, te explico depois.",
+      "link_exibido": null,
+      "pistas": [
+        { "id": "numero-novo", "trecho": "troquei de número", "explicacao": "Número novo + pedido de dinheiro é o começo clássico desse golpe." },
+        { "id": "apelo-afetivo", "trecho": "Oi mãe", "explicacao": "A intimidade é usada para pular a desconfiança." },
+        { "id": "urgencia", "trecho": "urgente", "explicacao": "Pressa para não dar tempo de confirmar." },
+        { "id": "pede-pix-pagamento", "trecho": "preciso de um Pix", "explicacao": "O pedido de dinheiro é o que importa, não a foto do perfil." },
+        { "id": "evita-confirmacao", "trecho": "te explico depois", "explicacao": "Evita dar detalhes que você poderia checar." }
+      ],
+      "decisao_correta": "confirmar_por_outro_canal",
+      "perguntas": {
+        "quem": "Alguém que DIZ ser seu filho, num número que você não conhece.",
+        "o_que": "Um Pix urgente.",
+        "por_onde": "Número novo no WhatsApp.",
+        "como_confirmo": "Ligar para o número antigo, falar com alguém da família ou pedir a palavra de segurança combinada."
+      },
+      "mito_relacionado": null,
+      "feedback": "Ligue para o número que você já tinha. Se for mesmo seu filho, ele vai entender. Combine uma palavra de segurança em família: em 2026 já há versões com voz clonada.",
+      "baseado_em": "Golpe do falso parente/WhatsApp; 'golpe do WhatsApp' citado por 34% no ranking IPESPE/Observatório Febraban (via imprensa).",
+      "fonte_url": "https://www.folhabv.com.br/policia/do-golpe-do-pix-a-falsa-central-bancaria-entenda-como-funciona-as-fraudes/",
+      "fonte_verificada_em": "2026-11-05 (dados da pesquisa inicial, 04–05/11/2026; relatório original não consultado)"
+    },
+    {
+      "id": "L2-02",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "titulo": "Seu processo foi liberado",
+      "linha": 2,
+      "familia": "falso-advogado",
+      "canal": "whatsapp",
+      "legitima": false,
+      "nivel": 3,
+      "organizacao_ficticia": "Escritório Exemplo Advocacia (fictício); cliente 'Maria' (nome fictício)",
+      "mensagem": "Escritório Exemplo Advocacia: Sra. Maria, o valor de R$ 18.400 do seu processo nº 0000000-00.0000.0.00.0000 foi liberado. Para a expedição, é necessário recolher custas de R$ 1.150 via Pix até hoje.",
+      "contexto_simulado": "Você realmente tem um processo em andamento. A mensagem veio de um número que não é o do seu advogado, com a foto e o nome do escritório.",
+      "link_exibido": null,
+      "pistas": [
+        { "id": "autoridade", "trecho": "Escritório ... processo nº", "explicacao": "Número de processo e nome do escritório dão ar oficial. Dados de processo podem ser públicos ou vazados." },
+        { "id": "taxa-antecipada", "trecho": "recolher custas de R$ 1.150 via Pix", "explicacao": "Pagar para 'liberar' valor é o centro do golpe, segundo alertas da OAB-SP." },
+        { "id": "urgencia", "trecho": "até hoje", "explicacao": "O prazo impede você de falar com seu advogado." },
+        { "id": "numero-novo", "trecho": "número que não é o do seu advogado", "explicacao": "O contato não é o que você já tinha." }
+      ],
+      "decisao_correta": "confirmar_com_quem_voce_ja_conhece",
+      "perguntas": {
+        "quem": "Alguém usando nome e foto do escritório, por um número diferente.",
+        "o_que": "Um Pix para 'liberar' o valor.",
+        "por_onde": "WhatsApp, número novo.",
+        "como_confirmo": "Ligar para o seu advogado pelo telefone que você já tinha ou ir ao escritório."
+      },
+      "mito_relacionado": "dados-verdadeiros",
+      "feedback": "Saber o número do seu processo não prova nada: dados processuais podem ser consultados ou vazados. Antes de qualquer pagamento, fale com o seu advogado pelo contato que você já tinha.",
+      "baseado_em": "Alertas da OAB-SP e do TRF3 sobre o golpe do falso advogado: pedido de Pix como 'taxa' para liberar valores judiciais. OAB-SP: 4.388 denúncias no estado até fev/2026.",
+      "fonte_url": "https://www.oabsp.org.br/noticia/26-02-06-1718-golpe-do-falso-advogado-ja-soma-4388-denuncias-e-acende-alerta-em-todo-o-pais",
+      "fonte_verificada_em": "2026-11-05 (trecho via busca; página não lida na íntegra)"
+    },
+    {
+      "id": "L2-03",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "titulo": "Ligação da central de segurança",
+      "linha": 2,
+      "familia": "falsa-central",
+      "canal": "ligacao_transcricao",
+      "legitima": false,
+      "nivel": 3,
+      "organizacao_ficticia": "Banco Exemplar (fictício)",
+      "mensagem": "[Transcrição] \"Aqui é da central de segurança do Banco Exemplar. Identificamos uma compra suspeita de R$ 2.300 no seu cartão. Para cancelar, vou enviar um código por SMS e preciso que a senhora me confirme.\"",
+      "contexto_simulado": "O número que aparece na tela é igual ao do verso do seu cartão.",
+      "link_exibido": null,
+      "pistas": [
+        { "id": "ameaca-medo", "trecho": "compra suspeita de R$ 2.300", "explicacao": "O susto faz você querer resolver na hora." },
+        { "id": "pede-codigo-senha", "trecho": "preciso que a senhora me confirme [o código]", "explicacao": "Banco não pede código nem senha por ligação. Esse é o sinal decisivo." },
+        { "id": "numero-falsificado", "trecho": "número igual ao do cartão", "explicacao": "O número exibido pode ser falsificado (spoofing)." },
+        { "id": "autoridade", "trecho": "central de segurança", "explicacao": "Nome de setor oficial para não ser questionado." }
+      ],
+      "decisao_correta": "desligar_e_ligar_no_numero_oficial",
+      "perguntas": {
+        "quem": "Alguém que diz ser do banco. Você não tem como saber pela ligação.",
+        "o_que": "O código que chegou por SMS.",
+        "por_onde": "Ligação que você recebeu (não foi você quem ligou).",
+        "como_confirmo": "Desligar e ligar você mesmo para o número do verso do cartão ou abrir o app do banco."
+      },
+      "mito_relacionado": "numero-oficial",
+      "feedback": "Desligue e ligue você. Se a compra suspeita existir, o banco também vai ver pelo seu contato. A Anatel vem exigindo autenticação de chamadas, mas a implementação leva tempo.",
+      "baseado_em": "Falsa central bancária (31% no ranking IPESPE/Observatório Febraban, via imprensa); Anatel Res. 777/2025 sobre autenticação de chamadas.",
+      "fonte_url": "https://www.folhabv.com.br/policia/do-golpe-do-pix-a-falsa-central-bancaria-entenda-como-funciona-as-fraudes/",
+      "fonte_verificada_em": "2026-11-05 (dados da pesquisa inicial, 04–05/11/2026)"
+    },
+    {
+      "id": "L2-04",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "titulo": "Amiga combinando a apresentação",
+      "linha": 2,
+      "familia": "legitima-amigo",
+      "canal": "whatsapp",
+      "legitima": true,
+      "nivel": 2,
+      "organizacao_ficticia": "Ana (nome fictício), colega de faculdade",
+      "mensagem": "Oi! Vi que a apresentação ficou para sexta. Levo o projetor que combinamos? Se preferir, me liga.",
+      "contexto_simulado": "Número salvo há anos; vocês combinaram o projetor na aula de ontem.",
+      "link_exibido": null,
+      "pistas": [
+        { "id": "contexto-verificavel", "trecho": "o projetor que combinamos", "explicacao": "Fala de algo que vocês combinaram e que você pode checar." },
+        { "id": "canal-esperado", "trecho": "número salvo há anos", "explicacao": "É o contato que você já tinha." },
+        { "id": "sem-link-pagamento", "trecho": "sem pedido", "explicacao": "Não pede dinheiro, código nem dado." }
+      ],
+      "decisao_correta": "seguir_com_cuidado",
+      "perguntas": {
+        "quem": "Uma colega, pelo número que você já conhece.",
+        "o_que": "Nada além de combinar algo que já existia.",
+        "por_onde": "WhatsApp, contato antigo.",
+        "como_confirmo": "Ela mesma oferece ligar."
+      },
+      "mito_relacionado": null,
+      "feedback": "Legítima. Desconfiar de tudo cansa e atrapalha. Os sinais de alerta aparecem quando surge um PEDIDO (dinheiro, código, dado) ou um canal novo.",
+      "baseado_em": "Cenário de calibração (cerca de 1/3 legítimos, hipótese de design).",
+      "fonte_url": null,
+      "fonte_verificada_em": null
+    },
+
+    {
+      "id": "L3-01",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "titulo": "CNH será suspensa em 24h",
+      "linha": 3,
+      "familia": "link-sms-orgao-publico",
+      "canal": "sms",
+      "legitima": false,
+      "nivel": 1,
+      "organizacao_ficticia": "Departamento Estadual de Trânsito Exemplo — DETEX (fictício; site oficial fictício: detex.example)",
+      "mensagem": "DETEX informa: sua CNH será SUSPENSA em 24h por pendência. Regularize agora: regulariza-cnh-detex.test",
+      "link_exibido": "regulariza-cnh-detex.test",
+      "pistas": [
+        { "id": "canal-incompativel", "trecho": "SMS com link de regularização", "explicacao": "Segundo a Associação Nacional dos Detrans, nenhum Detran notifica suspensão por SMS com link; usam correspondência, carteira digital ou Diário Oficial." },
+        { "id": "ameaca-medo", "trecho": "será SUSPENSA", "explicacao": "Ameaça de perder a habilitação." },
+        { "id": "urgencia", "trecho": "em 24h", "explicacao": "Prazo curto para você não consultar o órgão." },
+        { "id": "excesso-hifens", "trecho": "regulariza-cnh-detex.test", "explicacao": "O site oficial é detex.example. Este é outro domínio, montado com palavras-chave." },
+        { "id": "autoridade", "trecho": "DETEX informa", "explicacao": "Usa o nome do órgão para parecer oficial." }
+      ],
+      "decisao_correta": "ignorar_e_verificar_no_canal_oficial",
+      "perguntas": {
+        "quem": "Alguém usando o nome do órgão de trânsito.",
+        "o_que": "Que você 'regularize' por um link (no padrão real, cobram uma taxa).",
+        "por_onde": "SMS com link, canal que o órgão não usa para isso.",
+        "como_confirmo": "Consultar sua CNH no site ou app oficial do órgão, digitando o endereço você mesmo."
+      },
+      "mito_relacionado": "dados-verdadeiros",
+      "feedback": "Mesmo que o site mostre seus dados verdadeiros (isso acontece no golpe real), ele não é oficial. Dados vazam; o canal não mente.",
+      "baseado_em": "Alerta da Associação Nacional dos Detrans (nov/2024): casos em 18 estados + DF; mensagens com link para página que imita sistema oficial e cobra 'taxa de regularização'.",
+      "fonte_url": "https://www.portaldotransito.com.br/noticias/and-faz-alerta-para-golpe-com-mensagens-falsas-sobre-suspensao-de-cnh/amp/",
+      "fonte_verificada_em": "2026-11-05 (trecho via busca; página não lida na íntegra)"
+    },
+    {
+      "id": "L3-02",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "titulo": "Dinheiro esquecido no seu nome",
+      "linha": 3,
+      "familia": "dinheiro-inesperado",
+      "canal": "sms",
+      "legitima": false,
+      "nivel": 2,
+      "organizacao_ficticia": "Programa Valores Esquecidos Exemplo (fictício)",
+      "mensagem": "Programa Valores Esquecidos: há R$ 1.873,40 em seu nome. Para resgatar, confirme seus dados e pague a tarifa de transferência de R$ 19,90: valores-esquecidos-resgate.test",
+      "link_exibido": "valores-esquecidos-resgate.test",
+      "pistas": [
+        { "id": "ganancia-oferta", "trecho": "R$ 1.873,40 em seu nome", "explicacao": "Dinheiro inesperado é o 2º tipo com mais interações (17%) no GASA 2026." },
+        { "id": "taxa-antecipada", "trecho": "pague a tarifa de transferência", "explicacao": "Quem tem dinheiro para te devolver desconta a tarifa do valor, não pede que você pague antes." },
+        { "id": "pede-dados-pessoais", "trecho": "confirme seus dados", "explicacao": "Os dados digitados alimentam outros golpes." },
+        { "id": "contato-nao-solicitado", "trecho": "SMS que você não esperava", "explicacao": "Você não pediu consulta nenhuma." },
+        { "id": "excesso-hifens", "trecho": "valores-esquecidos-resgate.test", "explicacao": "Domínio montado com palavras-chave, sem relação com um órgão oficial." }
+      ],
+      "decisao_correta": "ignorar_e_verificar_no_canal_oficial",
+      "perguntas": {
+        "quem": "Um 'programa' que você não conhece.",
+        "o_que": "Seus dados e uma tarifa antecipada.",
+        "por_onde": "SMS com link.",
+        "como_confirmo": "Procurar o serviço oficial pelo seu próprio caminho (site do órgão digitado por você, app do seu banco)."
+      },
+      "mito_relacionado": null,
+      "feedback": "Serviços oficiais de valores a receber existem, mas você chega até eles pelo seu caminho, não por um link no SMS. E nunca paga para receber.",
+      "baseado_em": "Categoria 'dinheiro inesperado' (17% das interações, GASA 2026).",
+      "fonte_url": "https://static.poder360.com.br/uploads/2026/08/estudo-golpes-digitais-GASA-O-Estado-dos-Golpes-Brasil-2026-pdf.pdf",
+      "fonte_verificada_em": "2026-11-05 (dados da pesquisa inicial, 04–05/11/2026)"
+    },
+    {
+      "id": "L3-03",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "titulo": "Seu pedido saiu para entrega",
+      "linha": 3,
+      "familia": "legitima-entrega",
+      "canal": "sms",
+      "legitima": true,
+      "nivel": 2,
+      "organizacao_ficticia": "Entregas Rápidas Exemplo e Loja Vitrine (fictícias)",
+      "mensagem": "Entregas Rápidas Exemplo: seu pedido da Loja Vitrine saiu para entrega hoje. Acompanhe pelo app da loja onde você comprou. Não cobramos taxas por mensagem.",
+      "contexto_simulado": "Você comprou na Loja Vitrine (pelo app oficial) há 3 dias.",
+      "link_exibido": null,
+      "pistas": [
+        { "id": "contexto-verificavel", "trecho": "seu pedido da Loja Vitrine", "explicacao": "Você realmente fez essa compra." },
+        { "id": "sem-link-pagamento", "trecho": "Acompanhe pelo app da loja", "explicacao": "Manda você ao app que já usa, sem link nem cobrança." },
+        { "id": "canal-esperado", "trecho": "aviso de entrega após compra", "explicacao": "Faz sentido receber isso agora." }
+      ],
+      "decisao_correta": "seguir_com_cuidado",
+      "perguntas": {
+        "quem": "A transportadora de uma compra que você fez.",
+        "o_que": "Nada: só informa.",
+        "por_onde": "SMS sem link.",
+        "como_confirmo": "Abrir o app da loja e ver o status do pedido."
+      },
+      "mito_relacionado": null,
+      "feedback": "Legítima. Compare com o golpe da 'taxa de entrega': a diferença está no pedido (pagar) e no link.",
+      "baseado_em": "Cenário de calibração (legítimo).",
+      "fonte_url": null,
+      "fonte_verificada_em": null
+    },
+    {
+      "id": "L3-04",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "titulo": "Lembrete de fatura",
+      "linha": 3,
+      "familia": "legitima-cobranca-conferivel",
+      "canal": "sms",
+      "legitima": true,
+      "nivel": 3,
+      "organizacao_ficticia": "Banco Exemplar (fictício)",
+      "mensagem": "Banco Exemplar: a fatura do seu cartão final 1234 vence em 10/12, valor R$ 842,15. Consulte e pague pelo app ou internet banking que você já usa. Não enviamos links de pagamento.",
+      "contexto_simulado": "Você tem cartão do Banco Exemplar e a fatura costuma vencer no dia 10.",
+      "link_exibido": null,
+      "pistas": [
+        { "id": "sem-link-pagamento", "trecho": "Não enviamos links de pagamento", "explicacao": "Manda você ao canal que já usa." },
+        { "id": "contexto-verificavel", "trecho": "final 1234, vence em 10/12", "explicacao": "Dá para conferir no app se o valor e a data batem." },
+        { "id": "canal-esperado", "trecho": "lembrete de fatura", "explicacao": "Lembrete periódico de algo que você já tem." }
+      ],
+      "decisao_correta": "seguir_com_cuidado",
+      "perguntas": {
+        "quem": "Seu banco, falando de um cartão que você tem.",
+        "o_que": "Que você pague a fatura, mas pelo seu app.",
+        "por_onde": "SMS sem link.",
+        "como_confirmo": "Abrir o app do banco e comparar valor e vencimento."
+      },
+      "mito_relacionado": null,
+      "feedback": "Legítima, e nível 3 porque fala de dinheiro e prazo. A diferença para o golpe: não há link e você confere por conta própria.",
+      "baseado_em": "Cenário de calibração (legítimo, sutil).",
+      "fonte_url": null,
+      "fonte_verificada_em": null
+    }
+  ],
+
+  "testes_dominio": [
+    {
+      "id": "D-01",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "nivel": 1,
+      "organizacao_ficticia": "Banco Exemplar",
+      "dominio_oficial": "bancoexemplar.example",
+      "enunciado": "Qual destes endereços pertence de verdade ao Banco Exemplar (site oficial: bancoexemplar.example)?",
+      "opcoes": [
+        { "endereco": "bancoexemplar.example.atendimento-seguro.test", "correto": false, "sinais": ["subdominio-enganoso", "excesso-hifens"], "explicacao": "O domínio de verdade é 'atendimento-seguro.test'. O nome do banco está só no começo, de enfeite." },
+        { "endereco": "internet.bancoexemplar.example", "correto": true, "sinais": [], "explicacao": "Termina em 'bancoexemplar.example': é um subdomínio do site oficial." },
+        { "endereco": "bancoexemplar-seguranca.test", "correto": false, "sinais": ["excesso-hifens", "tld-incomum"], "explicacao": "Outro domínio, com 'seguranca' colado por hífen e final diferente." },
+        { "endereco": "bancoexernplar.example", "correto": false, "sinais": ["homoglifo", "dominio-parecido"], "explicacao": "'rn' no lugar de 'm': em letra pequena parecem iguais." }
+      ],
+      "dica_lupa": "Leia o endereço da DIREITA para a ESQUERDA até o primeiro ponto antes do final. É ali que está o dono do site."
+    },
+    {
+      "id": "D-02",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "nivel": 1,
+      "organizacao_ficticia": "Departamento Estadual de Trânsito Exemplo (DETEX)",
+      "dominio_oficial": "detex.example",
+      "enunciado": "Você quer consultar sua CNH no DETEX (site oficial: detex.example). Qual endereço é o certo?",
+      "opcoes": [
+        { "endereco": "detex-cnh-regulariza.test", "correto": false, "sinais": ["excesso-hifens", "tld-incomum"], "explicacao": "Palavras-chave com hífen e outro final. Não é o órgão." },
+        { "endereco": "detex.example.consulta.test", "correto": false, "sinais": ["subdominio-enganoso"], "explicacao": "O dono é 'consulta.test'." },
+        { "endereco": "servicos.detex.example", "correto": true, "sinais": [], "explicacao": "Termina em 'detex.example'." },
+        { "endereco": "detexx.example", "correto": false, "sinais": ["dominio-parecido"], "explicacao": "Uma letra a mais. Distância de uma letra do oficial." }
+      ],
+      "dica_lupa": "O melhor caminho é não clicar: digite você mesmo o endereço oficial ou use o app."
+    },
+    {
+      "id": "D-03",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "nivel": 2,
+      "organizacao_ficticia": "Loja Vitrine",
+      "dominio_oficial": "lojavitrine.example",
+      "enunciado": "Três destes endereços imitam a Loja Vitrine (lojavitrine.example). Qual é o verdadeiro?",
+      "opcoes": [
+        { "endereco": "lojavitr1ne.example", "correto": false, "sinais": ["homoglifo"], "explicacao": "Número 1 no lugar da letra i." },
+        { "endereco": "xn--lojavitrne-abc.test", "correto": false, "sinais": ["punycode", "tld-incomum"], "explicacao": "'xn--' indica letras de outro alfabeto que podem imitar letras comuns. (Exemplo ilustrativo.)" },
+        { "endereco": "lojavitrine.example", "correto": true, "sinais": [], "explicacao": "Igual ao oficial, letra por letra." },
+        { "endereco": "lojavitrine.example-ofertas.test", "correto": false, "sinais": ["subdominio-enganoso", "excesso-hifens"], "explicacao": "O dono é 'example-ofertas.test'." }
+      ],
+      "dica_lupa": "Compare letra por letra com o endereço que você já conhece. Desconfie de 1/l, 0/o e rn/m."
+    },
+    {
+      "id": "D-04",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "nivel": 3,
+      "organizacao_ficticia": "Prefeitura Exemplo",
+      "dominio_oficial": "prefeituraexemplo.example",
+      "enunciado": "Qual destes leva de fato ao site da Prefeitura Exemplo (prefeituraexemplo.example)?",
+      "opcoes": [
+        { "endereco": "prefeituraexemplo.example@192.0.2.45/iptu", "correto": false, "sinais": ["arroba-na-url", "ip-no-dominio"], "explicacao": "Tudo antes do @ é ignorado; o destino real é um número (IP). IP de documentação, fictício." },
+        { "endereco": "encurta.test/a8Kp2", "correto": false, "sinais": ["encurtador"], "explicacao": "Link encurtado esconde o destino. Não dá para saber aonde leva sem abrir, e o Anzol nunca abre." },
+        { "endereco": "servicos.prefeituraexemplo.example/iptu", "correto": true, "sinais": [], "explicacao": "Termina em 'prefeituraexemplo.example' antes da primeira barra." },
+        { "endereco": "prefeituraexemplo-iptu2026.test", "correto": false, "sinais": ["excesso-hifens", "tld-incomum"], "explicacao": "Domínio diferente, com ano e assunto colados." }
+      ],
+      "dica_lupa": "O que manda é o trecho entre '//' (ou o começo) e a primeira '/'. Se houver @, vale só o que vem depois dele."
+    }
+  ],
+
+  "testes_procedimento": [
+    {
+      "id": "P-01",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "nivel": 1,
+      "pergunta_chave": "como_confirmo",
+      "situacao": "Chega mensagem de um número novo, com a foto da sua filha, pedindo um Pix urgente. Qual o próximo passo certo?",
+      "opcoes": [
+        { "texto": "Fazer o Pix, porque a foto é dela.", "correto": false, "explicacao": "Foto de perfil qualquer um copia." },
+        { "texto": "Perguntar pelo mesmo chat 'é você mesmo?'.", "correto": false, "explicacao": "Quem está do outro lado vai dizer que sim. Confirmar pelo mesmo canal não confirma." },
+        { "texto": "Ligar para o número antigo dela ou pedir a palavra de segurança da família.", "correto": true, "explicacao": "Confirmar por OUTRO caminho é o que mais protege." },
+        { "texto": "Bloquear sem avisar ninguém.", "correto": false, "explicacao": "Bloquear ajuda, mas avise a família: o golpista pode tentar com outros parentes." }
+      ],
+      "fonte_url": null
+    },
+    {
+      "id": "P-02",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "nivel": 2,
+      "pergunta_chave": "como_confirmo",
+      "situacao": "Você recebe ligação do 'banco'. O número na tela é igual ao do seu cartão. Pedem o código que acabou de chegar por SMS para 'cancelar uma compra'. O que fazer?",
+      "opcoes": [
+        { "texto": "Passar o código, já que o número é o do banco.", "correto": false, "explicacao": "O número exibido pode ser falsificado. Banco não pede código." },
+        { "texto": "Desligar e ligar você mesmo para o número do verso do cartão.", "correto": true, "explicacao": "Você controla o caminho. Se houver problema real, o banco resolve por ali." },
+        { "texto": "Pedir o nome e a matrícula do atendente e continuar.", "correto": false, "explicacao": "Nome e matrícula podem ser inventados." },
+        { "texto": "Passar só metade do código.", "correto": false, "explicacao": "Nenhuma parte do código deve ser compartilhada." }
+      ],
+      "fonte_url": "https://olhardigital.com.br/2024/09/23/seguranca/anatel-estabelece-novas-medidas-contra-fraudes-e-golpes-telefonicos/"
+    },
+    {
+      "id": "P-03",
+      "rotulo": "SIMULAÇÃO — material educativo",
+      "nivel": 2,
+      "pergunta_chave": "o_que",
+      "situacao": "Você percebeu que fez um Pix para um golpista há 20 minutos. Qual o primeiro passo?",
+      "opcoes": [
+        { "texto": "Falar agora com o seu banco pelo app ou canal oficial e pedir a devolução pelo MED.", "correto": true, "explicacao": "Quanto antes, maior a chance de haver saldo para bloquear. O pedido pode ser feito até 80 dias após a transação, mas a pressa conta." },
+        { "texto": "Procurar uma empresa que promete recuperar o dinheiro mediante taxa.", "correto": false, "explicacao": "Isso é o 'golpe da recuperação'. Ninguém deve pagar para recuperar." },
+        { "texto": "Apagar a conversa com o golpista para esquecer.", "correto": false, "explicacao": "Não apague: prints e comprovantes são provas para o banco e o boletim de ocorrência." },
+        { "texto": "Esperar até amanhã para ver se o dinheiro volta sozinho.", "correto": false, "explicacao": "O dinheiro costuma sair da conta de destino em minutos." }
+      ],
+      "aviso": "O Anzol não promete recuperação de dinheiro e não dá aconselhamento jurídico.",
+      "fonte_url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-09/nova-regra-do-pix-amplia-prazo-para-contestar-golpe"
+    }
+  ]
+}

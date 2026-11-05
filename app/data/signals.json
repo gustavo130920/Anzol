@@ -1,0 +1,73 @@
+{
+  "_sobre": "Motor de sinais do Anzol: taxonomia única de pistas usada por Testes/Jogo, Scanner, Radar e Escudo. SIMULAÇÃO — material educativo.",
+  "_versao": "0.1.0",
+  "_atualizado_em": "2026-11-05",
+  "_aviso_pesos": "O campo 'peso_inicial' (0–30) é um PARÂMETRO INICIAL SEM VALIDAÇÃO, usado pelo scanner para compor um risco de 0 a 100. Ajustar na sessão 2 com os exemplos de teste.",
+  "_aviso_linguagem": "Nenhum sinal sozinho prova golpe. O app fala em 'risco com motivos', nunca em veredito.",
+
+  "familias": [
+    { "id": "psicologica", "nome": "Gatilho psicológico", "descricao": "Pressões que fazem a pessoa agir antes de pensar.", "pergunta": "quem" },
+    { "id": "pedido", "nome": "O que pedem", "descricao": "O pedido em si (dinheiro, código, dado, acesso). É o sinal que mais protege quando notado.", "pergunta": "o_que" },
+    { "id": "canal", "nome": "Canal e remetente", "descricao": "Por onde a mensagem chegou e se isso combina com quem diz ser.", "pergunta": "por_onde" },
+    { "id": "tecnica", "nome": "Endereço e link", "descricao": "Sinais no texto do endereço (o scanner nunca abre o link).", "pergunta": "por_onde" },
+    { "id": "visual", "nome": "Imagem e documento", "descricao": "Sinais em prints, comprovantes e imagens (visão computacional).", "pergunta": "como_confirmo" },
+    { "id": "confianca", "nome": "Sinal de legitimidade", "descricao": "Aumentam a confiança, mas NÃO provam nada sozinhos. Servem para calibrar e evitar paranoia.", "pergunta": "como_confirmo" }
+  ],
+
+  "perguntas": {
+    "quem": "Quem pede?",
+    "o_que": "O que pede?",
+    "por_onde": "Por onde veio?",
+    "como_confirmo": "Como confirmo por outro caminho?"
+  },
+
+  "sinais": [
+    { "id": "urgencia", "familia": "psicologica", "nome": "Urgência", "descricao": "Prazo curtíssimo ou 'agora' para impedir que você pense ou confirme.", "detectavel_por": ["texto"], "peso_inicial": 12 },
+    { "id": "ameaca-medo", "familia": "psicologica", "nome": "Ameaça ou medo", "descricao": "Bloqueio, multa, suspensão, prisão ou perda se você não agir.", "detectavel_por": ["texto"], "peso_inicial": 12 },
+    { "id": "autoridade", "familia": "psicologica", "nome": "Autoridade", "descricao": "Usa nome de órgão público, banco, tribunal ou advogado para não ser questionado.", "detectavel_por": ["texto"], "peso_inicial": 8 },
+    { "id": "ganancia-oferta", "familia": "psicologica", "nome": "Oferta boa demais", "descricao": "Prêmio, reembolso, dinheiro esquecido, preço muito abaixo do normal.", "detectavel_por": ["texto"], "peso_inicial": 12 },
+    { "id": "sigilo", "familia": "psicologica", "nome": "Pedido de sigilo", "descricao": "Pede para não contar a ninguém ou não ligar para confirmar.", "detectavel_por": ["texto"], "peso_inicial": 15 },
+    { "id": "apelo-afetivo", "familia": "psicologica", "nome": "Apelo afetivo", "descricao": "Usa intimidade ou aflição de alguém querido para pular a desconfiança.", "detectavel_por": ["texto"], "peso_inicial": 8 },
+    { "id": "prova-social", "familia": "psicologica", "nome": "Prova social falsa", "descricao": "'Todo mundo já ganhou', grupos com depoimentos que não dá para checar.", "detectavel_por": ["texto"], "peso_inicial": 6 },
+
+    { "id": "pede-pix-pagamento", "familia": "pedido", "nome": "Pede Pix ou pagamento", "descricao": "Pagamento imediato e difícil de desfazer. 54% das vítimas pagaram por método imediato (GASA 2026).", "detectavel_por": ["texto"], "peso_inicial": 15 },
+    { "id": "taxa-antecipada", "familia": "pedido", "nome": "Taxa para liberar valor", "descricao": "Pede que você pague antes para receber algo (indenização, salário, prêmio, processo).", "detectavel_por": ["texto"], "peso_inicial": 20 },
+    { "id": "pede-codigo-senha", "familia": "pedido", "nome": "Pede código ou senha", "descricao": "Códigos de verificação e senhas não se compartilham com ninguém, nem com 'o banco'.", "detectavel_por": ["texto"], "peso_inicial": 25 },
+    { "id": "pede-dados-pessoais", "familia": "pedido", "nome": "Pede dados pessoais", "descricao": "CPF, documentos, selfie ou dados do cartão fora de um canal que você mesmo abriu.", "detectavel_por": ["texto"], "peso_inicial": 12 },
+    { "id": "pede-instalar-app", "familia": "pedido", "nome": "Pede para instalar app ou compartilhar tela", "descricao": "Acesso remoto dá controle do aparelho a outra pessoa.", "detectavel_por": ["texto"], "peso_inicial": 25 },
+    { "id": "pagamento-fora-plataforma", "familia": "pedido", "nome": "Pagamento fora da plataforma", "descricao": "Pede para pagar por fora (Pix direto, link próprio) e perder a proteção da plataforma.", "detectavel_por": ["texto"], "peso_inicial": 15 },
+
+    { "id": "numero-novo", "familia": "canal", "nome": "Número novo ou desconhecido", "descricao": "'Troquei de número' é o começo clássico do falso parente.", "detectavel_por": ["texto", "contexto"], "peso_inicial": 10 },
+    { "id": "canal-incompativel", "familia": "canal", "nome": "Canal que não combina", "descricao": "Órgão público cobrando por SMS com link, banco pedindo código por ligação etc.", "detectavel_por": ["texto", "contexto"], "peso_inicial": 18 },
+    { "id": "remetente-nao-bate", "familia": "canal", "nome": "Remetente não bate", "descricao": "Nome exibido diz uma coisa, endereço ou número diz outra.", "detectavel_por": ["texto", "dominio"], "peso_inicial": 12 },
+    { "id": "contato-nao-solicitado", "familia": "canal", "nome": "Contato que você não pediu", "descricao": "Você não esperava essa mensagem nem iniciou a conversa.", "detectavel_por": ["contexto"], "peso_inicial": 5 },
+    { "id": "evita-confirmacao", "familia": "canal", "nome": "Foge de confirmação", "descricao": "Não atende ligação, desconversa, diz que 'não pode falar agora'.", "detectavel_por": ["texto", "contexto"], "peso_inicial": 12 },
+    { "id": "numero-falsificado", "familia": "canal", "nome": "Número exibido pode ser falso", "descricao": "Na ligação, o número na tela pode imitar o de uma instituição (spoofing). Número igual não prova nada.", "detectavel_por": ["contexto"], "peso_inicial": 10 },
+
+    { "id": "dominio-parecido", "familia": "tecnica", "nome": "Nome parecido com o oficial", "descricao": "Uma letra a mais, a menos ou trocada (distância de edição pequena).", "detectavel_por": ["dominio"], "peso_inicial": 25 },
+    { "id": "subdominio-enganoso", "familia": "tecnica", "nome": "Subdomínio enganoso", "descricao": "O nome da marca aparece no começo, mas o domínio de verdade é o que vem antes da primeira barra, no final.", "detectavel_por": ["dominio"], "peso_inicial": 25 },
+    { "id": "homoglifo", "familia": "tecnica", "nome": "Letras parecidas", "descricao": "Troca de caracteres que parecem iguais (rn/m, 0/o, 1/l).", "detectavel_por": ["dominio"], "peso_inicial": 25 },
+    { "id": "punycode", "familia": "tecnica", "nome": "Endereço com 'xn--'", "descricao": "Indica letras de outros alfabetos, que podem imitar letras comuns.", "detectavel_por": ["dominio"], "peso_inicial": 15 },
+    { "id": "encurtador", "familia": "tecnica", "nome": "Link encurtado", "descricao": "Esconde o destino real. Não é golpe por si só, mas impede conferir.", "detectavel_por": ["dominio"], "peso_inicial": 10 },
+    { "id": "ip-no-dominio", "familia": "tecnica", "nome": "Número no lugar do nome", "descricao": "Endereço com números (IP) em vez de nome de site.", "detectavel_por": ["dominio"], "peso_inicial": 20 },
+    { "id": "arroba-na-url", "familia": "tecnica", "nome": "@ no endereço", "descricao": "Tudo o que vem antes do @ é ignorado pelo navegador; serve para disfarçar o destino.", "detectavel_por": ["dominio"], "peso_inicial": 20 },
+    { "id": "excesso-hifens", "familia": "tecnica", "nome": "Muitos hífens ou endereço longo", "descricao": "Palavras como 'seguro', 'regulariza', 'atendimento' coladas com hífens.", "detectavel_por": ["dominio"], "peso_inicial": 8 },
+    { "id": "tld-incomum", "familia": "tecnica", "nome": "Final de endereço incomum", "descricao": "Final diferente do que a organização usa de verdade.", "detectavel_por": ["dominio"], "peso_inicial": 8 },
+    { "id": "dominio-recente", "familia": "tecnica", "nome": "Site criado há poucos dias", "descricao": "Golpes usam endereços de vida curta. No MVP a consulta de idade (RDAP) é SIMULADA para domínios de exemplo.", "detectavel_por": ["externo"], "peso_inicial": 15 },
+
+    { "id": "comprovante-inconsistente", "familia": "visual", "nome": "Comprovante que não confere", "descricao": "Comprovante mostrado, mas o valor não aparece no extrato do seu banco. Só o extrato confirma.", "detectavel_por": ["imagem", "contexto"], "peso_inicial": 20 },
+    { "id": "imagem-reaproveitada", "familia": "visual", "nome": "Imagem reaproveitada", "descricao": "Foto de produto ou documento que já apareceu em outros relatos (impressão digital de imagem).", "detectavel_por": ["imagem"], "peso_inicial": 10 },
+
+    { "id": "avisa-nao-compartilhar", "familia": "confianca", "nome": "Avisa para não compartilhar código", "descricao": "Mensagens legítimas de código costumam avisar que ninguém deve pedi-lo.", "detectavel_por": ["texto"], "peso_inicial": -8 },
+    { "id": "sem-link-pagamento", "familia": "confianca", "nome": "Sem link nem pedido de pagamento", "descricao": "Informa e manda você conferir no app ou site que você já usa.", "detectavel_por": ["texto"], "peso_inicial": -8 },
+    { "id": "contexto-verificavel", "familia": "confianca", "nome": "Contexto que você consegue checar", "descricao": "Fala de algo que você mesmo fez ou combinou, e dá para confirmar por outro caminho.", "detectavel_por": ["contexto"], "peso_inicial": -5 },
+    { "id": "canal-esperado", "familia": "confianca", "nome": "Canal que você já esperava", "descricao": "Veio pelo canal que você conhece e no momento em que fazia sentido.", "detectavel_por": ["contexto"], "peso_inicial": -5 }
+  ],
+
+  "mitos": [
+    { "id": "cadeado", "texto": "Cadeado / https prova que o site é seguro.", "correcao": "O cadeado só mostra que a conexão é cifrada. Site de golpe também tem cadeado." },
+    { "id": "aparencia", "texto": "Se parece igual ao site oficial, é oficial.", "correcao": "Copiar a aparência é fácil. Confira o endereço e o pedido, não o visual." },
+    { "id": "dados-verdadeiros", "texto": "Se sabem meu CPF ou meu processo, é legítimo.", "correcao": "Dados pessoais vazam. Golpes usam dados verdadeiros para parecer oficiais." },
+    { "id": "numero-oficial", "texto": "Se o número na tela é o do banco, é o banco.", "correcao": "O número exibido pode ser falsificado. Desligue e ligue você mesmo para o número oficial." }
+  ]
+}
