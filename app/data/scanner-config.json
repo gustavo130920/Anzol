@@ -1,0 +1,102 @@
+{
+  "_sobre": "Configuração do Scanner do Anzol. Tudo aqui é PARÂMETRO INICIAL SEM VALIDAÇÃO e pode ser ajustado sem mexer no código. O scanner NUNCA abre links: só lê o texto.",
+  "_versao": "0.1.0",
+  "_atualizado_em": "2026-11-05",
+
+  "faixas": {
+    "_nota": "Pontuação interna 0–100 vira 3 faixas para o usuário. Limiares iniciais sem validação.",
+    "medio_a_partir_de": 25,
+    "alto_a_partir_de": 55
+  },
+
+  "sinergias": [
+    {
+      "id": "pedido-sob-pressao",
+      "_nota": "Pedido (dinheiro, código, dado, app) junto com pressão psicológica é o padrão central dos golpes.",
+      "se_familia": "pedido",
+      "e_familia": "psicologica",
+      "bonus": 10,
+      "motivo": "Há um PEDIDO feito sob PRESSÃO, combinação típica de golpes."
+    }
+  ],
+
+  "texto": {
+    "_nota": "Trechos procurados no texto já normalizado (minúsculas, sem acentos). Cada lista aponta para um id de signals.json. Use \\b para palavra inteira.",
+    "padroes": {
+      "urgencia": ["\\burgente", "\\bimediatamente\\b", "\\bagora mesmo\\b", "regularize agora", "\\bso hoje\\b", "ate hoje", "\\bem 24 ?h", "\\bem 48 ?h", "ultimas horas", "ultimo dia", "\\bexpira", "prazo final", "\\bpressa\\b"],
+      "ameaca-medo": ["\\bsuspens\\w*","bloquead", "\\bbloqueio\\b", "cancelad", "\\bmulta\\b", "\\bcassad", "\\bpendencia", "\\birregular", "negativad", "\\bprisao\\b", "\\bmandado\\b", "compra suspeita", "acesso suspeito"],
+      "autoridade": ["\\bdepartamento\\b", "\\bgoverno\\b", "\\bministerio\\b", "\\breceita\\b", "\\bpolicia\\b", "\\bjustica\\b", "\\btribunal\\b", "\\badvogad", "\\badvocacia\\b", "\\bprocesso n", "\\balvara\\b", "central de seguranca", "setor de seguranca", "\\bdetran", "\\bprefeitura\\b"],
+      "ganancia-oferta": ["\\bpremio\\b", "\\bganhou\\b", "\\bsorteado", "\\breembolso\\b", "\\brestituicao\\b", "valores? a receber", "valores esquecidos", "dinheiro esquecido", "em seu nome", "\\bresgat", "\\bliquidacao\\b", "\\bgratis\\b", "\\bbonus\\b", "r\\$ ?[0-9.]+ por r\\$", "por dia\\b", "selecionad"],
+      "sigilo": ["nao conte", "nao fale (com|para) ninguem", "\\bsigilo", "\\bsegredo\\b", "so entre nos", "nao ligue"],
+      "apelo-afetivo": ["^oi,? (mae|pai|vo|vovo|tia|tio)\\b", "\\boi (mae|pai)\\b", "sou eu,? (seu|sua) (filho|filha|neto|neta)"],
+      "prova-social": ["todo mundo (ja|esta)", "milhares de pessoas", "\\bdepoimentos\\b", "grupo vip"],
+      "pede-pix-pagamento": ["\\bpix\\b", "\\btransfer", "\\bpague\\b", "\\bpagar\\b", "\\bpagamento\\b", "\\bboleto\\b", "\\bdeposit", "chave pix", "\\brecolher\\b"],
+      "taxa-antecipada": ["\\btaxa\\b", "\\btarifa\\b", "\\bcustas\\b", "para liberar", "\\bliberacao\\b", "ativar (seu )?cadastro", "kit de treinamento", "para (receber|resgatar|expedi)", "\\bexpedicao\\b"],
+      "pede-codigo-senha": ["\\bsenha\\b", "codigo que (chegou|recebeu)", "me (passa|passe|confirme|confirma|informe|diga) o codigo", "confirme o codigo", "\\btoken\\b", "\\bpin\\b", "codigo de (seguranca|verificacao) que", "codigo .{0,40}(me confirme|me confirma|confirmar|me passe|me passa|informar|me diga)"],
+      "pede-dados-pessoais": ["\\bcpf\\b", "\\brg\\b", "\\bselfie\\b", "confirme seus dados", "atualize seus dados", "dados do cartao", "\\bcvv\\b", "data de nascimento", "foto do documento"],
+      "pede-instalar-app": ["\\binstale\\b", "\\binstalar\\b", "baixe o (app|aplicativo)", "acesso remoto", "compartilh\\w* (a )?tela", "\\banydesk\\b", "\\bteamviewer\\b"],
+      "pagamento-fora-plataforma": ["fora da plataforma", "me chama no (whats|zap)", "pague direto", "apenas por pix", "somente (por|via) pix", "so (aceito|por) pix"],
+      "numero-novo": ["troquei de numero", "numero novo", "novo numero", "salva esse", "salve esse (numero|contato)", "(celular|telefone) (caiu|quebrou|foi roubado)"],
+      "evita-confirmacao": ["nao posso (falar|atender)", "te explico depois", "depois te explico", "sem tempo (agora|pra falar)", "nao da pra ligar"],
+      "avisa-nao-compartilhar": ["nao compartilhe", "nunca pede (este|esse|o) codigo", "nunca pedimos", "ninguem deve pedir"],
+      "sem-link-pagamento": ["nao enviamos links?", "nao cobramos taxas? por mensagem", "pelo (app|aplicativo|internet banking) que voce ja usa", "acompanhe pelo app"]
+    },
+    "_regras_combinadas": "canal-incompativel = (autoridade pública ou banco) + (link ou pedido de pagamento/código) na mesma mensagem. remetente-nao-bate = mensagem cita uma organização de referência, mas o link aponta para outro domínio. sem-link-pagamento só conta se NÃO houver link nem pedido de pagamento.",
+    "orgaos_publicos_e_bancos": ["\\bdepartamento\\b", "\\bgoverno\\b", "\\bministerio\\b", "\\breceita\\b", "\\bpolicia\\b", "\\btribunal\\b", "\\bjustica\\b", "\\bdetran", "\\bprefeitura\\b", "\\bbanco\\b", "central de seguranca", "\\bdetex\\b"]
+  },
+
+  "dominio": {
+    "encurtadores": ["bit.ly", "tinyurl.com", "cutt.ly", "is.gd", "t.co", "ow.ly", "rebrand.ly", "s.id", "shorturl.at", "encurtador.com.br", "abre.ai", "encurta.test"],
+    "sufixos_publicos": ["com.br", "gov.br", "org.br", "net.br", "edu.br", "jus.br", "mp.br", "leg.br", "app.br", "art.br", "blog.br", "mil.br", "co.uk", "com.ar"],
+    "tlds_incomuns": {
+      "_nota": "Finais pouco usados por bancos e órgãos brasileiros. Lista inicial A CONFIRMAR (comparar com relatórios públicos de abuso de domínios). Não prova nada sozinho.",
+      "lista": ["top", "xyz", "icu", "click", "online", "site", "shop", "live", "buzz", "rest", "cfd", "sbs", "monster", "lol", "zip", "mov"]
+    },
+    "palavras_isca": ["seguro", "segura", "seguranca", "regulariza", "regularizar", "atendimento", "oficial", "resgate", "resgatar", "promocao", "liquida", "login", "verifica", "verificacao", "atualiza", "atualizacao", "desbloqueio", "suporte", "cadastro", "premio", "receber", "pagamento", "taxa"],
+    "comprimento_maximo_host": 30,
+    "hifens_maximos": 1,
+    "distancia_parecido_maxima": 2,
+    "homoglifos": {
+      "_nota": "Trocas visuais comuns. A comparação desfaz a troca e vê se o resultado bate com um domínio de referência.",
+      "pares": [["rn", "m"], ["vv", "w"], ["0", "o"], ["1", "l"], ["1", "i"], ["3", "e"], ["5", "s"], ["4", "a"], ["cl", "d"]]
+    }
+  },
+
+  "referencias": {
+    "_nota": "Domínios oficiais para comparar 'nome parecido' e 'subdomínio enganoso'. Os fictícios vêm dos cenários. Os reais são só uma lista inicial de REFERÊNCIA DEFENSIVA (A CONFIRMAR antes do vídeo); o app nunca imita essas marcas.",
+    "lista": [
+      { "nome": "Banco Exemplar", "apelidos": ["banco exemplar"], "dominio": "bancoexemplar.example", "ficticio": true },
+      { "nome": "DETEX", "apelidos": ["detex", "departamento estadual de transito exemplo"], "dominio": "detex.example", "ficticio": true },
+      { "nome": "Loja Vitrine", "apelidos": ["loja vitrine"], "dominio": "lojavitrine.example", "ficticio": true },
+      { "nome": "Prefeitura Exemplo", "apelidos": ["prefeitura exemplo"], "dominio": "prefeituraexemplo.example", "ficticio": true },
+      { "nome": "Entregas Rápidas Exemplo", "apelidos": ["entregas rapidas exemplo"], "dominio": "entregasrapidas.example", "ficticio": true },
+      { "nome": "Portal gov.br", "apelidos": ["gov.br"], "dominio": "gov.br", "ficticio": false },
+      { "nome": "Banco Central", "apelidos": ["banco central"], "dominio": "bcb.gov.br", "ficticio": false },
+      { "nome": "Correios", "apelidos": ["correios"], "dominio": "correios.com.br", "ficticio": false },
+      { "nome": "Caixa", "apelidos": ["caixa economica"], "dominio": "caixa.gov.br", "ficticio": false },
+      { "nome": "Banco do Brasil", "apelidos": ["banco do brasil"], "dominio": "bb.com.br", "ficticio": false },
+      { "nome": "Mercado Livre", "apelidos": ["mercado livre"], "dominio": "mercadolivre.com.br", "ficticio": false }
+    ]
+  },
+
+  "rdap_simulado": {
+    "_nota": "SIMULAÇÃO: idade de domínios de exemplo. Para domínios .br reais, o RDAP do Registro.br pode ser consultado (CORS liberado, testado em 05/11/2026) — ligado numa etapa futura.",
+    "dias_considerado_recente": 30,
+    "dominios": {
+      "lojavitrine-oficial-liquida.test": 6,
+      "regulariza-cnh-detex.test": 3,
+      "valores-esquecidos-resgate.test": 9,
+      "bancoexemplar-seguranca.test": 2,
+      "atendimento-seguro.test": 4,
+      "lojavitrine.example": 4200,
+      "bancoexemplar.example": 9100,
+      "detex.example": 7300
+    }
+  },
+
+  "avisos": {
+    "geral": "Nenhuma verificação é perfeita. O Anzol mostra um nível de risco e os motivos — não dá veredito. Na dúvida, confirme por outro caminho.",
+    "baixo": "Risco baixo não é garantia. Se houver pedido de dinheiro, código ou dados, confirme por outro caminho.",
+    "nunca_abre": "O Anzol não abre o link: analisa apenas o texto do endereço."
+  }
+}

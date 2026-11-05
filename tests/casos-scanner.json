@@ -1,0 +1,169 @@
+{
+  "_sobre": "Casos de teste do Scanner. SIMULAÇÃO — material educativo (organizações e domínios fictícios). Cada caso diz a faixa esperada, pistas que DEVEM aparecer e pistas que NÃO podem aparecer.",
+  "casos": [
+    {
+      "id": "T01-cnh-sms",
+      "origem": "L3-01",
+      "texto": "DETEX informa: sua CNH será SUSPENSA em 24h por pendência. Regularize agora: regulariza-cnh-detex.test",
+      "faixa": "alto",
+      "deve_ter": ["canal-incompativel", "ameaca-medo", "urgencia", "excesso-hifens", "dominio-recente", "remetente-nao-bate"],
+      "nao_pode_ter": []
+    },
+    {
+      "id": "T02-dinheiro-esquecido",
+      "origem": "L3-02",
+      "texto": "Programa Valores Esquecidos: há R$ 1.873,40 em seu nome. Para resgatar, confirme seus dados e pague a tarifa de transferência de R$ 19,90: valores-esquecidos-resgate.test",
+      "faixa": "alto",
+      "deve_ter": ["taxa-antecipada", "ganancia-oferta", "pede-dados-pessoais", "pede-pix-pagamento"],
+      "nao_pode_ter": ["ip-no-dominio"],
+      "enderecos": 1
+    },
+    {
+      "id": "T03-loja-falsa",
+      "origem": "L1-01",
+      "texto": "Anúncio patrocinado — Liquidação de fábrica Loja Vitrine: tênis de R$ 499 por R$ 89. Só hoje! Pagamento apenas por Pix, com 10% de desconto. lojavitrine-oficial-liquida.test",
+      "faixa": "alto",
+      "deve_ter": ["ganancia-oferta", "urgencia", "pede-pix-pagamento", "pagamento-fora-plataforma", "dominio-parecido", "dominio-recente", "remetente-nao-bate"],
+      "nao_pode_ter": []
+    },
+    {
+      "id": "T04-falso-parente",
+      "origem": "L2-01",
+      "texto": "Oi mãe, troquei de número, salva esse. Tô com um problema e preciso de um Pix urgente, te explico depois.",
+      "faixa": "alto",
+      "deve_ter": ["numero-novo", "apelo-afetivo", "urgencia", "pede-pix-pagamento", "evita-confirmacao"],
+      "nao_pode_ter": []
+    },
+    {
+      "id": "T05-falso-advogado",
+      "origem": "L2-02",
+      "texto": "Escritório Exemplo Advocacia: Sra. Maria, o valor de R$ 18.400 do seu processo nº 0000000-00.0000.0.00.0000 foi liberado. Para a expedição, é necessário recolher custas de R$ 1.150 via Pix até hoje.",
+      "faixa": "alto",
+      "deve_ter": ["autoridade", "taxa-antecipada", "urgencia", "pede-pix-pagamento"],
+      "nao_pode_ter": ["ip-no-dominio"],
+      "enderecos": 0
+    },
+    {
+      "id": "T06-falsa-central",
+      "origem": "L2-03",
+      "texto": "Aqui é da central de segurança do Banco Exemplar. Identificamos uma compra suspeita de R$ 2.300 no seu cartão. Para cancelar, vou enviar um código por SMS e preciso que a senhora me confirme.",
+      "faixa": "alto",
+      "deve_ter": ["pede-codigo-senha", "ameaca-medo", "autoridade", "canal-incompativel"],
+      "nao_pode_ter": []
+    },
+    {
+      "id": "T07-comprovante",
+      "origem": "L1-02",
+      "_nota": "Só pelo texto não dá para ver o comprovante: o scanner fica em MÉDIO e o motivo certo vem do Kit de provas/feedback.",
+      "texto": "Pronto, fiz o Pix de R$ 350, segue o comprovante. Pode despachar hoje? Estou com pressa.",
+      "faixa": "medio",
+      "deve_ter": ["pede-pix-pagamento", "urgencia"],
+      "nao_pode_ter": []
+    },
+    {
+      "id": "T08-falsa-vaga",
+      "origem": "L1-03",
+      "texto": "Olá! Seu perfil foi selecionado para vaga home office de avaliador de produtos, R$ 300 por dia. Para ativar seu cadastro, pague a taxa do kit de treinamento de R$ 49,90.",
+      "faixa": "alto",
+      "deve_ter": ["ganancia-oferta", "taxa-antecipada", "pede-pix-pagamento"],
+      "nao_pode_ter": []
+    },
+    {
+      "id": "T09-legit-codigo",
+      "origem": "L1-04",
+      "texto": "Banco Exemplar: seu código de acesso é 482913. Não compartilhe este código com ninguém. O Banco Exemplar nunca pede este código por ligação ou mensagem.",
+      "faixa": "baixo",
+      "deve_ter": ["avisa-nao-compartilhar"],
+      "nao_pode_ter": ["pede-codigo-senha", "canal-incompativel"]
+    },
+    {
+      "id": "T10-legit-amiga",
+      "origem": "L2-04",
+      "texto": "Oi! Vi que a apresentação ficou para sexta. Levo o projetor que combinamos? Se preferir, me liga.",
+      "faixa": "baixo",
+      "deve_ter": [],
+      "nao_pode_ter": ["urgencia", "pede-pix-pagamento"]
+    },
+    {
+      "id": "T11-legit-entrega",
+      "origem": "L3-03",
+      "texto": "Entregas Rápidas Exemplo: seu pedido da Loja Vitrine saiu para entrega hoje. Acompanhe pelo app da loja onde você comprou. Não cobramos taxas por mensagem.",
+      "faixa": "baixo",
+      "deve_ter": ["sem-link-pagamento"],
+      "nao_pode_ter": ["taxa-antecipada", "urgencia"]
+    },
+    {
+      "id": "T12-legit-fatura",
+      "origem": "L3-04",
+      "texto": "Banco Exemplar: a fatura do seu cartão final 1234 vence em 10/12, valor R$ 842,15. Consulte e pague pelo app ou internet banking que você já usa. Não enviamos links de pagamento.",
+      "faixa": "baixo",
+      "deve_ter": ["sem-link-pagamento"],
+      "nao_pode_ter": ["canal-incompativel"]
+    },
+    {
+      "id": "T13-subdominio",
+      "origem": "D-01",
+      "texto": "https://bancoexemplar.example.atendimento-seguro.test/login",
+      "faixa": "medio",
+      "deve_ter": ["subdominio-enganoso", "excesso-hifens", "dominio-recente"],
+      "nao_pode_ter": []
+    },
+    {
+      "id": "T14-arroba-ip",
+      "origem": "D-04",
+      "texto": "prefeituraexemplo.example@192.0.2.45/iptu",
+      "faixa": "medio",
+      "deve_ter": ["arroba-na-url", "ip-no-dominio"],
+      "nao_pode_ter": []
+    },
+    {
+      "id": "T15-oficial",
+      "origem": "D-04 (opção correta)",
+      "texto": "servicos.prefeituraexemplo.example/iptu",
+      "faixa": "baixo",
+      "deve_ter": [],
+      "nao_pode_ter": ["dominio-parecido", "subdominio-enganoso", "excesso-hifens"],
+      "oficial": "Prefeitura Exemplo"
+    },
+    {
+      "id": "T16-homoglifo",
+      "origem": "D-01",
+      "texto": "bancoexernplar.example",
+      "faixa": "medio",
+      "deve_ter": ["homoglifo"],
+      "nao_pode_ter": ["dominio-parecido"]
+    },
+    {
+      "id": "T17-encurtador",
+      "origem": "D-04",
+      "texto": "encurta.test/a8Kp2",
+      "faixa": "baixo",
+      "deve_ter": ["encurtador"],
+      "nao_pode_ter": []
+    },
+    {
+      "id": "T18-email-nao-e-truque",
+      "origem": "extra",
+      "texto": "Qualquer dúvida, escreva para contato@lojavitrine.example.",
+      "faixa": "baixo",
+      "deve_ter": [],
+      "nao_pode_ter": ["arroba-na-url"]
+    },
+    {
+      "id": "T19-homoglifo-numero",
+      "origem": "D-03",
+      "texto": "Promoção relâmpago: lojavitr1ne.example",
+      "faixa": "medio",
+      "deve_ter": ["homoglifo"],
+      "nao_pode_ter": []
+    },
+    {
+      "id": "T20-detex-hifens",
+      "origem": "D-02",
+      "texto": "detex-cnh-regulariza.test",
+      "faixa": "medio",
+      "deve_ter": ["dominio-parecido", "excesso-hifens"],
+      "nao_pode_ter": []
+    }
+  ]
+}

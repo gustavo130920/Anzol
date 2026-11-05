@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anzol · Testes do Scanner</title>
+<style>
+  body { font: 16px/1.5 system-ui, sans-serif; margin: 0 auto; padding: 16px; max-width: 900px; background: #fff; color: #111; }
+  .ok { color: #116329; } .falha { color: #b3261e; font-weight: 600; }
+  li { margin: 4px 0; } code { background: #f2f2f2; padding: 0 4px; border-radius: 4px; }
+  #resumo { font-size: 1.3rem; font-weight: 700; }
+</style>
+</head>
+<body>
+<h1>Testes do Scanner</h1>
+<p>SIMULAÇÃO — material educativo. Os mesmos casos rodam no Node (<code>node tests/scanner.test.js</code>).</p>
+<p id="resumo">Rodando…</p>
+<ul id="lista"></ul>
+<script src="../app/js/scanner.js"></script>
+<script src="rodar-casos.js"></script>
+<script>
+(async function () {
+  const ler = (u) => fetch(u, { cache: 'no-store' }).then((r) => r.json());
+  const [sinais, config, casos] = await Promise.all([ler('../app/data/signals.json'), ler('../app/data/scanner-config.json'), ler('casos-scanner.json')]);
+  const scanner = AnzolScanner.criarScanner({ sinais, config });
+  const res = AnzolTestes.rodarCasos(scanner, casos.casos);
+  const lista = document.getElementById('lista');
+  res.forEach((r) => {
+    const li = document.createElement('li');
+    li.className = r.ok ? 'ok' : 'falha';
+    li.textContent = (r.ok ? '✔ ' : '✘ ') + r.id + ' [' + r.faixa + ', ' + r.pontos + ']' + (r.ok ? '' : ' — ' + r.falhas.join('; ') + ' | pistas: ' + r.pistas.join(', '));
+    lista.appendChild(li);
+  });
+  const ok = res.filter((r) => r.ok).length;
+  const resumo = document.getElementById('resumo');
+  resumo.textContent = ok + '/' + res.length + ' casos passaram';
+  resumo.className = ok === res.length ? 'ok' : 'falha';
+  window.__resultado = res;
+})();
+</script>
+</body>
+</html>
