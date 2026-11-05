@@ -200,11 +200,11 @@
         "quem": "Alguém usando nome e foto do escritório, por um número diferente.",
         "o_que": "Um Pix para 'liberar' o valor.",
         "por_onde": "WhatsApp, número novo.",
-        "como_confirmo": "Ligar para o seu advogado pelo telefone que você já tinha ou ir ao escritório."
+        "como_confirmo": "Ligar para o seu advogado pelo telefone que você já tinha, ir ao escritório ou usar a plataforma de confirmação de advogados da OAB (ConfirmADV)."
       },
       "mito_relacionado": "dados-verdadeiros",
       "feedback": "Saber o número do seu processo não prova nada: dados processuais podem ser consultados ou vazados. Antes de qualquer pagamento, fale com o seu advogado pelo contato que você já tinha.",
-      "baseado_em": "Alertas da OAB-SP e do TRF3 sobre o golpe do falso advogado: pedido de Pix como 'taxa' para liberar valores judiciais. OAB-SP: 4.388 denúncias no estado até fev/2026.",
+      "baseado_em": "Alertas da OAB-SP, TRF3 e TRF6 sobre o golpe do falso advogado: dados reais do processo + pedido de Pix como 'taxa' para liberar valores. OAB-SP: 4.388 denúncias no estado até fev/2026. Caso TRF6 (abr/2026): servidora escapou porque sabia quem era seu advogado e recusou o link.",
       "fonte_url": "https://www.oabsp.org.br/noticia/26-02-06-1718-golpe-do-falso-advogado-ja-soma-4388-denuncias-e-acende-alerta-em-todo-o-pais",
       "fonte_verificada_em": "2026-11-05 (trecho via busca; página não lida na íntegra)"
     },

@@ -305,9 +305,10 @@ Sempre diremos o que é **regra** e o que é **IA**.
 | F12 | ODS — Nações Unidas no Brasil. https://brasil.un.org/pt-br/sdgs/4 · /10 · /16 · /3 · /9 | 05/11/2026 |
 | F13 | Cartilha de Segurança para Internet — licença CC BY-NC-ND 4.0. https://cartilha.cert.br/ | 05/11/2026 |
 | F14 | Golpe da CNH — Associação Nacional dos Detrans (nov/2024; 18 estados + DF). https://www.portaldotransito.com.br/noticias/and-faz-alerta-para-golpe-com-mensagens-falsas-sobre-suspensao-de-cnh/amp/ | 05/11/2026 (via busca) |
-| F15 | Falso advogado — OAB-SP: 4.388 denúncias no estado até fev/2026. https://www.oabsp.org.br/noticia/26-02-06-1718-golpe-do-falso-advogado-ja-soma-4388-denuncias-e-acende-alerta-em-todo-o-pais · alerta TRF3 + OAB-SP: https://ww2.trt2.jus.br/noticias/noticias/noticia/oab-sp-divulga-informacoes-sobre-golpe-do-falso-advogado-e-canal-para-denuncias | 05/11/2026 (via busca) |
+| F15 | Falso advogado — OAB-SP: 4.388 denúncias no estado até fev/2026. https://www.oabsp.org.br/noticia/26-02-06-1718-golpe-do-falso-advogado-ja-soma-4388-denuncias-e-acende-alerta-em-todo-o-pais · OAB Nacional (29/04/2025): 1,6 mil em SP desde 2024 e plataforma ConfirmADV. https://www.oab.org.br/noticia/63063/oab-lanca-campanha-nacional-e-plataforma-de-verificacao-contra-golpe-do-falso-advogado · Caso TRF6 (27/04/2026). https://portal.trf6.jus.br/golpe-do-falso-advogado-utiliza-dados-reais-para-enganar-vitimas/ | 05/11/2026 (páginas OAB e TRF6 lidas) |
 | F16 | Anatel — Resolução 777/2025, autenticação de chamadas. https://olhardigital.com.br/2024/09/23/seguranca/anatel-estabelece-novas-medidas-contra-fraudes-e-golpes-telefonicos/ | 04–05/11/2026 |
 
-**Correções em relação à pesquisa inicial** (detalhes em `docs/a-confirmar.md`):
-- "1,6 mil denúncias na OAB-SP em 2024" não foi encontrado; usar **4.388 até fev/2026** [F15].
-- "Caso TRF6" não foi encontrado; o alerta localizado é do **TRF3** com a OAB-SP. A história da vítima que escapou ao confirmar com o próprio advogado precisa de fonte antes de ir para o vídeo.
+**Notas sobre o falso advogado** (detalhes em `docs/a-confirmar.md`):
+- "1,6 mil denúncias" é da OAB Nacional (abr/2025), para SP desde 2024. **No vídeo, usar o dado mais recente: 4.388 denúncias até fev/2026 (OAB-SP)** [F15].
+- **Caso TRF6** [F15]: uma servidora do tribunal recebeu a abordagem com dados verdadeiros do processo dela. Escapou porque **sabia quem era o advogado dela** e recusou abrir o link. Não dizer que ela "ligou para o advogado".
+- Para "Como confirmo?": a OAB oferece a plataforma **ConfirmADV**, que confirma se o advogado é real.

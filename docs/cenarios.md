@@ -154,13 +154,13 @@
 | Urgência | até hoje | O prazo impede você de falar com seu advogado. |
 | Número novo ou desconhecido | número que não é o do seu advogado | O contato não é o que você já tinha. |
 
-**4 perguntas:** Quem pede? Alguém usando nome e foto do escritório, por um número diferente. · O que pede? Um Pix para 'liberar' o valor. · Por onde veio? WhatsApp, número novo. · Como confirmo? Ligar para o seu advogado pelo telefone que você já tinha ou ir ao escritório.
+**4 perguntas:** Quem pede? Alguém usando nome e foto do escritório, por um número diferente. · O que pede? Um Pix para 'liberar' o valor. · Por onde veio? WhatsApp, número novo. · Como confirmo? Ligar para o seu advogado pelo telefone que você já tinha, ir ao escritório ou usar a plataforma de confirmação de advogados da OAB (ConfirmADV).
 
 **Decisão certa:** Falar com o seu advogado/empresa pelo contato que VOCÊ já tinha, não pelo que veio na mensagem.
 
 **Feedback:** Saber o número do seu processo não prova nada: dados processuais podem ser consultados ou vazados. Antes de qualquer pagamento, fale com o seu advogado pelo contato que você já tinha.
 
-*Baseado em:* Alertas da OAB-SP e do TRF3 sobre o golpe do falso advogado: pedido de Pix como 'taxa' para liberar valores judiciais. OAB-SP: 4.388 denúncias no estado até fev/2026. *Fonte:* <https://www.oabsp.org.br/noticia/26-02-06-1718-golpe-do-falso-advogado-ja-soma-4388-denuncias-e-acende-alerta-em-todo-o-pais> — verificado em 2026-11-05 (trecho via busca; página não lida na íntegra)
+*Baseado em:* Alertas da OAB-SP, TRF3 e TRF6 sobre o golpe do falso advogado: dados reais do processo + pedido de Pix como 'taxa' para liberar valores. OAB-SP: 4.388 denúncias no estado até fev/2026. Caso TRF6 (abr/2026): servidora escapou porque sabia quem era seu advogado e recusou o link. *Fonte:* <https://www.oabsp.org.br/noticia/26-02-06-1718-golpe-do-falso-advogado-ja-soma-4388-denuncias-e-acende-alerta-em-todo-o-pais> — verificado em 2026-11-05 (trecho via busca; página não lida na íntegra)
 
 ### L2-03 — Ligação da central de segurança (GOLPE · nível 3)
 
