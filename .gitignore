@@ -1,0 +1,10 @@
+﻿# Arquivos de sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+# Editores
+.vscode/
+*.swp
+# Segredos (nunca versionar)
+.env
+*.key
