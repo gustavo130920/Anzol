@@ -10,6 +10,26 @@
 4. Se não usar janela anônima: aba **Radar** → "Recomeçar o Radar deste aparelho"; aba **Testes** → "Recomeçar meu progresso".
 5. Grave com o cursor visível e movimentos lentos. Respire 1 s antes e depois de cada clique.
 
+## Slides de apoio (blocos sem demonstração)
+
+Arquivo: `docs/slides/index.html` (15 slides, preto e rosa, cada número com fonte e data).
+
+- **Abrir:** com o servidor local ligado, `http://localhost:8080/docs/slides/index.html` (ou dois cliques no arquivo).
+- **Teclas:** → / espaço avançam · ← volta · **F** tela cheia · **N** mostra o número do slide e o trecho do roteiro (deixe escondido ao gravar).
+- **PDF:** Ctrl+P → "Salvar como PDF" gera um slide por página (útil para a edição).
+
+| Slides | Trecho do roteiro |
+|---|---|
+| 1 | Abertura (0:00) |
+| 2–5 | Problema (0:05–0:45): estelionatos, funil, confiança, treino passivo |
+| 6–7 | Público e mercado (0:45–1:25) |
+| 8 | Abre a demonstração: as 4 perguntas (1:25) |
+| 9–10 | Diferencial (2:45–3:30): o que existe × o que combinamos; 4 tecnologias |
+| 11–14 | Resultados (3:30–4:40): indicadores, validação, expansão/sustentabilidade, ODS |
+| 15 | Fechamento (4:40) |
+
+**Antes de gravar o slide 7:** se a checagem do R8 achar outro valor ou outra fonte para o R$ 10,1 bi, corrija o slide e o roteiro juntos.
+
 ## Tomadas
 
 | # | Trecho do roteiro | O que gravar (passo a passo) | O que precisa aparecer | Duração bruta |
