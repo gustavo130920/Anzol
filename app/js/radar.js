@@ -263,13 +263,20 @@
 
     // ---------- relato em um toque ----------
     function relatar(dados) {
-      // dados: { texto, alvos, canal, uf, consentimento }
-      if (!dados.consentimento) return Promise.reject(new Error('É preciso concordar em enviar só os indicadores do golpista.'));
+      // dados: { texto, alvos, canal, uf, consentimento, contatosDoGolpista: [telefones/e-mails confirmados pela pessoa] }
+      // PRIVACIDADE: telefone e e-mail só viram indicador se a pessoa marcar que são do golpista.
+      // Uma mensagem pode conter o e-mail ou o número da própria vítima — esses nunca vão ao Radar.
+      if (!dados.consentimento) return Promise.reject(new Error('Marque que concorda em enviar só os indicadores do golpista.'));
       var t = agora().getTime();
       var hoje = local.relatos.filter(function (r) { return t - r.quando < DIA; }).length + local.fila.filter(function (f) { return f.tipo === 'relato' && t - f.quando < DIA; }).length;
       if (hoje >= regras.limite_relatos_por_usuario_por_dia) return Promise.reject(new Error('Limite de relatos por dia atingido. Obrigado pela ajuda!'));
 
-      var contatos = extrairContatos(dados.texto);
+      var confirmados = (dados.contatosDoGolpista || []).map(function (c) { return String(c).toLowerCase(); });
+      var todosContatos = extrairContatos(dados.texto);
+      var contatos = {
+        telefones: todosContatos.telefones.filter(function (x) { return confirmados.indexOf(x) !== -1; }),
+        emails: todosContatos.emails.filter(function (x) { return confirmados.indexOf(x) !== -1; })
+      };
       var tipoTel = dados.canal === 'ligacao' ? 'telefone_ligacao' : 'telefone_mensagem';
       return Promise.all(
         contatos.telefones.map(function (x) { return hmac(segredo, 'tel:' + x).then(function (h) { return { tipo: tipoTel, hash: h, rotulo: tipoTel === 'telefone_ligacao' ? 'número exibido na ligação (protegido; pode ser falsificado)' : 'telefone (protegido)' }; }); })
@@ -389,5 +396,7 @@
     };
   }
 
-  return { criarRadar: criarRadar, _util: { sanitizar: sanitizar, extrairContatos: extrairContatos, criarIndiceTexto: criarIndiceTexto, hmac: hmac } };
+  return { criarRadar: criarRadar, _util: {
+    // Mesmo formato usado internamente (só dígitos para telefone; e-mail em minúsculas)
+    contatosNormalizados: function (texto) { return extrairContatos(texto); }, sanitizar: sanitizar, extrairContatos: extrairContatos, criarIndiceTexto: criarIndiceTexto, hmac: hmac } };
 });

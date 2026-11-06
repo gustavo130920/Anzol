@@ -236,6 +236,7 @@ button:disabled { opacity: .55; cursor: not-allowed; }
 .form-inline { margin-top: 10px; padding: 12px; border-radius: 10px; background: var(--fundo); border: 1px solid var(--borda); }
 .form-inline textarea { min-height: 4rem; }
 [aria-invalid="true"] { border-color: var(--alto) !important; }
+.erro-campo { color: var(--alto); font-size: .85rem; font-weight: 700; margin: 6px 0 0; }
 .relato summary { cursor: pointer; font-weight: 700; color: var(--marca); margin-top: 8px; }
 .linha-form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .linha-form select { width: 100%; font: inherit; font-size: .9rem; padding: 8px; border-radius: 8px; border: 1px solid var(--borda); background: var(--cartao); color: var(--texto); min-height: 44px; }

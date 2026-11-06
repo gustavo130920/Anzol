@@ -37,6 +37,9 @@ const ocrTorto = 'Comprovante de transferência Pix\nValor: R$ 1.150,00\nChave P
 const e3 = kit.extrair(ocrTorto, (t) => scanner.alvosParaListas(t));
 ok(e3.chaves_pix.some((c) => c.valor === 'pix-custas-01@exemplo.test'), 'corrige "@" lido como "(Q" pelo OCR e reconhece a chave Pix');
 ok(e3.enderecos.length === 0, 'ruído do OCR não vira endereço de site falso');
+const rodape = kit.extrair('Comprovante Pix\nValor: R$ 50,00\nChave Pix: 123e4567-e89b-12d3-a456-426614174000\nDúvidas: atendimento@bancoexemplar.example', null);
+ok(!rodape.chaves_pix.some((c) => c.valor === 'atendimento@bancoexemplar.example'), 'e-mail de atendimento no rodapé NÃO vira chave Pix do golpista');
+ok(kit.extrair('Parcelas 1, 20 e 30').valores.length === 0 && !/1,20/.test(JSON.stringify(kit.extrair('Parcelas 1, 20 e 30'))), 'correção do OCR não funde números comuns');
 const e4 = kit.extrair('Pix enviado. Chave Pix: chave#estranha123', null);
 ok(e4.chaves_pix.some((c) => c.tipo === 'confira' && c.valor === 'chave#estranha123'), 'chave ilegível fica marcada como "confira"');
 ok(kit.extrair('Data 31/13/2026').datas.length === 0, 'data inválida é ignorada');

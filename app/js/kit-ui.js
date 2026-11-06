@@ -7,6 +7,8 @@
 (function () {
   'use strict';
   var TESSERACT_URL = 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js';
+  // Integridade (SRI): se a CDN entregar um arquivo diferente deste, o navegador se recusa a executar.
+  var TESSERACT_SRI = 'sha384-GJqSu7vueQ9qN0E9yLPb3Wtpd7OrgK8KmYzC8T1IysG1bcvxvIO4qtYR/D3A991F';
   var scanner, radar, raiz, provas = [], eventos = [], contador = 0, carregandoOcr = null;
 
   var EXEMPLO_TEXTO = [
@@ -64,7 +66,7 @@
     if (carregandoOcr) return carregandoOcr;
     carregandoOcr = new Promise(function (ok, erro) {
       var s = document.createElement('script');
-      s.src = TESSERACT_URL; s.async = true; s.crossOrigin = 'anonymous';
+      s.src = TESSERACT_URL; s.async = true; s.crossOrigin = 'anonymous'; s.integrity = TESSERACT_SRI;
       s.onload = function () { window.Tesseract ? ok(window.Tesseract) : erro(new Error('OCR indisponível')); };
       s.onerror = function () { carregandoOcr = null; erro(new Error('Sem acesso à biblioteca de OCR (sem internet?)')); };
       document.head.appendChild(s);
@@ -88,6 +90,10 @@
   }
   function extrairDaProva(p) {
     p.extraido = AnzolKit.extrair(p.texto, function (t) { return scanner.alvosParaListas(t); });
+    // Se a pessoa ainda não escolheu o tipo e o texto parece um comprovante (valor em R$ + Pix), sugere "Comprovante",
+    // para o pagamento entrar no rascunho do relato.
+    var e = p.extraido;
+    if (!p.tipoEscolhido && e.valores.length && e.menciona_pix) p.tipo = 'comprovante';
   }
 
   // ---------- agregação ----------
@@ -123,14 +129,19 @@
     var inp = el('input'); inp.type = 'file'; inp.accept = 'image/*'; inp.multiple = true; inp.id = 'kit-arquivos';
     lab.htmlFor = 'kit-arquivos';
     inp.addEventListener('change', function () {
+      var recusados = [];
       Array.prototype.forEach.call(inp.files, function (f) {
-        if (!/^image\//.test(f.type) || f.size > 15 * 1024 * 1024) return;
+        if (!/^image\//.test(f.type)) { recusados.push(f.name + ' (não é imagem — tire um print da tela)'); return; }
+        if (f.size > 15 * 1024 * 1024) { recusados.push(f.name + ' (maior que 15 MB)'); return; }
         var r = new FileReader();
         r.onload = function () { adicionarProva(r.result, { nome: f.name.slice(0, 40), tipo: 'conversa' }); };
         r.readAsDataURL(f);
       });
+      avisoArquivos.textContent = recusados.length ? 'Não foi possível adicionar: ' + recusados.join('; ') + '.' : '';
+      avisoArquivos.hidden = !recusados.length;
     });
-    c.appendChild(lab); c.appendChild(inp);
+    var avisoArquivos = el('p', 'mito'); avisoArquivos.setAttribute('role', 'alert'); avisoArquivos.hidden = true;
+    c.appendChild(lab); c.appendChild(inp); c.appendChild(avisoArquivos);
     var ex = el('div', 'acoes');
     ex.appendChild(botao('Usar comprovante de exemplo (SIMULAÇÃO)', 'btn-secundario', function () { adicionarProva(desenharExemplo(false), { exemplo: true, tipo: 'comprovante', nome: 'Exemplo: comprovante' }); }));
     if (provas.some(function (p) { return p.exemplo; })) ex.appendChild(botao('Adicionar o mesmo print reenviado (comprimido)', 'btn-leve', function () { adicionarProva(desenharExemplo(true), { exemplo: true, tipo: 'comprovante', nome: 'Exemplo: mesmo print, reenviado' }); }));
@@ -152,7 +163,7 @@
     if (p.exemplo) info.appendChild(el('span', 'selo', 'SIMULAÇÃO'));
     var sel = el('select'); sel.setAttribute('aria-label', 'Tipo de prova');
     [['conversa', 'Conversa'], ['comprovante', 'Comprovante'], ['site', 'Site ou anúncio'], ['outro', 'Outro']].forEach(function (o) { var op = el('option', null, o[1]); op.value = o[0]; if (p.tipo === o[0]) op.selected = true; sel.appendChild(op); });
-    sel.addEventListener('change', function () { p.tipo = sel.value; render(); });
+    sel.addEventListener('change', function () { p.tipo = sel.value; p.tipoEscolhido = true; render(); });
     info.appendChild(sel);
     var dig = el('p', 'motivo-desc', 'Impressão digital da imagem: ');
     dig.appendChild(el('code', null, p.hash));
@@ -268,7 +279,10 @@
     ac.appendChild(botao('Enviar ao Radar', 'btn-principal', function (ev) {
       ev.target.disabled = true;
       var texto = 'Indicadores do Kit de provas: ' + inds.join(' ');
-      radar.relatar({ texto: texto, alvos: scanner.alvosParaListas(ag.enderecos.join(' ')), consentimento: cb.checked })
+      // A pessoa viu a lista exata acima e marcou que são do golpista: todos seguem como confirmados
+      var confirmados = AnzolRadar._util.contatosNormalizados(texto);
+      radar.relatar({ texto: texto, alvos: scanner.alvosParaListas(ag.enderecos.join(' ')), consentimento: cb.checked,
+        contatosDoGolpista: confirmados.telefones.concat(confirmados.emails) })
         .then(function (r) {
           msg.textContent = r.destino === 'campanha'
             ? 'Obrigado! Somou à campanha "' + r.campanha.titulo + '" (' + r.campanha.pessoas + ' pessoas).' + (r.mudouEstado ? ' O alerta foi ligado.' : '')

@@ -31,6 +31,9 @@
     dica.hidden = false;
   }
   function esconderDica() { if (dica) dica.hidden = true; }
+  // No toque não existe "tirar o mouse": a dica some ao rolar ou ao tocar fora de um gráfico
+  window.addEventListener('scroll', esconderDica, { passive: true });
+  document.addEventListener('touchstart', function (e) { if (!(e.target.closest && e.target.closest('.grafico'))) esconderDica(); }, { passive: true });
 
   // ---------- barras horizontais (uma série) ----------
   // Largura real disponível: o gráfico é desenhado no tamanho da tela (texto nunca encolhe)

@@ -129,7 +129,10 @@
     campo.id = o.id; campo.name = o.id; campo.className = 'campo'; campo.autocomplete = 'off';
     if (o.multilinha) campo.rows = 3; else campo.type = 'text';
     campo.maxLength = 300; campo.value = o.valorInicial || '';
-    f.appendChild(lab); f.appendChild(campo);
+    var erro = el('p', 'erro-campo'); erro.id = o.id + '-erro'; erro.setAttribute('role', 'alert'); erro.hidden = true;
+    campo.setAttribute('aria-describedby', erro.id);
+    campo.addEventListener('input', function () { erro.hidden = true; campo.removeAttribute('aria-invalid'); });
+    f.appendChild(lab); f.appendChild(campo); f.appendChild(erro);
     var a = el('div', 'acoes');
     var ok = el('button', 'btn-principal', o.textoOk); ok.type = 'submit';
     var cancelar = botao('Cancelar', 'btn-leve', function () { f.remove(); if (o.aoCancelar) o.aoCancelar(); });
@@ -138,7 +141,13 @@
     f.addEventListener('submit', function (ev) {
       ev.preventDefault();
       var v = campo.value.trim();
-      if (!v) { campo.setAttribute('aria-invalid', 'true'); campo.focus(); return; }
+      if (!v) {
+        campo.setAttribute('aria-invalid', 'true');
+        erro.textContent = 'Escreva pelo menos algumas palavras antes de enviar.';
+        erro.hidden = false;
+        campo.focus();
+        return;
+      }
       o.aoConfirmar(v);
     });
     alvo.appendChild(f);

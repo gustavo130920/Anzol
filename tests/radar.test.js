@@ -68,10 +68,23 @@ const ok = (cond, msg) => { console.log((cond ? 'OK    ' : 'FALHA ') + msg); if 
   await radar.relatar({ texto: tLoja, alvos: alvos(tLoja), consentimento: true });
   ok(estado('C-LOJA').pessoas === pessoasAntes && estado('C-LOJA').total_relatos === pessoasAntes + 1, 'relatos repetidos do mesmo usuário não contam como pessoas diferentes');
 
+  // 3b. Privacidade: telefone/e-mail só entram se a pessoa marcar que são do golpista
+  {
+    const r2 = criarRadar({ semente, config, agora, armazenamento: memoria() });
+    const tVit = 'Olá vitima.teste@exemplo.test, seu número (11) 98888-7777 foi sorteado: liberacao-premio-agora.test';
+    await r2.relatar({ texto: tVit, alvos: alvos(tVit), consentimento: true });
+    const semConfirmar = r2.fila()[0].relato.indicadores.map((i) => i.tipo);
+    ok(!semConfirmar.includes('chave_pix') && !semConfirmar.some((t) => t.startsWith('telefone')), 'sem confirmação, e-mail e telefone da mensagem NÃO viram indicador (podem ser da vítima)');
+    const tGolp = 'Pague a taxa pela chave golpista.teste@exemplo.test: liberacao-premio-agora.test';
+    await r2.relatar({ texto: tGolp, alvos: alvos(tGolp), consentimento: true, contatosDoGolpista: ['golpista.teste@exemplo.test'] });
+    const conf = r2.fila()[1].relato.indicadores;
+    ok(conf.some((i) => i.tipo === 'chave_pix' && /^[0-9a-f]{32}$/.test(i.hash)) && !JSON.stringify(conf).includes('golpista.teste'), 'confirmado pela pessoa: vira indicador, só como HMAC');
+  }
+
   // 4. Consentimento e limite por dia
   let erro = null;
   try { await radar.relatar({ texto: tLoja, alvos: alvos(tLoja), consentimento: false }); } catch (e) { erro = e; }
-  ok(erro && /concordar/.test(erro.message), 'sem consentimento, o relato não é enviado');
+  ok(erro && /concorda/.test(erro.message), 'sem consentimento, o relato não é enviado');
   for (let i = 0; i < 5; i++) { try { await radar.relatar({ texto: 'teste ' + i + ' outro-endereco-' + i + '.test', alvos: alvos('outro-endereco-' + i + '.test'), consentimento: true }); } catch (e) { erro = e; } }
   ok(erro && /Limite/.test(erro.message), 'limite de relatos por usuário por dia (anti-abuso)');
 

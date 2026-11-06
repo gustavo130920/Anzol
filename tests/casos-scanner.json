@@ -150,6 +150,25 @@
       "nao_pode_ter": ["arroba-na-url"]
     },
     {
+      "id": "T25-email-com-ponto",
+      "origem": "revisão de código (bug real)",
+      "_nota": "E-mail com ponto antes do @ não é o truque do @ em links.",
+      "texto": "Fale com o suporte: maria.atendimento@lojavitrine.example",
+      "faixa": "baixo",
+      "deve_ter": [],
+      "nao_pode_ter": ["arroba-na-url"],
+      "enderecos": 0
+    },
+    {
+      "id": "T26-truque-arroba-sem-caminho",
+      "origem": "revisão de código",
+      "_nota": "Domínio antes do @ continua sendo truque, mesmo sem caminho depois.",
+      "texto": "Acesse bancoexemplar.example@atualiza-cadastro.test",
+      "faixa": "medio",
+      "deve_ter": ["arroba-na-url"],
+      "nao_pode_ter": []
+    },
+    {
       "id": "T19-homoglifo-numero",
       "origem": "D-03",
       "texto": "Promoção relâmpago: lojavitr1ne.example",

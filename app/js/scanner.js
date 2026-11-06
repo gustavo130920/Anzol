@@ -63,6 +63,9 @@
     return achados;
   }
 
+  // Finais que indicam que um texto é um domínio (usado para separar e-mail de truque com "@")
+  var FINAIS_DE_DOMINIO = ['com', 'br', 'net', 'org', 'gov', 'edu', 'io', 'app', 'info', 'site', 'online', 'top', 'xyz', 'example', 'test', 'invalid'];
+
   function dominioRegistravel(labels, sufixos) {
     if (labels.length >= 3 && sufixos.indexOf(labels.slice(-2).join('.')) !== -1) return labels.slice(-3).join('.');
     return labels.slice(-2).join('.');
@@ -77,8 +80,11 @@
     if (autoridade.indexOf('@') !== -1) {
       var antesArroba = autoridade.slice(0, autoridade.lastIndexOf('@'));
       host = autoridade.slice(autoridade.lastIndexOf('@') + 1);
-      // "nome@site.com" solto no texto é e-mail, não truque de endereço
-      ehEmail = !temEsquema && !temCaminho && antesArroba.indexOf('.') === -1 && antesArroba.indexOf(':') === -1;
+      // "nome@site.com" ou "nome.sobrenome@site.com" solto no texto é e-mail, não truque de endereço.
+      // É truque quando o que vem antes do @ parece um DOMÍNIO (ex.: "banco.example@golpe.test") ou há caminho/esquema.
+      var finalAntes = antesArroba.split('.').pop().toLowerCase();
+      var pareceDominio = antesArroba.indexOf('.') !== -1 && FINAIS_DE_DOMINIO.indexOf(finalAntes) !== -1;
+      ehEmail = !temEsquema && !temCaminho && !pareceDominio && antesArroba.indexOf(':') === -1;
       arroba = !ehEmail;
     }
     host = host.toLowerCase().replace(/:\d+$/, '').replace(/\.$/, '');

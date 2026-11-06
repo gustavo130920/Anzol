@@ -40,7 +40,8 @@
     return String(texto || '')
       .replace(/([a-z0-9._-])\s?(?:\(\s?[Qqa@]|©|®|\(\))\s?([a-z0-9-]+\.[a-z]{2,})/gi, '$1@$2')
       .replace(/R\s?\$\s?/g, 'R$ ')
-      .replace(/(\d)\s?[,.]\s?(\d{2})\b/g, function (m, a, b) { return m.indexOf(',') !== -1 ? a + ',' + b : m; });
+      // Espaço solto antes/depois da vírgula SÓ em valores em reais ("R$ 1.150 ,00" → "R$ 1.150,00")
+      .replace(/R\$ (\d[\d.]*)\s?,\s?(\d{2})\b/g, 'R$ $1,$2');
   }
 
   function extrair(texto, extrairEnderecos) {
@@ -53,7 +54,12 @@
     aleatorias.forEach(function (c) { chaves.push({ tipo: 'aleatória', valor: c }); });
     if (temPix) {
       var linhaChave = (texto.match(/chave[^\n]*/i) || [''])[0];
-      emails.forEach(function (e) { if (!linhaChave || linhaChave.toLowerCase().indexOf(e) !== -1 || emails.length === 1) chaves.push({ tipo: 'e-mail', valor: e }); });
+      // E-mail só é chave Pix se estiver na linha "Chave…"; sem essa linha, fica para a pessoa conferir
+      // (um e-mail de atendimento do banco no rodapé não pode virar "chave do golpista").
+      emails.forEach(function (e) {
+        if (linhaChave && linhaChave.toLowerCase().indexOf(e) !== -1) chaves.push({ tipo: 'e-mail', valor: e });
+        else if (!linhaChave && emails.length === 1) chaves.push({ tipo: 'confira', valor: e });
+      });
       todos(RE.cpf, linhaChave).forEach(function (c) { chaves.push({ tipo: 'CPF', valor: c }); });
       todos(RE.cnpj, linhaChave).forEach(function (c) { chaves.push({ tipo: 'CNPJ', valor: c }); });
       // Se a leitura saiu torta, ainda guardamos o que vem depois de "Chave Pix:" para a pessoa conferir

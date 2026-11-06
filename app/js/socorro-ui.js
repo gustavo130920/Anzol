@@ -5,7 +5,7 @@
  */
 (function () {
   'use strict';
-  var socorro, escudo, raizS, raizE;
+  var socorro, escudo, raizS, raizE, triagemAtual = null;
   var CH_S = 'anzol-socorro-v1', CH_E = 'anzol-escudo-v1';
 
   function el(tag, classe, texto) { var n = document.createElement(tag); if (classe) n.className = classe; if (texto != null) n.textContent = texto; return n; }
@@ -50,11 +50,18 @@
   function abrirSituacao(id) {
     var s = socorro.situacoes.filter(function (x) { return x.id === id; })[0];
     var dados = lerLocal(CH_S, { aberturas: [], feitos: {} });
-    var abertura = { situacao: id, aberta_em: Date.now(), contato_banco_em: null };
-    dados.aberturas.push(abertura);
-    if (dados.aberturas.length > 50) dados.aberturas.shift();
+    // Uma triagem por visita à aba: navegar entre situações não conta de novo,
+    // e o tempo até falar com o banco é medido desde a PRIMEIRA abertura.
+    if (triagemAtual === null) {
+      dados.aberturas.push({ situacao: id, aberta_em: Date.now(), contato_banco_em: null });
+      if (dados.aberturas.length > 50) dados.aberturas.shift();
+      triagemAtual = dados.aberturas.length - 1;
+    } else if (dados.aberturas[triagemAtual]) {
+      dados.aberturas[triagemAtual].situacao = id;
+    }
     gravarLocal(CH_S, dados);
-    var idxAbertura = dados.aberturas.length - 1;
+    var idxAbertura = triagemAtual;
+    var abertura = dados.aberturas[idxAbertura];
 
     raizS.textContent = '';
     var c = el('div', 'cartao');
@@ -90,8 +97,8 @@
         var fl = p.fonte ? linhaFonte(p.fonte) : null;
         if (fl) li.appendChild(fl);
         var acoes = el('div', 'links-acao');
+        var info = el('p', 'motivo-desc');
         if (p.marca_contato_banco) {
-          var info = el('p', 'motivo-desc');
           acoes.appendChild(botao('Já falei com o banco', 'btn-leve', function () {
             var d = lerLocal(CH_S, { aberturas: [], feitos: {} });
             var a = d.aberturas[idxAbertura] || abertura;
@@ -101,15 +108,15 @@
             info.textContent = 'Anotado: você falou com o banco ' + (min < 1 ? 'em menos de 1 minuto' : min + ' min') + ' depois de abrir esta página. (Indicador anônimo, fica só neste aparelho.)';
             cb.checked = true; cb.dispatchEvent(new Event('change'));
           }));
-          li.appendChild(acoes);
-          li.appendChild(info);
         }
-        if (p.abre_kit) { acoes.appendChild(botao('Abrir o Kit de provas', 'btn-leve', function () { location.hash = '#kit'; })); li.appendChild(acoes); }
+        if (p.abre_kit) acoes.appendChild(botao('Abrir o Kit de provas', 'btn-leve', function () { location.hash = '#kit'; }));
         if (p.vai_para) {
           var alvo = socorro.situacoes.filter(function (z) { return z.id === p.vai_para; })[0];
           acoes.appendChild(botao('Sim → ' + alvo.titulo, 'btn-leve', function () { abrirSituacao(p.vai_para); }));
-          li.appendChild(acoes);
         }
+        // Botões e aviso montados uma vez, sempre na mesma ordem
+        if (acoes.children.length) li.appendChild(acoes);
+        if (p.marca_contato_banco) li.appendChild(info);
         ol.appendChild(li);
       });
       c.appendChild(ol);
@@ -198,7 +205,7 @@
 
   window.AnzolSocorroUI = {
     iniciar: function (o) { socorro = o.socorro; escudo = o.escudo; raizS = document.getElementById('socorro-raiz'); raizE = document.getElementById('escudo-raiz'); },
-    mostrarSocorro: function () { if (socorro) inicioSocorro(); },
+    mostrarSocorro: function () { if (socorro) { triagemAtual = null; inicioSocorro(); } },
     mostrarEscudo: function () { if (escudo) renderEscudo(); },
     situacoes: function () { return socorro ? socorro.situacoes.map(function (s) { return { id: s.id, titulo: s.titulo }; }) : []; },
     // Indicador para o painel: minutos entre abrir a triagem e falar com o banco (autodeclarado)

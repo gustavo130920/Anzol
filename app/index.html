@@ -7,10 +7,11 @@
 <meta name="description" content="Anzol: aprenda a reconhecer golpes e se proteger no mesmo lugar. Protótipo acadêmico.">
 <meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark light">
-<script>
-  // Aplica o tema salvo antes de desenhar a página (evita piscar). Padrão: preto.
-  try { if (localStorage.getItem('anzol-tema') === 'claro') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
-</script>
+<!-- Política de segurança: só o próprio site, a CDN do OCR e as listas públicas de phishing.
+     'wasm-unsafe-eval' e blob: são exigidos pelo OCR (Tesseract.js roda em WebAssembly num worker). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'wasm-unsafe-eval'; worker-src 'self' blob: https://cdn.jsdelivr.net; connect-src 'self' https://raw.githubusercontent.com https://cdn.jsdelivr.net https://tessdata.projectnaptha.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="no-referrer">
+<script src="js/tema-inicial.js"></script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='64' height='64' rx='14' fill='%23000' stroke='none'/%3E%3Cpath d='M32 5l21 7.5v15.5c0 14.5-9 25-21 31C20 53 11 42.5 11 28V12.5z' stroke='%23ff4f8b' stroke-width='6'/%3E%3Cpath d='M36 15v20.5a8 8 0 0 1-16 0V31' stroke='%23f5f5f5' stroke-width='6'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>

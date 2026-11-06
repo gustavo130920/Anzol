@@ -255,11 +255,25 @@
     var previa = el('div', 'previa');
     previa.appendChild(el('p', 'motivo-desc', 'Vai para o Radar SÓ isto (dados pessoais removidos automaticamente — confira):'));
     previa.appendChild(el('p', 'previa-texto', u.sanitizar(ctx.texto)));
-    var cont = u.extrairContatos(ctx.texto);
-    var inds = ctx.alvos.map(function (a) { return 'endereço ' + a.registravel; })
-      .concat(cont.telefones.map(function () { return 'telefone (vai protegido, como código)'; }))
-      .concat(cont.emails.map(function () { return 'e-mail/chave Pix (vai protegido, como código)'; }));
+    var cont = u.contatosNormalizados(ctx.texto);
+    var inds = ctx.alvos.map(function (a) { return 'endereço ' + a.registravel; });
     previa.appendChild(el('p', 'motivo-desc', 'Indicadores do golpista: ' + (inds.length ? inds.join(' · ') : 'só o texto')));
+    // Telefones e e-mails: só vão se a pessoa marcar que são do golpista (podem ser dela mesma)
+    var marcados = [];
+    cont.telefones.map(function (t) { return { valor: t, rotulo: '(' + t.slice(0, 2) + ') ' + t.slice(2, -4) + '-' + t.slice(-4), tipo: 'telefone' }; })
+      .concat(cont.emails.map(function (e) { return { valor: e, rotulo: e, tipo: 'e-mail' }; }))
+      .forEach(function (c) {
+        var lab = el('label', 'consentimento');
+        var cb = el('input'); cb.type = 'checkbox';
+        cb.addEventListener('change', function () {
+          var i = marcados.indexOf(c.valor);
+          if (cb.checked && i === -1) marcados.push(c.valor);
+          if (!cb.checked && i !== -1) marcados.splice(i, 1);
+        });
+        lab.appendChild(cb);
+        lab.appendChild(document.createTextNode(' O ' + c.tipo + ' ' + c.rotulo + ' é do golpista (vai protegido, como código). Deixe desmarcado se for seu.'));
+        previa.appendChild(lab);
+      });
     d.appendChild(previa);
 
     var linha = el('div', 'linha-form');
@@ -287,7 +301,7 @@
     enviar.type = 'button';
     enviar.addEventListener('click', function () {
       enviar.disabled = true;
-      estado.radar.relatar({ texto: ctx.texto, alvos: ctx.alvos, canal: canal.value || null, uf: uf.value || null, consentimento: cb.checked })
+      estado.radar.relatar({ texto: ctx.texto, alvos: ctx.alvos, canal: canal.value || null, uf: uf.value || null, consentimento: cb.checked, contatosDoGolpista: marcados })
         .then(function (res) {
           var aviso = res.destino === 'campanha'
             ? (res.mudouEstado
