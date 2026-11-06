@@ -190,7 +190,7 @@
       "contexto_simulado": "Você realmente tem um processo em andamento. A mensagem veio de um número que não é o do seu advogado, com a foto e o nome do escritório.",
       "link_exibido": null,
       "pistas": [
-        { "id": "autoridade", "trecho": "Escritório ... processo nº", "explicacao": "Número de processo e nome do escritório dão ar oficial. Dados de processo podem ser públicos ou vazados." },
+        { "id": "autoridade", "trecho": "Escritório … processo nº", "explicacao": "Número de processo e nome do escritório dão ar oficial. Dados de processo podem ser públicos ou vazados." },
         { "id": "taxa-antecipada", "trecho": "recolher custas de R$ 1.150 via Pix", "explicacao": "Pagar para 'liberar' valor é o centro do golpe, segundo alertas da OAB-SP." },
         { "id": "urgencia", "trecho": "até hoje", "explicacao": "O prazo impede você de falar com seu advogado." },
         { "id": "numero-novo", "trecho": "número que não é o do seu advogado", "explicacao": "O contato não é o que você já tinha." }

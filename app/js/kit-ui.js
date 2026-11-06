@@ -145,6 +145,7 @@
     var d = el('div', 'cartao prova');
     var topo = el('div', 'prova-topo');
     var im = el('img', 'miniatura'); im.src = p.src; im.alt = 'Prova: ' + p.nome;
+    im.width = 120; im.height = Math.max(1, Math.round(120 * (p.img.naturalHeight || 1) / (p.img.naturalWidth || 1)));
     topo.appendChild(im);
     var info = el('div');
     info.appendChild(el('p', 'motivo-nome', p.nome + (p.exemplo ? ' ' : '')));
@@ -164,7 +165,10 @@
     var status = el('p', 'motivo-desc', p.origemTexto || '');
     var ac = el('div', 'acoes');
     ac.appendChild(botao(p.texto ? 'Ler de novo' : 'Ler texto do print', 'btn-principal', function (ev) { ev.target.disabled = true; lerTexto(p, status); }));
-    ac.appendChild(botao('Remover', 'btn-leve', function () { provas = provas.filter(function (o) { return o.id !== p.id; }); render(); }));
+    ac.appendChild(botao('Remover esta prova', 'btn-leve', function () {
+      if (!confirm('Remover "' + p.nome + '" do Kit? A imagem não está salva em outro lugar.')) return;
+      provas = provas.filter(function (o) { return o.id !== p.id; }); render();
+    }));
     d.appendChild(ac);
     d.appendChild(status);
     var lt = el('label', 'rotulo-peq', 'Texto da imagem (confira e corrija):');

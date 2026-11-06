@@ -149,7 +149,7 @@
 
 | Pista | Trecho | Por que importa |
 |---|---|---|
-| Autoridade | Escritório ... processo nº | Número de processo e nome do escritório dão ar oficial. Dados de processo podem ser públicos ou vazados. |
+| Autoridade | Escritório … processo nº | Número de processo e nome do escritório dão ar oficial. Dados de processo podem ser públicos ou vazados. |
 | Taxa para liberar valor | recolher custas de R$ 1.150 via Pix | Pagar para 'liberar' valor é o centro do golpe, segundo alertas da OAB-SP. |
 | Urgência | até hoje | O prazo impede você de falar com seu advogado. |
 | Número novo ou desconhecido | número que não é o do seu advogado | O contato não é o que você já tinha. |

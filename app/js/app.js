@@ -98,6 +98,12 @@
       if (window.speechSynthesis) speechSynthesis.cancel();
       document.getElementById('entrada').focus();
     });
+    var claro = document.documentElement.getAttribute('data-theme') === 'light';
+    aplicarTema(claro);
+    document.getElementById('btn-tema').addEventListener('click', function () {
+      claro = !claro; aplicarTema(claro);
+      try { localStorage.setItem('anzol-tema', claro ? 'claro' : 'preto'); } catch (e) {}
+    });
     var btnFonte = document.getElementById('btn-fonte');
     var grande = false;
     try { grande = localStorage.getItem('anzol-texto-grande') === '1'; } catch (e) {}
@@ -128,6 +134,18 @@
     if (vista === 'kit') { var as = document.querySelector('.aba[data-vista="socorro"]'); if (as) { as.classList.add('ativa'); as.setAttribute('aria-current', 'page'); } }
   }
   window.addEventListener('hashchange', rotear);
+
+  // Tema: preto (padrão) ou claro. Guardado no aparelho; a barra do navegador acompanha.
+  function aplicarTema(claro) {
+    var raizHtml = document.documentElement;
+    if (claro) raizHtml.setAttribute('data-theme', 'light'); else raizHtml.removeAttribute('data-theme');
+    var b = document.getElementById('btn-tema');
+    b.setAttribute('aria-pressed', String(claro));
+    b.setAttribute('aria-label', claro ? 'Usar tema preto' : 'Usar tema claro');
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', claro ? '#f7f7f8' : '#000000');
+    if (window.AnzolPainelUI && !document.getElementById('vista-painel').hidden) AnzolPainelUI.mostrar();
+  }
 
   function aplicarFonte(grande) {
     document.documentElement.classList.toggle('texto-grande', grande);

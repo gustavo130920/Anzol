@@ -101,14 +101,49 @@
       if (AnzolJogoUI.itemDisponivel(c.cenario_id)) acoes.appendChild(botao('Treinar com este golpe', 'btn-leve', function () { AnzolJogoUI.abrirItem(c.cenario_id); }));
       else acoes.appendChild(el('span', 'motivo-desc', 'Treino deste golpe: reservado para o reteste.'));
     }
-    if (c.estado !== 'arquivada') acoes.appendChild(botao('Contestar este alerta', 'btn-leve', function () {
-      var motivo = prompt(radar.config.linguagem.contestacao + '\n\nConte em poucas palavras o motivo (sem dados pessoais):');
-      if (motivo == null) return;
-      radar.contestar(c.id, motivo);
-      recarregar('Contestação registrada: vai para revisão humana (veja a visão do moderador abaixo).');
+    if (c.estado !== 'arquivada') acoes.appendChild(botao('Contestar este alerta', 'btn-leve', function (ev) {
+      ev.target.disabled = true;
+      formInline(d, {
+        id: 'contestar-' + c.id,
+        ajuda: radar.config.linguagem.contestacao,
+        rotulo: 'Motivo da contestação (sem dados pessoais)',
+        multilinha: true,
+        textoOk: 'Enviar contestação',
+        aoCancelar: function () { ev.target.disabled = false; },
+        aoConfirmar: function (motivo) {
+          radar.contestar(c.id, motivo);
+          recarregar('Contestação registrada: vai para revisão humana (veja a visão do moderador abaixo).');
+        }
+      });
     }));
     d.appendChild(acoes);
     return d;
+  }
+
+  // Formulário dentro da própria tela (no lugar de prompt(), que é ruim no celular e sem estilo)
+  function formInline(alvo, o) {
+    var f = el('form', 'form-inline');
+    if (o.ajuda) f.appendChild(el('p', 'motivo-desc', o.ajuda));
+    var lab = el('label', 'rotulo-peq', o.rotulo); lab.htmlFor = o.id;
+    var campo = o.multilinha ? el('textarea') : el('input');
+    campo.id = o.id; campo.name = o.id; campo.className = 'campo'; campo.autocomplete = 'off';
+    if (o.multilinha) campo.rows = 3; else campo.type = 'text';
+    campo.maxLength = 300; campo.value = o.valorInicial || '';
+    f.appendChild(lab); f.appendChild(campo);
+    var a = el('div', 'acoes');
+    var ok = el('button', 'btn-principal', o.textoOk); ok.type = 'submit';
+    var cancelar = botao('Cancelar', 'btn-leve', function () { f.remove(); if (o.aoCancelar) o.aoCancelar(); });
+    a.appendChild(ok); a.appendChild(cancelar);
+    f.appendChild(a);
+    f.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var v = campo.value.trim();
+      if (!v) { campo.setAttribute('aria-invalid', 'true'); campo.focus(); return; }
+      o.aoConfirmar(v);
+    });
+    alvo.appendChild(f);
+    campo.focus();
+    return f;
   }
 
   function visaoModerador(campanhas) {
@@ -130,11 +165,19 @@
         if (f.sugestao) a.appendChild(botao('Juntar à campanha sugerida', 'btn-leve', function () {
           radar.moderar(f.id, 'vincular'); recarregar('Relato juntado à campanha "' + f.sugestao.titulo + '".');
         }));
-        a.appendChild(botao('Criar campanha nova + rascunho de teste', 'btn-leve', function () {
-          var titulo = prompt('Nome da campanha (descreva o padrão, nunca uma pessoa):', 'Nova campanha reportada');
-          if (titulo == null) return;
-          radar.moderar(f.id, 'nova', { titulo: titulo, criarRascunho: true });
-          recarregar('Campanha criada (em observação) e rascunho de teste gerado — o teste só entra no jogo depois de revisado.');
+        a.appendChild(botao('Criar campanha nova + rascunho de teste', 'btn-leve', function (ev) {
+          ev.target.disabled = true;
+          formInline(d, {
+            id: 'campanha-' + f.id,
+            rotulo: 'Nome da campanha (descreva o padrão do golpe, nunca uma pessoa)',
+            valorInicial: 'Nova campanha reportada',
+            textoOk: 'Criar campanha',
+            aoCancelar: function () { ev.target.disabled = false; },
+            aoConfirmar: function (titulo) {
+              radar.moderar(f.id, 'nova', { titulo: titulo, criarRascunho: true });
+              recarregar('Campanha criada (em observação) e rascunho de teste gerado — o teste só entra no jogo depois de revisado.');
+            }
+          });
         }));
         a.appendChild(botao('Rejeitar', 'btn-leve', function () { radar.moderar(f.id, 'rejeitar'); recarregar('Relato rejeitado.'); }));
         d.appendChild(a);

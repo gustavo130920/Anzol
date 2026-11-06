@@ -5,7 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Anzol · Aprenda a reconhecer golpes</title>
 <meta name="description" content="Anzol: aprenda a reconhecer golpes e se proteger no mesmo lugar. Protótipo acadêmico.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M38 6v30a14 14 0 1 1-28 0' fill='none' stroke='%23f2a900' stroke-width='7' stroke-linecap='round'/%3E%3Cpath d='M10 36l-4-8' stroke='%23f2a900' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark light">
+<script>
+  // Aplica o tema salvo antes de desenhar a página (evita piscar). Padrão: preto.
+  try { if (localStorage.getItem('anzol-tema') === 'claro') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000'/%3E%3Cpath d='M38 10v26a13 13 0 1 1-26 0' fill='none' stroke='%23ff4f8b' stroke-width='7' stroke-linecap='round'/%3E%3Cpath d='M12 36l-4-8' stroke='%23ff4f8b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -17,12 +23,15 @@
   <div class="marca">
     <svg class="marca-icone" viewBox="0 0 64 64" aria-hidden="true"><path d="M38 6v30a14 14 0 1 1-28 0" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><path d="M10 36l-4-8" stroke="currentColor" stroke-width="7" stroke-linecap="round"/></svg>
     <div>
-      <p class="marca-nome">Anzol</p>
+      <h1 class="marca-nome" translate="no">Anzol</h1>
       <p class="marca-frase">Aprenda a reconhecer golpes e se proteger no mesmo lugar.</p>
     </div>
   </div>
   <div class="ajustes">
-    <button type="button" id="btn-fonte" class="btn-leve" aria-pressed="false" title="Aumentar o tamanho do texto">A+</button>
+    <button type="button" id="btn-tema" class="btn-leve" aria-pressed="false" aria-label="Usar tema claro" title="Alternar entre tema preto e tema claro">
+      <svg class="icone-botao" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7a5 5 0 0 1 0 10z" fill="currentColor"/></svg>
+    </button>
+    <button type="button" id="btn-fonte" class="btn-leve" aria-pressed="false" aria-label="Aumentar o tamanho do texto" title="Aumentar o tamanho do texto">A+</button>
   </div>
 </header>
 
@@ -59,12 +68,12 @@
 
   <div id="vista-scanner" class="vista pilha">
   <section id="scanner" class="cartao" aria-labelledby="t-scanner">
-    <h1 id="t-scanner">Recebeu algo estranho? Cole aqui.</h1>
+    <h2 id="t-scanner" class="titulo-vista">Recebeu algo estranho? Cole aqui.</h2>
     <p class="apoio">Cole a mensagem, o link ou os dois. O Anzol mostra um <strong>nível de risco e os motivos</strong> — e <strong>nunca abre o link</strong>.</p>
 
     <form id="form-scanner" novalidate>
       <label for="entrada" class="rotulo">Mensagem ou endereço</label>
-      <textarea id="entrada" rows="5" maxlength="5000" spellcheck="false" placeholder="Ex.: Sua conta será bloqueada hoje. Regularize em…"></textarea>
+      <textarea id="entrada" name="mensagem" rows="5" maxlength="5000" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Ex.: Sua conta será bloqueada hoje. Regularize em…"></textarea>
       <div class="acoes">
         <button type="submit" class="btn-principal">Analisar</button>
         <button type="button" id="btn-limpar" class="btn-secundario">Limpar</button>
