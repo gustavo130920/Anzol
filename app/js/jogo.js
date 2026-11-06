@@ -320,6 +320,7 @@
         praticados: praticados(), totalPratica: itensPratica().length,
         feitos: copia(estado.feitos), avaliacoes: copia(estado.avaliacoes),
         podeFazerReteste: podeFazerReteste(), comparacao: comparacao(),
+        errosPista: copia(estado.errosPista),
         bloqueadosAteReteste: estado.avaliacoes.reteste ? [] : idsReteste().slice()
       };
     }

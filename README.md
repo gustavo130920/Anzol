@@ -17,7 +17,14 @@ Protótipo acadêmico — Global Solution FIAP 2026 (CitizenTech).
 
 > Por que um servidor? Por segurança, o navegador não deixa uma página aberta direto do disco ler os arquivos de dados. Publicado na nuvem, o site funciona sem isso.
 
+## Na nuvem
+
+Publicado no **GitHub Pages** por um fluxo do **GitHub Actions** (`.github/workflows/publicar.yml`): a cada mudança e todo dia, ele atualiza o recorte das listas de phishing, **roda todos os testes** e só publica se passarem. Arquitetura completa: [docs/arquitetura.md](docs/arquitetura.md).
+
 ## Testes
+
+**Tudo de uma vez:** `node tests/rodar-todos.js`
+
 
 | O quê | Como rodar |
 |---|---|

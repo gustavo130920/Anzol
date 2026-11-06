@@ -1,0 +1,62 @@
+# Testar e publicar o Anzol no GitHub Pages (nuvem gratuita para repositórios públicos).
+# Quando roda:
+#  - a cada envio para a branch main;
+#  - todo dia às 09:17 UTC (06:17 em Brasília), para atualizar o recorte .br das listas de phishing;
+#  - manualmente, pela aba Actions ("Run workflow").
+# Regra: se algum teste falhar, o site NÃO é publicado (a versão anterior continua no ar).
+name: Testar e publicar
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  testar-e-montar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Preparar o Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Atualizar o recorte .br das listas de phishing (Phishing.Database, MIT)
+        run: node tools/atualizar-listas.js
+        continue-on-error: true   # se a fonte estiver fora do ar, segue com o recorte já versionado
+
+      - name: Rodar todos os testes
+        run: node tests/rodar-todos.js
+
+      - name: Configurar o GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Empacotar o site (pasta app)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: app
+
+  publicar:
+    needs: testar-e-montar
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.publicacao.outputs.page_url }}
+    steps:
+      - name: Publicar no GitHub Pages
+        id: publicacao
+        uses: actions/deploy-pages@v4
