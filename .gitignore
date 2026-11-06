@@ -8,3 +8,5 @@ desktop.ini
 # Segredos (nunca versionar)
 .env
 *.key
+# Áudios e vídeo final (arquivos grandes, ficam só no computador)
+gravacao/

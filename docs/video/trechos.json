@@ -1,0 +1,25 @@
+{
+  "_sobre": "Trechos do vídeo-pitch: cada um = 1 arquivo de áudio (gravacao/audio/<id>.m4a, .mp3, .wav...) + o que aparece na tela. O texto segue docs/roteiro-video.md. 'slide' = número do slide em docs/slides/index.html; 'demo' = trecho [início, fim] em segundos de docs/slides/media/passeio.webm, mostrado em tela cheia.",
+  "pausa_entre_trechos_s": 0.35,
+  "trechos": [
+    { "id": "01", "slide": 1, "opcional": true, "silencio_s": 2.5, "texto": "(sem fala: só a capa por 2,5 s — se quiser, grave \"Anzol: aprender a reconhecer golpes e se proteger.\")" },
+    { "id": "02", "slide": 2, "texto": "Em 2025, o Brasil registrou 2,26 milhões de estelionatos: 258 por hora, um recorde." },
+    { "id": "03", "slide": 3, "texto": "Numa pesquisa de 2026, 81% dos adultos tiveram contato com golpe. De quem encontra um golpe, 56% interagem, e um em cada quatro desses perde dinheiro." },
+    { "id": "04", "slide": 4, "texto": "E só 42% confiam que sabem reconhecer um golpe. 40% só perceberam que caíram depois de um alerta de outra pessoa." },
+    { "id": "05", "slide": 5, "texto": "Avisos existem. Mas treino passivo funciona pouco: num estudo com 20 mil funcionários, só módulos interativos concluídos reduziram as falhas. O problema não é falta de aviso. É falta de prática, e de ajuda na hora certa." },
+    { "id": "06", "slide": 6, "texto": "O Anzol é para o cidadão comum com celular, com prioridade para quem menos confia em si mesmo: segundo a mesma pesquisa, a Geração X e as mulheres. Também para quem cuida de pais idosos e para pequenos vendedores." },
+    { "id": "07", "slide": 7, "texto": "O hábito de checar já existe: 26% já perguntam a ferramentas de inteligência artificial se algo é golpe, e 18% usam app antigolpe. Do outro lado, os bancos perderam 10,1 bilhões de reais com golpes e fraudes em 2024. Bancos, operadoras, prefeituras e escolas têm interesse direto em cidadãos que caem menos." },
+    { "id": "08", "slide": 8, "texto": "O Anzol junta aprender e se proteger no mesmo lugar, com quatro perguntas: quem pede, o que pede, por onde veio, e como confirmo por outro caminho." },
+    { "id": "09a", "demo": [4, 12], "texto": "Recebi este anúncio. Colo no Scanner: risco alto, com os motivos. Oferta boa demais, pagamento só por Pix, endereço que imita a loja. E o Anzol nunca abre o link." },
+    { "id": "09b", "demo": [12, 28], "texto": "O Radar já conhece essa campanha: três pessoas relataram. Relato em um toque, só o indicador do golpista, nada meu. E o alerta é ligado para a próxima pessoa." },
+    { "id": "09c", "demo": [45, 61], "texto": "Daqui, treino com esse golpe real: marco as pistas, uso a lupa de domínio e decido. O jogo premia investigar, não ser rápido." },
+    { "id": "09d", "demo": [79, 101], "texto": "E se eu já tivesse pago? O \"Caí no golpe\" mostra o que fazer agora, hoje e depois. E o Kit de provas lê o comprovante no próprio aparelho e monta o rascunho para o banco e o boletim de ocorrência." },
+    { "id": "10", "slide": 10, "texto": "Existem campanhas, jogos educativos e apps que dão um veredito com inteligência artificial. Nós combinamos quatro coisas que não costumam andar juntas: treino com golpes brasileiros reais; um scanner que mostra o risco com os motivos, nunca um veredito; um radar comunitário de indicadores, nunca de acusações; e o passo a passo depois do golpe. Tudo gratuito." },
+    { "id": "11", "slide": 11, "texto": "E as quatro tecnologias funcionam de verdade: regras explicáveis no scanner; inteligência artificial leve que agrupa variantes de golpes no Radar; visão computacional que lê prints e reconhece imagens repetidas, no próprio aparelho; e nuvem, que testa, publica e consulta listas públicas de phishing todos os dias." },
+    { "id": "12", "slide": 12, "texto": "Como saber se funciona? Medimos comportamento, não cliques. Os indicadores: quantos golpes a pessoa trataria como legítimos no teste inicial e no reteste; quantas mensagens legítimas trataria como golpe, para não criar paranoia; o tempo entre abrir o \"Caí no golpe\" e falar com o banco; as ações de proteção concluídas; e, no Radar, o tempo do primeiro relato até o alerta e as contestações aceitas." },
+    { "id": "13", "slide": 13, "texto": "Validação: hoje são 135 verificações automáticas a cada publicação. O próximo passo é um piloto com 5 a 10 pessoas, com consentimento e sem dados pessoais. Sem valor estatístico, e a gente diz isso. Implementação: o protótipo já está no ar, de graça." },
+    { "id": "14", "slide": 14, "texto": "Expansão: Radar compartilhado num banco na nuvem, golpes com voz clonada e alerta ativo só para campanhas confirmadas. Sustentabilidade: gratuito para o cidadão, com custo por uso perto de zero, financiado por quem perde com o golpe: bancos, operadoras e prefeituras, com o painel do Radar e programas de educação digital." },
+    { "id": "15", "slide": 15, "texto": "Contribuímos com os ODS 4.4 e 10.2." },
+    { "id": "16", "slide": 16, "texto": "Antes de agir: quem pede, o que pede, por onde veio, como confirmo. Anzol." }
+  ]
+}
