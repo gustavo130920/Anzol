@@ -45,7 +45,7 @@ E mais a **palavra de segurança em família**: uma palavra combinada que o fami
 
 **Atenção ao citar:** o GASA (R$ 21,2 bi) e o FBSP (R$ 29 bi) usam metodologias diferentes. Não some os dois nem os compare sem citar a fonte de cada um. O número de 2,2 milhões é de **estelionatos de todos os tipos**, não de "golpes digitais".
 
-**Novidade (04/11/2026):** o governo publicou regras contra golpes por SMS. São elas: um diretório nacional de códigos curtos em até 90 dias; o bloqueio de SMS vindo de códigos não cadastrados; e o monitoramento automático pelas operadoras. Uma pesquisa do Cetic.br citada pelo Ministério das Comunicações diz que 71% dos entrevistados relataram abordagem de golpistas por SMS. [F5] *(Texto no Diário Oficial: A CONFIRMAR.)* Isso **reforça o problema** e mostra que a regulação ataca o canal, não a capacidade do cidadão de reconhecer o golpe que ainda chega.
+**Novidade (04/11/2026):** a Anatel publicou o **Despacho Decisório nº 2/SCD, de 03/11/2026** (DOU de 04/11/2026), com regras contra golpes por SMS. Os prazos contam da publicação, então **em novembro de 2026 ainda não estão valendo** (bloqueio a partir de cerca de 02/02/2027). São elas: um diretório nacional de códigos curtos em até 90 dias; o bloqueio de SMS vindo de códigos não cadastrados; e o monitoramento automático pelas operadoras. Uma pesquisa do Cetic.br citada pelo Ministério das Comunicações diz que 71% dos entrevistados relataram abordagem de golpistas por SMS. [F5]  Isso **reforça o problema** e mostra que a regulação ataca o canal, não a capacidade do cidadão de reconhecer o golpe que ainda chega.
 
 ---
 
@@ -70,8 +70,9 @@ E mais a **palavra de segurança em família**: uma palavra combinada que o fami
 | Polícia, Detrans, OAB | Alertar sobre campanhas | Fontes oficiais para o Radar |
 
 **Concorrência e substitutos (verificados; "não encontrei" não significa "não existe"):**
-- Campanhas: Febraban "Pare e Pense", Febraban + Meta.
-- Jogos e quizzes acadêmicos: Quiz60+, validado com 17 idosos; RPG de LGPD.
+- Campanhas: Febraban "Pare, Pense e Desconfie" (2026) e Febraban + Meta "Diga Não aos Golpes" (2025): vídeos e dicas; sem quiz, verificador de link, canal de relato ou pós-golpe na página (verificado 06/11/2026).
+- **Concorrentes mais próximos:** Google "Evite Golpes" (jogo gratuito para idosos) e GolpeZero (app iOS pago que dá **veredito** "golpe/seguro" por IA, com quiz). O Anzol dá **risco com motivos**, nunca veredito, e soma Radar comunitário e pós-golpe, de graça.
+- Jogos e quizzes acadêmicos: Quiz60+ (IFBA, testado com 5 idosos) e outro app da UNAERP validado com 17 idosos (CIAED 2025); RPG de LGPD.
 - Interland (público infantil).
 - Treinamento corporativo (B2B): KnowBe4, Hoxhunt, Infosec IQ, Hacker Rangers.
 - Anjo da Guarda (lê boleto por foto, sem parte de ensino).
@@ -128,7 +129,7 @@ Pergunta única: **"O que aconteceu?"**
 
 | Situação | Primeiras ações, por urgência |
 |---|---|
-| Fiz um Pix ou pagamento | Falar com o banco **agora** pelo app ou canal oficial → pedir o **MED** (até 80 dias após a transação, mas a pressa conta) → guardar provas → BO [F6] |
+| Fiz um Pix ou pagamento | Falar com o banco **agora** pelo app ou canal oficial → pedir o **MED** (até 80 dias após a transação, mas a pressa conta; MED 2.0 obrigatório desde 02/02/2026, Res. BCB 493) → guardar provas → BO. Cartão e boleto: roteiro do Ministério da Justiça; TED: sem mecanismo como o MED [F6] |
 | Passei senha, código ou dados bancários, ou instalei algo | Avisar o banco; bloquear acessos e cartões; trocar senhas num aparelho seguro; remover o app desconhecido; BO |
 | Só cliquei no link | Fechar; não informar nada; trocar a senha se a digitou; acompanhar extratos |
 | WhatsApp clonado | Reinstalar e verificar o número com o código oficial; ativar a confirmação em duas etapas; avisar contatos. Se o invasor ativou o PIN, pode ser preciso esperar 7 dias [F8, **A CONFIRMAR na Central de Ajuda oficial**] |
@@ -295,9 +296,9 @@ Sempre diremos o que é **regra** e o que é **IA**.
 |---|---|---|
 | F1 | GASA — *O Estado dos Golpes Brasil 2026* (pesquisa online, 1.170 adultos, coleta 16/03–13/04/2026). https://static.poder360.com.br/uploads/2026/08/estudo-golpes-digitais-GASA-O-Estado-dos-Golpes-Brasil-2026-pdf.pdf | 04–05/11/2026 (conversa anterior) |
 | F2 | Anuário Brasileiro de Segurança Pública 2026, via Olhar Digital. https://olhardigital.com.br/2026/07/23/seguranca/o-golpe-que-mais-cresce-no-brasil-esta-no-seu-celular-entenda/ | 04–05/11/2026 |
-| F3 | Febraban e FBSP/Datafolha, via imprensa (ranking IPESPE: Folha BV). https://www.folhabv.com.br/policia/do-golpe-do-pix-a-falsa-central-bancaria-entenda-como-funciona-as-fraudes/ | 04–05/11/2026; relatório original **A CONFIRMAR** |
+| F3 | Ranking de golpes: Observatório Febraban/IPESPE, jul/2025 (campo 12–26/06/2025, 3.000 entrevistas; percentuais entre quem sofreu golpe ou tentativa = 39% da amostra). https://cmsarquivos.febraban.org.br/Arquivos/documentos/PDF/observatorio%20julho%202025.pdf · perdas dos bancos e FBSP/Datafolha via imprensa | 06/11/2026 (relatório original lido) |
 | F4 | UC San Diego Health, via Tecnoblog. https://tecnoblog.net/noticias/aulas-contra-phishing-nao-funcionam-como-o-esperado-diz-estudo/ | 04–05/11/2026 |
-| F5 | Regras contra golpes por SMS (04/11/2026): Ministério das Comunicações https://www.gov.br/mcom/pt-br/noticias/2026/novembro/ministerio-das-comunicacoes-destaca-novas-medidas-para-combater-golpes-por-sms-e-proteger-consumidores · Olhar Digital https://olhardigital.com.br/2026/11/04/seguranca/governo-cria-regras-contra-golpes-por-sms-veja-o-que-muda | 05/11/2026 (trechos via busca) |
+| F5 | Anatel — Despacho Decisório nº 2/SCD, de 03/11/2026, DOU 04/11/2026: https://www.in.gov.br/web/dou/-/despacho-decisorio-n-2/scd-de-3-de-novembro-de-2026-741546049 · Ministério das Comunicações https://www.gov.br/mcom/pt-br/noticias/2026/novembro/ministerio-das-comunicacoes-destaca-novas-medidas-para-combater-golpes-por-sms-e-proteger-consumidores · Olhar Digital https://olhardigital.com.br/2026/11/04/seguranca/governo-cria-regras-contra-golpes-por-sms-veja-o-que-muda | 05/11/2026 (trechos via busca) |
 | F6 | MED/Pix: Agência Brasil https://agenciabrasil.ebc.com.br/economia/noticia/2026-09/nova-regra-do-pix-amplia-prazo-para-contestar-golpe · Nubank https://blog.nubank.com.br/mecanismo-especial-de-devolucao-pix-como-funciona/ | 04–05/11/2026 |
 | F7 | CVV: 188, gratuito, 24 h; chat e e-mail em cvv.org.br (a disponibilidade dos outros canais varia). https://cvv.org.br | 05/11/2026 (via busca) |
 | F8 | WhatsApp clonado (guias secundários; Central de Ajuda oficial **A CONFIRMAR**). https://www.xataka.com.br/telefonia/que-fazer-se-hackearem-sua-conta-do-whatsapp | 05/11/2026 |

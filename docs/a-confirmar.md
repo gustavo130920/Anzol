@@ -40,3 +40,23 @@
 | 25 | Conteúdo de segurança dos 19 itens | **Gustavo** | ✅ Aprovado em 05/11/2026 |
 | 26 | Listas públicas de phishing gratuitas | ✅ (05/11/2026) | **OpenPhish Community Feed:** 300 URLs, CORS liberado, termos = uso pessoal/pesquisa acadêmica, **proíbe redistribuir** → baixado ao vivo pelo navegador, sem cópia no projeto; uso comercial exige autorização escrita. **Phishing.Database:** MIT, 392 mil domínios (3.333 `.br`), última atualização da fonte 02/10/2026 → recorte `.br` como hash. **URLhaus:** download aberto retornou 410 (hoje exige chave). **PhishTank:** cadastro de novas chaves aparentemente fechado desde 2020 (fonte secundária). **phish.co.za:** 503 no teste. Fontes: openphish.com/terms.html; github.com/Phishing-Database/Phishing.Database |
 | 27 | Atualização automática das listas na nuvem | Pesquisa | Sessão 6: agendar `tools/atualizar-listas.js` (ex.: GitHub Actions, 1×/dia) — verificar limites gratuitos |
+
+## Resolvidos na pesquisa aprofundada (06/11/2026)
+
+| # | Item | Status | Resultado | Fonte oficial |
+|---|---|---|---|---|
+| 7/14 | Ato das regras contra golpes por SMS | ✅ | **Despacho Decisório nº 2/SCD, de 03/11/2026, do Conselho Diretor da Anatel** (DOU 04/11/2026). Diretório de códigos curtos e bloqueio de SMS de código não cadastrado em 90 dias (+30); medidas das operadoras em 60 dias. **Ainda não vigente em nov/2026** (≈ fev/2027). Sem multa específica no texto | https://www.in.gov.br/web/dou/-/despacho-decisorio-n-2/scd-de-3-de-novembro-de-2026-741546049 |
+| 8/15 | WhatsApp clonado | ✅ (suporte: 🟡) | Reverificar o número com o código desconecta o invasor; PIN desconhecido → **aguardar sete dias**; avisar contatos; **denunciar a própria conta pode levar ao banimento — recuperar antes**. A página não indica suporte como passo | https://faq.whatsapp.com/1131652977717250/?locale=pt_BR |
+| 17 | MED 2.0 e mudanças de 2026 | ✅ | MED 2.0 (recuperação em várias contas): **Res. BCB 493/2025**, obrigatório desde **02/02/2026**. 30→80 dias (01/09/2026): **IN BCB 766/2026** — prazo do **recebedor** para contestar a devolução, não da vítima. Relato detalhado + anexos: **IN BCB 774** (03/09/2026), vigente só em **01/03/2027**. Prazo da vítima: 80 dias da transação (Agência Brasil citando o BC) | https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20BCB&numero=493 |
+| 16/28 | Cartão, boleto e TED | 🟡 | Cartão: avisar banco/bandeira, bloquear, contestar a compra, avisar a loja. Boleto: avisar o banco emissor e a loja/marketplace. TED: **sem mecanismo oficial como o MED**. Chargeback é regra das bandeiras (não do BC) | Ministério da Justiça, "Sofri um golpe, e agora?": https://www.gov.br/mj/pt-br/acesso-a-informacao/acoes-e-programas/sofri-um-golpe-e-agora/paguei-boletos-ou-ofertas-que-se-mostraram-falsos |
+| 9 | Página oficial "Sofri um golpe. E agora?" | ✅ | Existe, no gov.br do **Ministério da Justiça** (busca anterior não encontrou) | gov.br/mj → sofri-um-golpe-e-agora |
+| 24 | Meu BC e telefone 145 | ✅ | Reclamação: /meubc/registrar_reclamacao (gov.br prata/ouro + 2 etapas; resposta em 10 dias úteis; procurar antes a ouvidoria). Registrato: /meubc/registrato. 145: dias úteis, 8h–18h. O BC "não resolve casos individuais" | https://www.bcb.gov.br/meubc/registrar_reclamacao · https://www.bcb.gov.br/meubc/registrato |
+| 19 | Ranking IPESPE/Febraban | ✅ (corrigido) | Dado de **jun/2025** (Observatório Febraban jul/2025, 3.000 entrevistas). Percentuais **entre quem sofreu golpe ou tentativa (39% da amostra)** — nunca "45% dos brasileiros". A imprensa de 2026 republicou sem data | https://cmsarquivos.febraban.org.br/Arquivos/documentos/PDF/observatorio%20julho%202025.pdf |
+| 20 | Concorrentes | 🟡 | Febraban: campanhas e vitrine de dicas. **Quiz60+ foi testado com 5 idosos** (o de 17 é outro app, UNAERP). Hacker Rangers: B2B. Anjo da Guarda: projeto de 2022, situação atual desconhecida. **Mais próximos: Google "Evite Golpes" e GolpeZero** (este dá veredito por IA, pago) | ver relatório local |
+
+### Checagens antes da gravação
+
+- [ ] Abrir a página do Despacho nº 2/SCD no DOU e conferir número e página.
+- [ ] Ver se há edição de 2026 do Observatório Febraban com números novos.
+- [ ] Canal oficial de suporte do WhatsApp para conta roubada.
+- [ ] Testar por dentro o Google "Evite Golpes" e o GolpeZero antes de compará-los no vídeo.

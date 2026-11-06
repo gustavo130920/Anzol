@@ -137,7 +137,7 @@
 
 **Feedback:** Ligue para o número que você já tinha. Se for mesmo seu filho, ele vai entender. Combine uma palavra de segurança em família: em 2026 já há versões com voz clonada.
 
-*Baseado em:* Golpe do falso parente/WhatsApp; 'golpe do WhatsApp' citado por 34% no ranking IPESPE/Observatório Febraban (via imprensa). *Fonte:* <https://www.folhabv.com.br/policia/do-golpe-do-pix-a-falsa-central-bancaria-entenda-como-funciona-as-fraudes/> — verificado em 2026-11-05 (dados da pesquisa inicial, 04–05/11/2026; relatório original não consultado)
+*Baseado em:* Golpe do falso parente/WhatsApp; 'Falso conhecido no WhatsApp' citado por 34% de quem sofreu golpe ou tentativa (Observatório Febraban/IPESPE, jun/2025, 3.000 entrevistas). *Fonte:* <https://cmsarquivos.febraban.org.br/Arquivos/documentos/PDF/observatorio%20julho%202025.pdf> — verificado em 2026-11-05 (relatório original lido em 06/11/2026)
 
 ### L2-02 — Seu processo foi liberado (GOLPE · nível 3)
 
@@ -183,7 +183,7 @@
 
 **Feedback:** Desligue e ligue você. Se a compra suspeita existir, o banco também vai ver pelo seu contato. A Anatel vem exigindo autenticação de chamadas, mas a implementação leva tempo.
 
-*Baseado em:* Falsa central bancária (31% no ranking IPESPE/Observatório Febraban, via imprensa); Anatel Res. 777/2025 sobre autenticação de chamadas. *Fonte:* <https://www.folhabv.com.br/policia/do-golpe-do-pix-a-falsa-central-bancaria-entenda-como-funciona-as-fraudes/> — verificado em 2026-11-05 (dados da pesquisa inicial, 04–05/11/2026)
+*Baseado em:* Falsa central (31% de quem sofreu golpe ou tentativa — Observatório Febraban/IPESPE, jun/2025); Anatel Res. 777/2025 sobre autenticação de chamadas. *Fonte:* <https://cmsarquivos.febraban.org.br/Arquivos/documentos/PDF/observatorio%20julho%202025.pdf> — verificado em 2026-11-05 (dados da pesquisa inicial, 04–05/11/2026)
 
 ### L2-04 — Amiga combinando a apresentação (LEGÍTIMA · nível 2)
 
