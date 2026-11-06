@@ -12,7 +12,7 @@
 
 ## Slides de apoio (blocos sem demonstração)
 
-Arquivo: `docs/slides/index.html` (15 slides, preto e rosa, cada número com fonte e data).
+Arquivo: `docs/slides/index.html` (16 slides, preto e rosa, cada número com fonte e data).
 
 - **Abrir:** com o servidor local ligado, `http://localhost:8080/docs/slides/index.html` (ou dois cliques no arquivo).
 - **Teclas:** → / espaço avançam · ← volta · **F** tela cheia · **N** mostra o número do slide e o trecho do roteiro (deixe escondido ao gravar).
@@ -24,9 +24,17 @@ Arquivo: `docs/slides/index.html` (15 slides, preto e rosa, cada número com fon
 | 2–5 | Problema (0:05–0:45): estelionatos, funil, confiança, treino passivo |
 | 6–7 | Público e mercado (0:45–1:25) |
 | 8 | Abre a demonstração: as 4 perguntas (1:25) |
-| 9–10 | Diferencial (2:45–3:30): o que existe × o que combinamos; 4 tecnologias |
-| 11–14 | Resultados (3:30–4:40): indicadores, validação, expansão/sustentabilidade, ODS |
-| 15 | Fechamento (4:40) |
+| 9 | Demonstração em vídeo (1:35–2:45): passeio automático por todas as funções (toca sozinho ao chegar no slide) |
+| 10–11 | Diferencial (2:45–3:30): o que existe × o que combinamos; 4 tecnologias |
+| 12–15 | Resultados (3:30–4:40): indicadores, validação, expansão/sustentabilidade, ODS |
+| 16 | Fechamento (4:40) |
+
+### Vídeo de demonstração (slide 9)
+
+- Arquivo `docs/slides/media/passeio.webm`; os capítulos (minuto de cada função) ficam em `passeio-capitulos.txt`, úteis para cortar na edição.
+- Pode substituir as tomadas 2 a 7 abaixo, ou servir de "plano B" se a gravação manual der errado.
+- Para regerar (com o servidor local ligado): `node tools/gravar-passeio.js`. Ele acelera o vídeo 1,6×; para outra velocidade: `VELOCIDADE=1.3 node tools/gravar-passeio.js` (1 = tempo real).
+- O vídeo inteiro é mais longo que o trecho do roteiro: na edição, use só os capítulos que couberem (prioridade: Scanner → Radar → Treino → Caí no golpe → Kit).
 
 **Antes de gravar o slide 7:** se a checagem do R8 achar outro valor ou outra fonte para o R$ 10,1 bi, corrija o slide e o roteiro juntos.
 

@@ -85,6 +85,9 @@ ul.lista li::marker { color: var(--marca); }
 .capa h1 { font-size: 150px; }
 .endereco { font-size: 34px; color: var(--texto); font-weight: 700; }
 
+.slide.demo { padding: 40px 80px 40px; gap: 18px; }
+.slide.demo video { width: 100%; height: 760px; background: #000; border: 1px solid var(--borda); border-radius: 18px; }
+
 .contador { position: fixed; right: 18px; bottom: 12px; font-size: 14px; color: var(--suave); opacity: .7; }
 .contador[hidden] { display: none; }
 
@@ -183,7 +186,13 @@ ul.lista li::marker { color: var(--marca); }
     <p>Treino, <strong>scanner</strong>, <strong>radar</strong> e <strong>“Caí no golpe”</strong> usam as mesmas pistas.</p>
   </section>
 
-  <!-- 9 · Diferencial -->
+  <!-- 9 · Demonstração em vídeo (gerado por tools/gravar-passeio.js) -->
+  <section class="slide demo" data-bloco="Solução · demonstração · 1:30">
+    <p class="rotulo">O Anzol funcionando <span class="etiqueta">SIMULAÇÃO — material educativo</span></p>
+    <video id="video-passeio" src="media/passeio.webm" muted playsinline preload="auto" controls></video>
+  </section>
+
+  <!-- 10 · Diferencial -->
   <section class="slide" data-bloco="Diferencial · 2:45">
     <p class="rotulo">O que já existe</p>
     <div class="grade g3">
@@ -289,6 +298,22 @@ ul.lista li::marker { color: var(--marca); }
     slides.forEach(function (s, k) { s.classList.toggle('ativo', k === atual); });
     contador.textContent = (atual + 1) + ' / ' + slides.length + ' · ' + slides[atual].dataset.bloco;
     if (location.hash !== '#' + (atual + 1)) history.replaceState(null, '', '#' + (atual + 1));
+    // O vídeo toca sozinho quando o slide dele aparece e pausa ao sair
+    if (video) {
+      if (slides[atual].contains(video)) { try { video.currentTime = 0; } catch (e) {} video.play().catch(function () {}); }
+      else video.pause();
+    }
+  }
+  var video = document.getElementById('video-passeio');
+  if (video) {
+    // Vídeos gravados no navegador às vezes não informam a duração; isto força o cálculo
+    video.addEventListener('loadedmetadata', function () {
+      if (video.duration === Infinity) {
+        video.currentTime = 1e9;
+        video.addEventListener('timeupdate', function volta() { video.removeEventListener('timeupdate', volta); video.currentTime = 0; });
+      }
+    });
+    video.addEventListener('click', function (ev) { ev.stopPropagation(); });
   }
   document.addEventListener('keydown', function (ev) {
     var k = ev.key;

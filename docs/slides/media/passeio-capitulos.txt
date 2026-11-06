@@ -1,0 +1,13 @@
+0:00  Abertura
+0:04  Scanner
+0:12  Radar: relato
+0:21  Radar: tela
+0:28  IA leve
+0:45  Treino
+1:01  Domínio e procedimento
+1:19  Caí no golpe
+1:28  Kit de provas
+1:33  Kit: resultado
+1:41  Escudo
+1:49  Painel
+1:58  Acessibilidade
