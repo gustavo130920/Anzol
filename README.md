@@ -24,6 +24,7 @@ Protótipo acadêmico — Global Solution FIAP 2026 (CitizenTech).
 | Scanner (22 casos) pelo Node.js | `node tests/scanner.test.js` |
 | Listas públicas de phishing (sem rede, sem domínios reais) | `node tests/listas.test.js` |
 | Jogo (XP, níveis, selos, sequência, reteste) | `node tests/jogo.test.js` |
+| Radar (estados, comparação, relato, moderação, privacidade) | `node tests/radar.test.js` |
 | Atualizar o recorte `.br` do Phishing.Database | `node tools/atualizar-listas.js` |
 | Scanner pelo navegador | servidor ligado → `http://localhost:8080/tests/` |
 | Dados (cenários, pistas, só domínios reservados) | `powershell -ExecutionPolicy Bypass -File tests\validar-dados.ps1` |
@@ -47,7 +48,7 @@ tools/                servidor local e gerador de documentação
 
 ## O que é regra e o que é IA
 
-O Scanner atual é **100% regras explicáveis** (cada motivo aponta para uma pista do motor de sinais), mais uma camada de **listas públicas de phishing**. O "teste do dia" do jogo também é **regra** (mira a pista que a pessoa mais deixou passar). As partes de IA (agrupar variantes de campanhas no Radar) e de visão computacional (ler prints) entram nas próximas etapas.
+O **Radar** usa **IA leve** para agrupar variantes da mesma campanha (trigramas + TF-IDF + similaridade do cosseno); estados, limiares e revisão humana são **regras**. O Scanner é **100% regras explicáveis** (cada motivo aponta para uma pista do motor de sinais), mais uma camada de **listas públicas de phishing**. O "teste do dia" do jogo também é **regra** (mira a pista que a pessoa mais deixou passar). As partes de IA (agrupar variantes de campanhas no Radar) e de visão computacional (ler prints) entram nas próximas etapas.
 
 ## Listas públicas de phishing (créditos)
 

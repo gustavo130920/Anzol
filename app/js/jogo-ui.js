@@ -543,6 +543,19 @@
       });
       window.__anzolJogo = jogo; // ajuda a depurar e testar
     },
-    mostrar: function () { if (jogo) inicio(); }
+    mostrar: function () {
+      if (!jogo) return;
+      if (pendente) { var p = pendente; pendente = null; abrir(p); } else inicio();
+    },
+    // Item disponível para prática (os do reteste ficam reservados até o reteste)
+    itemDisponivel: function (id) {
+      return !!jogo && !!jogo.porId[id] && jogo.resumo().bloqueadosAteReteste.indexOf(id) === -1;
+    },
+    // Abre um teste específico (usado pelo Radar: "Treinar com este golpe")
+    abrirItem: function (id) {
+      pendente = id;
+      if (location.hash === '#testes') window.AnzolJogoUI.mostrar(); else location.hash = '#testes';
+    }
   };
+  var pendente = null;
 })();

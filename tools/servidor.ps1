@@ -11,10 +11,21 @@ $tipos = @{
   '.json' = 'application/json; charset=utf-8'; '.md' = 'text/plain; charset=utf-8'; '.svg' = 'image/svg+xml'
   '.png' = 'image/png'; '.jpg' = 'image/jpeg'; '.ico' = 'image/x-icon'; '.webmanifest' = 'application/manifest+json'
 }
-$ouvinte = New-Object System.Net.HttpListener
-$ouvinte.Prefixes.Add("http://localhost:$Porta/")
-$ouvinte.Start()
-Write-Host "Anzol rodando em http://localhost:$Porta/app/  (Ctrl+C para parar)"
+# Tenta a porta pedida; se estiver ocupada (por exemplo, outro servidor do Anzol já aberto), tenta as próximas.
+$ouvinte = $null
+foreach ($p in $Porta..($Porta + 10)) {
+  $tentativa = New-Object System.Net.HttpListener
+  $tentativa.Prefixes.Add("http://localhost:$p/")
+  try { $tentativa.Start(); $ouvinte = $tentativa; $Porta = $p; break }
+  catch { $tentativa.Close(); Write-Host "Porta $p ocupada (talvez outro servidor do Anzol já esteja aberto). Tentando a próxima..." -ForegroundColor Yellow }
+}
+if (-not $ouvinte) {
+  Write-Host "Não consegui abrir nenhuma porta entre $Porta e $($Porta + 10). Feche outras janelas do servidor e tente de novo." -ForegroundColor Red
+  exit 1
+}
+Write-Host ""
+Write-Host "Anzol rodando! Abra no navegador:  http://localhost:$Porta/app/" -ForegroundColor Green
+Write-Host "(Para parar: Ctrl+C ou feche esta janela)"
 try {
   while ($ouvinte.IsListening) {
     $ctx = $ouvinte.GetContext()

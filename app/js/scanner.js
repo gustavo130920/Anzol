@@ -271,6 +271,18 @@
       }
       if (achados['avisa-nao-compartilhar'] && achados['pede-codigo-senha']) delete achados['avisa-nao-compartilhar'];
 
+      // Camada Radar (alerta passivo): vem de AnzolRadar.consultar, já com o estado de cada campanha
+      ((extras && extras.radar) || []).forEach(function (m) {
+        var c = m.campanha;
+        if (c.estado === 'arquivada') return;
+        var quem = 'reportada por ' + c.pessoas + (c.pessoas === 1 ? ' pessoa' : ' pessoas');
+        if (c.estado === 'alerta_ativo' && m.como === 'exato') {
+          anotar('radar-alerta-ativo', c.titulo, 'Campanha "' + c.titulo + '": ' + quem + ', alerta ativo. Motivo: ' + m.porque + '.');
+        } else {
+          anotar('radar-relatos', c.titulo, 'Lembra a campanha "' + c.titulo + '" (' + quem + ', ' + (c.estado === 'alerta_ativo' ? 'alerta ativo' : 'em observação') + '): ' + m.porque + '.');
+        }
+      });
+
       // 4. Pontuação (interna) e faixa
       var ids = Object.keys(achados);
       var pontos = 0;

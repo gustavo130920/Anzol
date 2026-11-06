@@ -42,6 +42,8 @@
     { "id": "remetente-nao-bate", "familia": "canal", "nome": "Remetente não bate", "descricao": "Nome exibido diz uma coisa, endereço ou número diz outra.", "detectavel_por": ["texto", "dominio"], "peso_inicial": 12 },
     { "id": "contato-nao-solicitado", "familia": "canal", "nome": "Contato que você não pediu", "descricao": "Você não esperava essa mensagem nem iniciou a conversa.", "detectavel_por": ["contexto"], "peso_inicial": 5 },
     { "id": "evita-confirmacao", "familia": "canal", "nome": "Foge de confirmação", "descricao": "Não atende ligação, desconversa, diz que 'não pode falar agora'.", "detectavel_por": ["texto", "contexto"], "peso_inicial": 12 },
+    { "id": "radar-alerta-ativo", "familia": "canal", "nome": "Campanha com alerta ativo no Radar", "descricao": "Um indicador desta mensagem (endereço, telefone ou chave) já foi reportado numa campanha com alerta ativo. É indicador, não acusação.", "detectavel_por": ["externo"], "peso_inicial": 35 },
+    { "id": "radar-relatos", "familia": "canal", "nome": "Parecido com golpes já reportados", "descricao": "A mensagem lembra variantes de uma campanha já reportada ao Radar (ou a campanha ainda está em observação).", "detectavel_por": ["externo"], "peso_inicial": 15 },
     { "id": "numero-falsificado", "familia": "canal", "nome": "Número exibido pode ser falso", "descricao": "Na ligação, o número na tela pode imitar o de uma instituição (spoofing). Número igual não prova nada.", "detectavel_por": ["contexto"], "peso_inicial": 10 },
 
     { "id": "dominio-parecido", "familia": "tecnica", "nome": "Nome parecido com o oficial", "descricao": "Uma letra a mais, a menos ou trocada (distância de edição pequena).", "detectavel_por": ["dominio"], "peso_inicial": 25 },

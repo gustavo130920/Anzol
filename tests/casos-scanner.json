@@ -177,6 +177,25 @@
       "nao_pode_ter": ["lista-publica-phishing"]
     },
     {
+      "id": "T23-radar-alerta",
+      "origem": "camada Radar (campanha SIMULADA)",
+      "texto": "Promoção relâmpago: lojavitr1ne.example",
+      "radar": [{ "campanha": { "id": "C-X", "titulo": "Campanha de teste", "estado": "alerta_ativo", "pessoas": 5 }, "como": "exato", "porque": "mesmo endereço já reportado" }],
+      "faixa": "alto",
+      "deve_ter": ["radar-alerta-ativo", "homoglifo"],
+      "nao_pode_ter": ["radar-relatos"]
+    },
+    {
+      "id": "T24-radar-arquivada",
+      "origem": "camada Radar",
+      "_nota": "Campanha arquivada não pesa no risco.",
+      "texto": "Promoção relâmpago: lojavitr1ne.example",
+      "radar": [{ "campanha": { "id": "C-Y", "titulo": "Campanha antiga", "estado": "arquivada", "pessoas": 4 }, "como": "exato", "porque": "mesmo endereço" }],
+      "faixa": "medio",
+      "deve_ter": ["homoglifo"],
+      "nao_pode_ter": ["radar-alerta-ativo", "radar-relatos"]
+    },
+    {
       "id": "T20-detex-hifens",
       "origem": "D-02",
       "texto": "detex-cnh-regulariza.test",

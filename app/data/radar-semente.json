@@ -1,0 +1,126 @@
+{
+  "_sobre": "Semente do Radar. SIMULAÇÃO — material educativo. Campanhas modeladas a partir de padrões reais (fontes oficiais citadas), com indicadores FICTÍCIOS (.test). Telefones e chaves Pix só como HMAC. Relatos sintéticos: 'ha_horas' é contado a partir do momento em que o app abre, para a demonstração ficar sempre atual. 'u' = usuário sintético (para medir independência).",
+  "_versao": "0.1.0",
+  "_atualizado_em": "2026-11-05",
+  "campanhas": [
+    {
+      "id": "C-CNH",
+      "titulo": "SMS de CNH suspensa com link de regularização",
+      "familia": "link-sms-orgao-publico",
+      "cenario_id": "L3-01",
+      "fonte_oficial": { "nome": "Associação Nacional dos Detrans — alerta sobre mensagens falsas de suspensão de CNH (nov/2024)", "url": "https://www.portaldotransito.com.br/noticias/and-faz-alerta-para-golpe-com-mensagens-falsas-sobre-suspensao-de-cnh/amp/" },
+      "indicadores": [
+        { "tipo": "dominio", "valor": "regulariza-cnh-detex.test" },
+        { "tipo": "dominio", "valor": "detex-cnh-regulariza.test" },
+        { "tipo": "dominio", "valor": "cnh-detex-pendencia.test" }
+      ],
+      "textos_modelo": [
+        "DETEX informa: sua CNH será SUSPENSA em 24h por pendência. Regularize agora",
+        "Aviso DETEX: processo de suspensão da sua CNH. Evite a cassação, regularize hoje",
+        "Sua habilitação será cassada. Pague a taxa de regularização no link"
+      ],
+      "relatos": [[2, "SP", "u01"], [5, "MG", "u02"], [9, "RJ", "u03"], [20, "SP", "u04"], [30, "BA", "u05"], [50, "PR", "u06"], [70, "SP", "u07"], [100, "RS", "u08"], [130, "SP", "u09"], [160, "PE", "u10"], [180, "SP", "u15"], [190, "MG", "u16"], [200, "GO", "u11"], [210, "SP", "u17"], [230, "RJ", "u18"], [240, "SP", "u19"], [260, "SP", "u12"], [280, "BA", "u20"], [290, "SP", "u80"], [300, "DF", "u13"], [310, "PR", "u81"], [400, "CE", "u14"]]
+    },
+    {
+      "id": "C-ADV",
+      "titulo": "Falso advogado cobrando 'custas' para liberar valor de processo",
+      "familia": "falso-advogado",
+      "cenario_id": "L2-02",
+      "fonte_oficial": { "nome": "OAB-SP — alerta sobre o golpe do falso advogado (4.388 denúncias até fev/2026)", "url": "https://www.oabsp.org.br/noticia/26-02-06-1718-golpe-do-falso-advogado-ja-soma-4388-denuncias-e-acende-alerta-em-todo-o-pais" },
+      "revisado_por_moderador": true,
+      "indicadores": [
+        { "tipo": "telefone_mensagem", "hash": "f6d2defdc3d90a0aca116d6bf6e8d932", "rotulo": "telefone (protegido)" },
+        { "tipo": "chave_pix", "hash": "d00af2e40146c56c62d2de0889719aa7", "rotulo": "chave Pix (protegida)" },
+        { "tipo": "chave_pix", "hash": "e335c3ce7af671a0318b8235f56dfd81", "rotulo": "chave Pix (protegida)" }
+      ],
+      "textos_modelo": [
+        "o valor do seu processo foi liberado. Para a expedição é necessário recolher custas via Pix até hoje",
+        "Escritório informa: alvará liberado, falta pagar as custas para transferir o valor",
+        "seu crédito no processo está disponível, pague a taxa de liberação"
+      ],
+      "relatos": [[6, "SP", "u21"], [40, "SP", "u22"], [90, "MG", "u23"], [150, "PR", "u24"], [200, "SP", "u27"], [220, "SP", "u25"], [270, "MG", "u28"], [300, "SP", "u29"], [330, "RJ", "u26"]]
+    },
+    {
+      "id": "C-PARENTE",
+      "titulo": "Falso parente: 'troquei de número' pedindo Pix urgente",
+      "familia": "falso-parente",
+      "cenario_id": "L2-01",
+      "fonte_oficial": null,
+      "revisado_por_moderador": true,
+      "indicadores": [
+        { "tipo": "telefone_mensagem", "hash": "a0deaa7b78f4db20e80a26c3dad7cea8", "rotulo": "telefone (protegido)" },
+        { "tipo": "telefone_mensagem", "hash": "7a3a3d1351c0fc338297f8a899c25ddc", "rotulo": "telefone (protegido)" }
+      ],
+      "textos_modelo": [
+        "Oi mãe, troquei de número, salva esse. Preciso de um Pix urgente, te explico depois",
+        "Oi pai, esse é meu número novo. Consegue me fazer um Pix agora? Depois te conto",
+        "meu celular quebrou, esse é o novo. Paga um boleto pra mim? te devolvo amanhã"
+      ],
+      "relatos": [[1, "SP", "u31"], [3, "RJ", "u32"], [8, "MG", "u33"], [15, "SP", "u34"], [26, "BA", "u35"], [60, "SC", "u36"], [120, "SP", "u37"], [190, "PE", "u38"]]
+    },
+    {
+      "id": "C-LOJA",
+      "titulo": "Liquidação falsa da Loja Vitrine com pagamento só por Pix",
+      "familia": "loja-anuncio-falso",
+      "cenario_id": "L1-01",
+      "fonte_oficial": null,
+      "_nota_demo": "Tem 2 relatos independentes nas últimas 24 h. Um relato pelo Scanner com o mesmo domínio vira o 3º e liga o alerta — ótimo para o vídeo.",
+      "indicadores": [
+        { "tipo": "dominio", "valor": "lojavitrine-oficial-liquida.test" }
+      ],
+      "textos_modelo": [
+        "Liquidação de fábrica Loja Vitrine: tênis de R$ 499 por R$ 89. Só hoje! Pagamento apenas por Pix",
+        "Queima de estoque Loja Vitrine, 80% de desconto pagando no Pix"
+      ],
+      "relatos": [[4, "SP", "u41"], [11, "RJ", "u42"], [60, "MG", "u43"]]
+    },
+    {
+      "id": "C-VALORES",
+      "titulo": "'Valores esquecidos' com tarifa para resgatar",
+      "familia": "dinheiro-inesperado",
+      "cenario_id": "L3-02",
+      "fonte_oficial": null,
+      "revisado_por_moderador": true,
+      "indicadores": [
+        { "tipo": "dominio", "valor": "valores-esquecidos-resgate.test" },
+        { "tipo": "dominio", "valor": "resgate-valores-esquecidos.test" },
+        { "tipo": "chave_pix", "hash": "3d894c1ff7fc0200f85c08fbceced50c", "rotulo": "chave Pix (protegida)" }
+      ],
+      "textos_modelo": [
+        "Programa Valores Esquecidos: há R$ 1.873,40 em seu nome. Para resgatar, confirme seus dados e pague a tarifa",
+        "Você tem dinheiro esquecido a receber. Pague a tarifa de transferência para liberar"
+      ],
+      "relatos": [[2, "SP", "u51"], [7, "MG", "u52"], [12, "RJ", "u53"], [22, "SP", "u54"], [35, "PR", "u55"], [50, "BA", "u56"], [80, "SP", "u57"], [110, "RS", "u58"], [140, "SP", "u59"], [250, "SP", "u60"]]
+    },
+    {
+      "id": "C-CENTRAL",
+      "titulo": "Falsa central de segurança pedindo código por ligação",
+      "familia": "falsa-central",
+      "cenario_id": "L2-03",
+      "fonte_oficial": null,
+      "_nota_demo": "Só tem indicador de número de LIGAÇÃO (confiabilidade baixa: pode ser número falsificado de banco real). Nunca vira alerta pelo número; o aviso é sobre o padrão.",
+      "indicadores": [
+        { "tipo": "telefone_ligacao", "hash": "1be1127221ec8957c021ee8396cf4288", "rotulo": "número exibido na ligação (protegido; pode ser falsificado)" }
+      ],
+      "textos_modelo": [
+        "central de segurança do banco, identificamos uma compra suspeita no seu cartão. Vou enviar um código por SMS, me confirme",
+        "setor de segurança: houve acesso suspeito, para cancelar confirme o código que chegou"
+      ],
+      "relatos": [[3, "SP", "u61"], [10, "SP", "u62"], [18, "RJ", "u63"], [44, "MG", "u64"], [200, "SP", "u65"], [240, "PR", "u66"], [300, "SP", "u67"]]
+    },
+    {
+      "id": "C-ENTREGA",
+      "titulo": "Taxa de reentrega por SMS (campanha antiga)",
+      "familia": "taxa-entrega",
+      "cenario_id": null,
+      "fonte_oficial": null,
+      "indicadores": [
+        { "tipo": "dominio", "valor": "taxa-reentrega-rapida.test" }
+      ],
+      "textos_modelo": [
+        "Sua encomenda está retida. Pague a taxa de reentrega para receber hoje"
+      ],
+      "relatos": [[1100, "SP", "u71"], [1150, "RJ", "u72"], [1180, "SP", "u73"], [1300, "MG", "u74"]]
+    }
+  ]
+}

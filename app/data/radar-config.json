@@ -1,0 +1,52 @@
+{
+  "_sobre": "Regras do Radar do Anzol. Princípio: INDICADORES, NUNCA ACUSAÇÕES. Todos os números são PARÂMETROS INICIAIS SEM VALIDAÇÃO. Os limiares NÃO são exibidos na tela (anti-abuso), só na documentação.",
+  "_versao": "0.1.0",
+  "_atualizado_em": "2026-11-05",
+
+  "estados": {
+    "em_observacao": { "nome": "Em observação", "descricao": "Há relatos, mas ainda não o bastante para um alerta." },
+    "alerta_ativo": { "nome": "Alerta ativo", "descricao": "Confirmado por fonte oficial ou por vários relatos independentes." },
+    "arquivada": { "nome": "Arquivada", "descricao": "Sem relatos recentes ou contestação aceita. Fica no histórico." }
+  },
+
+  "regras": {
+    "relatos_independentes_para_alerta": 3,
+    "janela_alerta_horas": 24,
+    "dias_sem_relato_para_arquivar": 30,
+    "limite_relatos_por_usuario_por_dia": 5,
+    "_nota_independencia": "Relatos do mesmo usuário contam como UM só (independência).",
+    "_nota_revisao": "Campanha cujos indicadores são só de pessoa (telefone, chave Pix) precisa de revisão humana antes de virar alerta ativo — pode ser vítima com conta clonada ou conta de 'laranja'."
+  },
+
+  "confiabilidade": {
+    "_nota": "Quanto o indicador sozinho ajuda a reconhecer a campanha. Número de LIGAÇÃO é baixa: o número exibido pode ser falsificado e ser o de uma instituição legítima — nunca gera alerta sozinho.",
+    "dominio": { "nivel": "alta", "pode_alertar_sozinho": true, "pessoa": false },
+    "telefone_mensagem": { "nivel": "media", "pode_alertar_sozinho": true, "pessoa": true },
+    "telefone_ligacao": { "nivel": "baixa", "pode_alertar_sozinho": false, "pessoa": true },
+    "chave_pix": { "nivel": "alta", "pode_alertar_sozinho": true, "pessoa": true },
+    "texto": { "nivel": "media", "pode_alertar_sozinho": true, "pessoa": false }
+  },
+
+  "similaridade": {
+    "_nota": "IA leve: compara textos por pedaços de 3 letras (trigramas) com pesos TF-IDF e similaridade do cosseno. Serve para agrupar VARIANTES da mesma campanha. Limiar inicial sem validação.",
+    "limiar_texto": 0.35,
+    "distancia_dominio_maxima": 2,
+    "limiar_dominio_palavras": 0.5
+  },
+
+  "tendencia": {
+    "_nota": "Em alta = relatos dos últimos 7 dias pelo menos 1,5 vez os dos 7 dias anteriores, com no mínimo 3 relatos.",
+    "fator_alta": 1.5,
+    "minimo_relatos": 3
+  },
+
+  "hash": {
+    "_nota": "Telefone e chave Pix são guardados como HMAC-SHA256 com segredo (32 caracteres). SIMULAÇÃO: no protótipo o segredo está aqui; em produção ele fica só no servidor e nunca no navegador.",
+    "segredo_demo": "anzol-demo-segredo-2026"
+  },
+
+  "linguagem": {
+    "aviso": "O Radar mostra indicadores reportados, não acusações. Um número ou chave pode pertencer a uma vítima (conta clonada) ou a uma conta de terceiro. A proteção não é perfeita.",
+    "contestacao": "Acha que este alerta está errado? Peça revisão: todo indicador pode ser contestado e expira com o tempo."
+  }
+}

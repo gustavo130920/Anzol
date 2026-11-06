@@ -53,8 +53,17 @@
   }
 
   function iniciar() {
-    Promise.all([lerJSON('data/signals.json'), lerJSON('data/scanner-config.json'), lerJSON('data/scenarios.json'), lerJSON('data/jogo-config.json')])
+    Promise.all([lerJSON('data/signals.json'), lerJSON('data/scanner-config.json'), lerJSON('data/scenarios.json'), lerJSON('data/jogo-config.json'),
+                 lerJSON('data/radar-config.json'), lerJSON('data/radar-semente.json')])
       .then(function (d) {
+        estado.radar = AnzolRadar.criarRadar({
+          semente: d[5], config: d[4],
+          armazenamento: {
+            ler: function () { try { return JSON.parse(localStorage.getItem('anzol-radar-v1')); } catch (e) { return null; } },
+            gravar: function (v) { try { localStorage.setItem('anzol-radar-v1', JSON.stringify(v)); } catch (e) { /* segue em memória */ } }
+          }
+        });
+        window.__anzolRadar = estado.radar;
         estado.scanner = AnzolScanner.criarScanner({ sinais: d[0], config: d[1] });
         estado.listas = AnzolListas.criarConsulta({
           urlRecorte: 'data/listas/phishing-database-br.json',
@@ -69,6 +78,7 @@
         d[0].mitos.forEach(function (m) { estado.mitos[m.id] = m; });
         montarExemplos(d[2]);
         if (window.AnzolJogoUI) AnzolJogoUI.iniciar({ sinais: d[0], conteudo: d[2], jogoConfig: d[3], scanner: estado.scanner });
+        if (window.AnzolRadarUI) AnzolRadarUI.iniciar({ radar: estado.radar, conteudo: d[2] });
         rotear();
       })
       .catch(function (erro) {
@@ -98,7 +108,7 @@
   // Navegação entre abas pelo endereço (#scanner, #testes)
   function rotear() {
     var vista = (location.hash || '#scanner').slice(1);
-    if (['scanner', 'testes'].indexOf(vista) === -1) vista = 'scanner';
+    if (['scanner', 'testes', 'radar'].indexOf(vista) === -1) vista = 'scanner';
     document.querySelectorAll('.vista').forEach(function (v) { v.hidden = v.id !== 'vista-' + vista; });
     document.querySelectorAll('.aba[data-vista]').forEach(function (a) {
       var ativa = a.getAttribute('data-vista') === vista;
@@ -106,6 +116,7 @@
       if (ativa) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
     });
     if (vista === 'testes' && window.AnzolJogoUI) AnzolJogoUI.mostrar();
+    if (vista === 'radar' && window.AnzolRadarUI) AnzolRadarUI.mostrar();
   }
   window.addEventListener('hashchange', rotear);
 
@@ -149,18 +160,121 @@
     estado.ultimo = res;
     var alvos = estado.scanner.alvosParaListas(texto);
     var id = ++estado.consultaId;
-    mostrar(res, r, alvos.length ? { carregando: true } : null);
+    var ctx = { texto: texto, alvos: alvos, listas: alvos.length ? { carregando: true } : null, radar: estado.radar ? { carregando: true } : null };
+    mostrar(res, r, ctx);
     r.hidden = false;
     r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    camadasExternas(texto, alvos, id, false);
+  }
 
-    // Camada externa: listas públicas de phishing (comparação feita no aparelho)
-    if (!alvos.length || !estado.listas) return;
-    estado.listas.consultar(alvos).then(function (info) {
+  // Camadas externas: listas públicas (comparação no aparelho) + Radar (alerta passivo)
+  function camadasExternas(texto, alvos, id, atualizacao, avisoRelato) {
+    var r = document.getElementById('resultado');
+    var pListas = (alvos.length && estado.listas) ? estado.listas.consultar(alvos) : Promise.resolve(null);
+    var pRadar = estado.radar ? estado.radar.consultar(texto, alvos).catch(function () { return []; }) : Promise.resolve(null);
+    return Promise.all([pListas, pRadar]).then(function (v) {
       if (id !== estado.consultaId) return; // a pessoa já analisou outra coisa
-      var temAchado = Object.keys(info.achados).length > 0;
-      var res2 = temAchado ? estado.scanner.analisar(texto, { listas: info.achados }) : res;
-      mostrar(res2, r, info, true);
+      var infoListas = v[0], radar = v[1];
+      var res2 = estado.scanner.analisar(texto, { listas: infoListas ? infoListas.achados : {}, radar: radar || [] });
+      estado.ultimo = res2;
+      mostrar(res2, r, { texto: texto, alvos: alvos, listas: infoListas, radar: radar, avisoRelato: avisoRelato }, true);
     });
+  }
+
+  var ESTADOS = { alerta_ativo: 'Alerta ativo', em_observacao: 'Em observação', arquivada: 'Arquivada' };
+
+  function blocoRadar(ctx) {
+    var g = el('div', 'grupo');
+    g.appendChild(el('h3', null, 'Radar de golpes reportados'));
+    if (ctx.radar && ctx.radar.carregando) { g.appendChild(el('p', 'motivo-desc', 'Comparando com campanhas já reportadas…')); return g; }
+    if (ctx.avisoRelato) g.appendChild(el('p', 'evento-radar', ctx.avisoRelato));
+    var lista = (ctx.radar || []);
+    if (!lista.length) {
+      g.appendChild(el('p', null, 'Nenhuma campanha parecida no Radar. Se você recebeu isso, relatar ajuda outras pessoas.'));
+    } else {
+      var ul = el('ul', 'lupa');
+      lista.slice(0, 3).forEach(function (m) {
+        var c = m.campanha;
+        var li = el('li', 'radar-item');
+        var topo = el('p', 'motivo-nome');
+        topo.appendChild(el('span', 'estado-radar ' + c.estado, ESTADOS[c.estado]));
+        topo.appendChild(document.createTextNode(' ' + c.titulo));
+        li.appendChild(topo);
+        li.appendChild(el('p', 'motivo-desc', 'Reportada por ' + c.pessoas + (c.pessoas === 1 ? ' pessoa' : ' pessoas') + ' · ' + (m.como === 'exato' ? 'correspondência exata' : 'parecida') + ': ' + m.porque + '.'));
+        if (c.estado === 'arquivada') li.appendChild(el('p', 'motivo-desc', 'Campanha arquivada (sem relatos recentes ou contestada): não pesa no risco.'));
+        var acoes = el('div', 'links-acao');
+        var ver = el('a', 'btn-leve', 'Ver no Radar'); ver.href = '#radar'; acoes.appendChild(ver);
+        if (c.cenario_id && window.AnzolJogoUI && AnzolJogoUI.itemDisponivel(c.cenario_id)) {
+          var tr = el('button', 'btn-leve', 'Treinar com este golpe');
+          tr.type = 'button';
+          tr.addEventListener('click', function () { AnzolJogoUI.abrirItem(c.cenario_id); });
+          acoes.appendChild(tr);
+        }
+        li.appendChild(acoes);
+        ul.appendChild(li);
+      });
+      g.appendChild(ul);
+    }
+    g.appendChild(formRelato(ctx));
+    g.appendChild(el('p', 'motivo-desc', estado.radar.config.linguagem.aviso + ' SIMULAÇÃO: neste protótipo o Radar fica no seu navegador; em produção, num banco em nuvem.'));
+    return g;
+  }
+
+  function formRelato(ctx) {
+    var d = el('details', 'relato');
+    if (estado.ultimo && estado.ultimo.faixa !== 'baixo' && !ctx.avisoRelato) d.open = true;
+    d.appendChild(el('summary', null, 'Recebeu isso? Relate em um toque'));
+    var u = AnzolRadar._util;
+    var previa = el('div', 'previa');
+    previa.appendChild(el('p', 'motivo-desc', 'Vai para o Radar SÓ isto (dados pessoais removidos automaticamente — confira):'));
+    previa.appendChild(el('p', 'previa-texto', u.sanitizar(ctx.texto)));
+    var cont = u.extrairContatos(ctx.texto);
+    var inds = ctx.alvos.map(function (a) { return 'endereço ' + a.registravel; })
+      .concat(cont.telefones.map(function () { return 'telefone (vai protegido, como código)'; }))
+      .concat(cont.emails.map(function () { return 'e-mail/chave Pix (vai protegido, como código)'; }));
+    previa.appendChild(el('p', 'motivo-desc', 'Indicadores do golpista: ' + (inds.length ? inds.join(' · ') : 'só o texto')));
+    d.appendChild(previa);
+
+    var linha = el('div', 'linha-form');
+    var canal = el('select'); canal.id = 'relato-canal';
+    [['', 'Por onde chegou? (opcional)'], ['sms', 'SMS'], ['mensagem', 'Aplicativo de mensagens'], ['ligacao', 'Ligação'], ['email', 'E-mail'], ['anuncio', 'Anúncio / rede social']].forEach(function (o) {
+      var op = el('option', null, o[1]); op.value = o[0]; canal.appendChild(op);
+    });
+    var lc = el('label', 'rotulo-peq', 'Canal'); lc.htmlFor = 'relato-canal';
+    var uf = el('select'); uf.id = 'relato-uf';
+    var op0 = el('option', null, 'Estado (opcional)'); op0.value = ''; uf.appendChild(op0);
+    'AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO'.split(' ').forEach(function (s) { var op = el('option', null, s); op.value = s; uf.appendChild(op); });
+    var lu = el('label', 'rotulo-peq', 'UF'); lu.htmlFor = 'relato-uf';
+    var b1 = el('div'); b1.appendChild(lc); b1.appendChild(canal);
+    var b2 = el('div'); b2.appendChild(lu); b2.appendChild(uf);
+    linha.appendChild(b1); linha.appendChild(b2);
+    d.appendChild(linha);
+
+    var lab = el('label', 'consentimento');
+    var cb = el('input'); cb.type = 'checkbox'; cb.id = 'relato-ok';
+    lab.appendChild(cb);
+    lab.appendChild(document.createTextNode(' Concordo em enviar só os indicadores acima. Minhas provas e dados ficam comigo.'));
+    d.appendChild(lab);
+    var msg = el('p', 'motivo-desc');
+    var enviar = el('button', 'btn-principal', 'Enviar relato');
+    enviar.type = 'button';
+    enviar.addEventListener('click', function () {
+      enviar.disabled = true;
+      estado.radar.relatar({ texto: ctx.texto, alvos: ctx.alvos, canal: canal.value || null, uf: uf.value || null, consentimento: cb.checked })
+        .then(function (res) {
+          var aviso = res.destino === 'campanha'
+            ? (res.mudouEstado
+              ? 'Obrigado! Seu relato somou à campanha "' + res.campanha.titulo + '" e o alerta foi LIGADO: agora ' + res.campanha.pessoas + ' pessoas independentes reportaram.'
+              : 'Obrigado! Seu relato somou à campanha "' + res.campanha.titulo + '" (' + res.campanha.pessoas + ' pessoas).')
+            : 'Obrigado! Campanha nova para o Radar: seu relato entrou na fila de moderação (SIMULAÇÃO) e será revisado antes de virar alerta ou teste.';
+          camadasExternas(ctx.texto, ctx.alvos, ++estado.consultaId, true, aviso);
+        })
+        .catch(function (e) { msg.textContent = e.message; enviar.disabled = false; });
+    });
+    var ac = el('div', 'acoes'); ac.appendChild(enviar);
+    d.appendChild(ac);
+    d.appendChild(msg);
+    return d;
   }
 
   function blocoListas(info) {
@@ -186,7 +300,9 @@
     return g;
   }
 
-  function mostrar(res, alvo, infoListas, atualizacao) {
+  function mostrar(res, alvo, ctx, atualizacao) {
+    ctx = ctx || {};
+    var infoListas = ctx.listas;
     alvo.textContent = '';
     var alertas = res.motivos.filter(function (m) { return m.tipo === 'alerta'; });
     var confianca = res.motivos.filter(function (m) { return m.tipo === 'confianca'; });
@@ -244,6 +360,7 @@
       alvo.appendChild(gl);
     }
 
+    if (ctx.radar !== undefined && estado.radar) alvo.appendChild(blocoRadar(ctx));
     if (infoListas) alvo.appendChild(blocoListas(infoListas));
 
     // Mitos
@@ -277,7 +394,7 @@
     ga.appendChild(links);
     alvo.appendChild(ga);
 
-    var aviso = el('p', 'aviso', res.aviso + ' ' + res.aviso_link + ' Radar de golpes reportados: em construção.');
+    var aviso = el('p', 'aviso', res.aviso + ' ' + res.aviso_link);
     alvo.appendChild(aviso);
     if (!atualizacao) h.focus({ preventScroll: true });
   }
