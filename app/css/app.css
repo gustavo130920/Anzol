@@ -34,11 +34,22 @@
 }
 html.texto-grande { --tam-base: 22px; }
 
+/* Atkinson Hyperlegible (Braille Institute, licença SIL OFL 1.1 — ver assets/fonts/OFL-atkinson-hyperlegible.txt).
+   Desenhada para baixa visão: I, l, 1, O e 0 bem diferentes. Hospedada aqui (sem chamadas ao Google). */
+@font-face {
+  font-family: "Atkinson Hyperlegible"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible"; font-style: normal; font-weight: 700 800; font-display: swap;
+  src: url("../assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");
+}
+
 * { box-sizing: border-box; }
 html { font-size: var(--tam-base); -webkit-tap-highlight-color: transparent; }
 body {
   margin: 0; background: var(--fundo); color: var(--texto);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.55;
+  font-family: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.55;
   -webkit-text-size-adjust: 100%;
 }
 button, a, select, summary, input, label { touch-action: manipulation; }
@@ -56,7 +67,9 @@ table, .tile-valor, .resumo-num { font-variant-numeric: tabular-nums; }
 .topo, main, .abas, .rodape { max-width: 760px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
 .topo { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; }
 .marca { display: flex; align-items: center; gap: 12px; }
-.marca-icone { width: 40px; height: 40px; color: var(--marca-profunda); flex: none; }
+.marca-icone { width: 48px; height: 48px; flex: none; }
+.marca-escudo { stroke: var(--marca); }          /* escudo rosa em contorno */
+.marca-anzol { stroke: var(--texto); }           /* anzol clássico: branco no tema preto, preto no tema claro */
 .marca-nome { margin: 0; font-size: 1.5rem; font-weight: 800; color: var(--texto); line-height: 1.1; letter-spacing: -.01em; }
 .ajustes { display: flex; gap: 8px; }
 .icone-botao { width: 22px; height: 22px; display: block; }

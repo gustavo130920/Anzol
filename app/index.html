@@ -11,7 +11,9 @@
   // Aplica o tema salvo antes de desenhar a página (evita piscar). Padrão: preto.
   try { if (localStorage.getItem('anzol-tema') === 'claro') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
 </script>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000'/%3E%3Cpath d='M38 10v26a13 13 0 1 1-26 0' fill='none' stroke='%23ff4f8b' stroke-width='7' stroke-linecap='round'/%3E%3Cpath d='M12 36l-4-8' stroke='%23ff4f8b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='64' height='64' rx='14' fill='%23000' stroke='none'/%3E%3Cpath d='M32 5l21 7.5v15.5c0 14.5-9 25-21 31C20 53 11 42.5 11 28V12.5z' stroke='%23ff4f8b' stroke-width='6'/%3E%3Cpath d='M36 15v20.5a8 8 0 0 1-16 0V31' stroke='%23f5f5f5' stroke-width='6'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -21,7 +23,10 @@
 
 <header class="topo">
   <div class="marca">
-    <svg class="marca-icone" viewBox="0 0 64 64" aria-hidden="true"><path d="M38 6v30a14 14 0 1 1-28 0" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><path d="M10 36l-4-8" stroke="currentColor" stroke-width="7" stroke-linecap="round"/></svg>
+    <svg class="marca-icone" viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path class="marca-escudo" d="M32 4l22 8v16c0 15-9.5 26-22 32C19.5 54 10 43 10 28V12z" stroke-width="4"/>
+      <g class="marca-anzol" stroke-width="3.5"><circle cx="36" cy="16.5" r="3.5"/><path d="M36 20v15.5a8 8 0 0 1-16 0V31"/><path d="M20 31l4.5 4.5"/></g>
+    </svg>
     <div>
       <h1 class="marca-nome" translate="no">Anzol</h1>
       <p class="marca-frase">Aprenda a reconhecer golpes e se proteger no mesmo lugar.</p>
