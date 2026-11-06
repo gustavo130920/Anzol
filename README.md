@@ -19,6 +19,8 @@ Protótipo acadêmico — Global Solution FIAP 2026 (CitizenTech).
 
 ## Na nuvem
 
+**Acesse:** https://gustavo130920.github.io/Anzol/
+
 Publicado no **GitHub Pages** por um fluxo do **GitHub Actions** (`.github/workflows/publicar.yml`): a cada mudança e todo dia, ele atualiza o recorte das listas de phishing, **roda todos os testes** e só publica se passarem. Arquitetura completa: [docs/arquitetura.md](docs/arquitetura.md).
 
 ## Testes
