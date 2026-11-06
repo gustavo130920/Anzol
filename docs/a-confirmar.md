@@ -26,7 +26,7 @@
 | # | Item | Quem | Como resolver |
 |---|---|---|---|
 | 14 | Número e texto do ato de 04/11/2026 (SMS) | Pesquisa | Buscar no DOU (in.gov.br) por "códigos curtos" e "SMS", novembro/2026 |
-| 15 | Central de Ajuda do WhatsApp (conta roubada, PIN, 7 dias) | Pesquisa | Abrir faq.whatsapp.com em português e citar a página exata |
+| 15 | Central de Ajuda do WhatsApp (conta roubada, PIN, 7 dias) | Pesquisa / **Gustavo** | 🟡 06/11: caminho da verificação em duas etapas (Configurações > Conta) e "reverificar o número desconecta o invasor" confirmados por vários guias; **espera de 7 dias** segue só em fontes secundárias — no app está marcada "A CONFIRMAR". A busca não trouxe a página oficial: abrir faq.whatsapp.com no celular (Ajuda dentro do app) e citar |
 | 16 | Cartão virtual, limites do Pix, como contestar boleto ou TED (o MED é só para Pix) | Pesquisa | Páginas do Banco Central (bcb.gov.br: Pix, MED) e da Febraban; registrar a data |
 | 17 | Detalhes do MED 2.0 e da atualização de 03/09/2026 (anexar documentos) | Pesquisa | Buscar a resolução ou comunicado oficial do BC; hoje a fonte é um escritório de advocacia |
 | 18 | Regras do BO online por estado | Pesquisa | Listar a delegacia eletrônica de SP e mais 2 ou 3 estados como exemplo; no app, dizer "procure a delegacia eletrônica do seu estado" |
@@ -35,7 +35,8 @@
 | 21 | Validação jurídica do Radar (LGPD, legítimo interesse, contestação) | **Gustavo** | Perguntar a um professor de Direito Digital ou LGPD da FIAP; até lá, declarar como **premissa** no vídeo |
 | 22 | Parâmetros do jogo (XP, níveis), pesos das pistas e limiar do alerta (≥ 3 relatos em 24 h) | **Gustavo** (decidir) | São valores iniciais sem validação; ajustar na sessão 2 com os testes; declarar no vídeo |
 | 23 | Mini-piloto (5 a 10 pessoas) | **Gustavo** | Só se sobrar tempo; termo de consentimento simples; sem dados pessoais |
-| 24 | URL oficial para "reclamação ao Banco Central" e consumidor.gov.br | Pesquisa | Conferir os endereços oficiais e o telefone 145 do BC |
+| 24 | URL oficial para "reclamação ao Banco Central" e consumidor.gov.br | Pesquisa | 🟡 06/11: reclamação e **Registrato** ficam no **Meu BC** (bcb.gov.br, login gov.br; Registrato exige prata/ouro com verificação em duas etapas; gratuito); telefone 145; tentar antes banco e ouvidoria. Fontes secundárias (a página do BC não carregou na ferramenta) — o app mostra "bcb.gov.br → Meu BC" em texto. Conferir no navegador antes do vídeo |
+| 28 | Contestação de cartão, boleto e TED (o MED é só para Pix) | Pesquisa | No app: "fale com o banco; pergunte o procedimento (A CONFIRMAR em cada banco)" |
 | 25 | Conteúdo de segurança dos 19 itens | **Gustavo** | ✅ Aprovado em 05/11/2026 |
 | 26 | Listas públicas de phishing gratuitas | ✅ (05/11/2026) | **OpenPhish Community Feed:** 300 URLs, CORS liberado, termos = uso pessoal/pesquisa acadêmica, **proíbe redistribuir** → baixado ao vivo pelo navegador, sem cópia no projeto; uso comercial exige autorização escrita. **Phishing.Database:** MIT, 392 mil domínios (3.333 `.br`), última atualização da fonte 02/10/2026 → recorte `.br` como hash. **URLhaus:** download aberto retornou 410 (hoje exige chave). **PhishTank:** cadastro de novas chaves aparentemente fechado desde 2020 (fonte secundária). **phish.co.za:** 503 no teste. Fontes: openphish.com/terms.html; github.com/Phishing-Database/Phishing.Database |
 | 27 | Atualização automática das listas na nuvem | Pesquisa | Sessão 6: agendar `tools/atualizar-listas.js` (ex.: GitHub Actions, 1×/dia) — verificar limites gratuitos |

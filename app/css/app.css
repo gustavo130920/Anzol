@@ -221,8 +221,45 @@ button { font: inherit; cursor: pointer; }
 .radar-item { display: grid; gap: 2px; }
 a.btn-leve { display: inline-flex; align-items: center; text-decoration: none; }
 
+/* Primeiros socorros, Kit e Escudo */
+.aba-socorro { border-color: var(--alto); }
+.aba-socorro.ativa { background: var(--alto); border-color: var(--alto); }
+.avisos { margin: 0 0 8px; padding-left: 1.2rem; font-size: .9rem; color: var(--texto-suave); }
+.avisos li { margin: 3px 0; }
+.grade-situacoes { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.situacao {
+  display: grid; gap: 4px; text-align: left; border: 2px solid var(--borda); background: var(--fundo); color: var(--texto);
+  border-radius: 12px; padding: 14px; min-height: 64px;
+}
+.situacao:hover { border-color: var(--alto); }
+.situacao-titulo { font-weight: 800; font-size: 1rem; }
+.urgencia { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: .85rem; margin-top: 18px; }
+.urgencia.agora { background: var(--alto-fundo); color: var(--alto); }
+.urgencia.hoje { background: var(--medio-fundo); color: var(--medio); }
+.urgencia.depois { background: var(--confianca-fundo); color: var(--confianca); }
+.plano { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 10px; }
+.passo-socorro { background: var(--fundo); border-radius: 10px; padding: 12px 14px; }
+.passo-socorro p { margin: 4px 0; }
+.passo-topo { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+.passo-topo input, .checklist input { width: 24px; height: 24px; flex: none; margin-top: 1px; }
+.fonte { font-size: .75rem; color: var(--texto-suave); overflow-wrap: anywhere; margin: 6px 0 0; }
+.checklist { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 10px; }
+.checklist p { margin: 2px 0 0 34px; }
+.grade-cartoes { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.cartao-escudo h3 { margin-top: 4px; }
+.num-cartao { margin: 0; font-size: .75rem; color: var(--texto-suave); font-weight: 700; }
+.frase-escudo { font-weight: 700; color: var(--marca); margin: 0 0 8px; }
+.prova-topo { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: start; }
+.miniatura { width: 120px; height: auto; border-radius: 8px; border: 1px solid var(--borda); background: #fff; }
+.prova select, .campo, .linha-form input { width: 100%; font: inherit; font-size: .9rem; padding: 8px; border-radius: 8px; border: 1px solid var(--borda); background: var(--cartao); color: var(--texto); min-height: 44px; margin-top: 6px; }
+.prova textarea, #kit-raiz textarea { margin-top: 4px; font-size: .9rem; min-height: 5rem; }
+.rascunho { font-family: ui-monospace, Consolas, monospace; font-size: .8rem !important; }
+input[type="file"] { font: inherit; font-size: .9rem; max-width: 100%; }
+
 @media (max-width: 480px) {
   .linha-form { grid-template-columns: 1fr; }
+  .prova-topo { grid-template-columns: 1fr; }
+  .miniatura { width: 100%; max-width: 260px; }
   .cartao { padding: 16px; }
   h1 { font-size: 1.25rem; }
   .acoes button { flex: 1 1 auto; }

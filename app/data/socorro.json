@@ -1,0 +1,125 @@
+{
+  "_sobre": "Primeiros socorros do Anzol: triagem por regras ('O que aconteceu?'). Conteúdo próprio, em linguagem simples. NÃO promete recuperar dinheiro, NÃO é aconselhamento jurídico, só indica canais OFICIAIS. Endereços aparecem como texto para a pessoa digitar (mesmo hábito que o Anzol ensina).",
+  "_versao": "0.1.0",
+  "_atualizado_em": "2026-11-06",
+
+  "avisos_fixos": [
+    "O Anzol não promete recuperar dinheiro: ele mostra os caminhos oficiais, na ordem de urgência.",
+    "Isto não é aconselhamento jurídico. Para o seu caso, procure a Defensoria Pública, um advogado ou o Procon.",
+    "Ninguém deve pagar para 'recuperar' dinheiro de golpe. Quem cobra para recuperar costuma ser um segundo golpe (golpe da recuperação).",
+    "Não apague conversas, prints e comprovantes: eles são as suas provas."
+  ],
+
+  "urgencias": {
+    "agora": "Agora (primeiros minutos)",
+    "hoje": "Ainda hoje",
+    "depois": "Nos próximos dias"
+  },
+
+  "fontes": {
+    "med": { "nome": "Agência Brasil — nova regra do Pix amplia prazo para contestar golpe (set/2026)", "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-09/nova-regra-do-pix-amplia-prazo-para-contestar-golpe", "verificado_em": "2026-11-05" },
+    "med_guia": { "nome": "Nubank — como funciona o MED (guia de banco, fonte secundária)", "url": "https://blog.nubank.com.br/mecanismo-especial-de-devolucao-pix-como-funciona/", "verificado_em": "2026-11-05" },
+    "bc_reclamacao": { "nome": "Banco Central — Meu BC (reclamação contra instituições; acesso com conta gov.br) e telefone 145. Caminho confirmado por fontes secundárias", "url": "bcb.gov.br → Meu BC", "verificado_em": "2026-11-06" },
+    "registrato": { "nome": "Banco Central — Registrato, dentro do Meu BC (conta gov.br prata ou ouro com verificação em duas etapas); gratuito", "url": "bcb.gov.br → Meu BC → Registrato", "verificado_em": "2026-11-06" },
+    "consumidor": { "nome": "consumidor.gov.br (plataforma pública de reclamação) e Procon do seu estado", "url": "consumidor.gov.br", "verificado_em": "2026-11-06" },
+    "whatsapp": { "nome": "Guias de imprensa sobre conta roubada no WhatsApp (Xataka, Tecnoblog). Espera de 7 dias quando o invasor ativa o PIN: A CONFIRMAR na Central de Ajuda oficial", "url": "https://www.xataka.com.br/telefonia/que-fazer-se-hackearem-sua-conta-do-whatsapp", "verificado_em": "2026-11-06" },
+    "govbr_2fa": { "nome": "Verificação em duas etapas da conta gov.br — ativada pelo app gov.br em 'Segurança da conta' (guias de imprensa)", "url": "https://olhardigital.com.br/2024/06/23/dicas-e-tutoriais/como-ativar-a-verificacao-em-duas-etapas-na-conta-gov-br/", "verificado_em": "2026-11-06" },
+    "certbr": { "nome": "CERT.br — fascículo 'Golpes: Caiu? Veja o que fazer' (leitura recomendada; conteúdo do Anzol é próprio)", "url": "https://cartilha.cert.br/fasciculos/golpes-o-que-fazer/fasciculo-golpes-o-que-fazer.pdf", "verificado_em": "2026-11-06" },
+    "cvv": { "nome": "CVV — apoio emocional: 188 (gratuito, 24 h) e chat em cvv.org.br", "url": "https://cvv.org.br", "verificado_em": "2026-11-05" },
+    "policia": { "nome": "Orientação policial: guardar prints, chaves Pix, links, telefones e comprovantes e não apagar conversas (resumo de orientações públicas)", "url": "delegacia eletrônica do seu estado", "verificado_em": "2026-11-05" }
+  },
+
+  "situacoes": [
+    {
+      "id": "pix",
+      "titulo": "Fiz um Pix ou pagamento",
+      "resumo": "Cada minuto conta: o dinheiro costuma sair da conta de destino rápido.",
+      "registra_contato_banco": true,
+      "passos": [
+        { "urgencia": "agora", "titulo": "Fale com o seu banco", "texto": "Pelo app do banco ou pelo telefone do verso do cartão. Diga que foi GOLPE e peça para registrar a contestação do Pix pelo MED (Mecanismo Especial de Devolução).", "por_que": "Se ainda houver saldo na conta de quem recebeu, o banco pode bloquear. O pedido pode ser feito até 80 dias depois do Pix, mas quanto antes, melhor. O MED vale para golpe e fraude — não para erro de digitação ou arrependimento.", "fonte": "med", "marca_contato_banco": true },
+        { "urgencia": "agora", "titulo": "Não pague mais nada", "texto": "Mesmo que peçam 'uma taxa para devolver' ou 'para liberar o estorno'.", "por_que": "Quem cobra para devolver dinheiro de golpe está aplicando um segundo golpe.", "fonte": null },
+        { "urgencia": "hoje", "titulo": "Guarde as provas", "texto": "Prints da conversa, comprovante, chave Pix, número de telefone e endereço do site. Não apague nada. O Kit de provas ajuda a organizar.", "por_que": "O banco e a polícia vão pedir esses dados.", "fonte": "policia", "abre_kit": true },
+        { "urgencia": "hoje", "titulo": "Registre o boletim de ocorrência", "texto": "Pela delegacia eletrônica do seu estado (site da Polícia Civil) ou numa delegacia.", "por_que": "O BO ajuda no pedido ao banco e nas investigações.", "fonte": "policia" },
+        { "urgencia": "depois", "titulo": "Acompanhe a resposta do banco", "texto": "Anote o número do protocolo. Se o banco negar ou não responder: ouvidoria do banco → reclamação no Banco Central (Meu BC ou 145) → Procon ou consumidor.gov.br.", "por_que": "Esses são os caminhos oficiais quando o primeiro atendimento não resolve.", "fonte": "bc_reclamacao" }
+      ],
+      "observacao": "Pagou com cartão ou boleto? O MED é só para Pix. Fale com o banco do mesmo jeito: cartão tem contestação de compra; para boleto e TED, pergunte o procedimento (A CONFIRMAR em cada banco)."
+    },
+    {
+      "id": "dados_bancarios",
+      "titulo": "Passei senha, código, dados do cartão ou instalei algo",
+      "resumo": "O risco é alguém acessar sua conta. Corte o acesso primeiro.",
+      "registra_contato_banco": true,
+      "passos": [
+        { "urgencia": "agora", "titulo": "Avise o banco e bloqueie", "texto": "Pelo app ou telefone do verso do cartão: bloqueie cartões e acessos e conte o que você passou.", "por_que": "O banco pode travar transações enquanto você recupera o controle.", "fonte": null, "marca_contato_banco": true },
+        { "urgencia": "agora", "titulo": "Se instalou um app ou deu acesso à tela", "texto": "Ative o modo avião, desinstale o app desconhecido e não volte a usar o banco nesse aparelho até ter certeza de que ele está limpo.", "por_que": "Apps de acesso remoto dão controle do aparelho a outra pessoa.", "fonte": null },
+        { "urgencia": "hoje", "titulo": "Troque senhas em outro aparelho", "texto": "Banco, e-mail e WhatsApp, usando um aparelho de confiança. Ative a verificação em duas etapas onde puder.", "por_que": "Se o aparelho estiver comprometido, a senha nova também pode vazar.", "fonte": "govbr_2fa" },
+        { "urgencia": "hoje", "titulo": "Confira as movimentações e registre BO", "texto": "Veja extrato e fatura. Guarde provas e registre o boletim de ocorrência.", "por_que": "Movimentações estranhas precisam ser contestadas logo.", "fonte": "policia", "abre_kit": true },
+        { "urgencia": "depois", "titulo": "Consulte o Registrato", "texto": "No site do Banco Central (Meu BC), veja contas, empréstimos e chaves Pix no seu CPF.", "por_que": "Mostra se abriram algo em seu nome.", "fonte": "registrato" }
+      ]
+    },
+    {
+      "id": "link",
+      "titulo": "Só cliquei no link",
+      "resumo": "Calma: o risco maior é digitar dados ou instalar algo. Veja o que fazer.",
+      "passos": [
+        { "urgencia": "agora", "titulo": "Feche a página", "texto": "Não digite nada e não baixe nada. Se baixou um arquivo, não abra: apague.", "por_que": "A maioria dos golpes depende do que você digita ou instala depois do clique.", "fonte": null },
+        { "urgencia": "agora", "titulo": "Digitou senha ou dados?", "texto": "Troque a senha agora pelo app ou site oficial (digitado por você) e siga a situação 'Passei senha, código ou dados'.", "por_que": "Senha digitada em site falso deve ser considerada vazada.", "fonte": null },
+        { "urgencia": "depois", "titulo": "Fique de olho", "texto": "Acompanhe extrato e avisos do banco por alguns dias. Relate o link no Scanner para avisar outras pessoas.", "por_que": "Ajuda a pegar qualquer movimentação estranha cedo.", "fonte": null }
+      ]
+    },
+    {
+      "id": "whatsapp",
+      "titulo": "Meu WhatsApp foi clonado",
+      "resumo": "Avise os contatos e recupere a conta pelo seu número.",
+      "passos": [
+        { "urgencia": "agora", "titulo": "Avise contatos por outro caminho", "texto": "Ligação, outra rede social ou alguém próximo: peça que ninguém faça Pix pedido pela sua conta.", "por_que": "O golpista costuma pedir dinheiro aos seus contatos se passando por você.", "fonte": "whatsapp" },
+        { "urgencia": "agora", "titulo": "Entre de novo com o seu número", "texto": "Abra o WhatsApp no seu celular e confirme o número com o código que chegar por SMS.", "por_que": "Isso desconecta quem estava usando a sua conta.", "fonte": "whatsapp" },
+        { "urgencia": "hoje", "titulo": "Pediram um PIN que você não criou?", "texto": "O invasor ativou a verificação em duas etapas. Pode ser preciso esperar alguns dias para entrar sem esse PIN (7 dias, segundo guias; A CONFIRMAR na Central de Ajuda). Use 'Ajuda' dentro do app para falar com o suporte oficial.", "por_que": "É o caminho oficial; não pague ninguém para 'recuperar' a conta.", "fonte": "whatsapp" },
+        { "urgencia": "hoje", "titulo": "Proteja a conta", "texto": "Ative a verificação em duas etapas (Configurações > Conta > Verificação em duas etapas), com e-mail de recuperação. Confira 'Aparelhos conectados'.", "por_que": "Impede que alguém entre só com o código do SMS.", "fonte": "whatsapp" },
+        { "urgencia": "depois", "titulo": "Se alguém perdeu dinheiro", "texto": "Registre BO e guarde os prints dos pedidos feitos em seu nome.", "por_que": "Ajuda os contatos que caíram a pedir o MED e a polícia a investigar.", "fonte": "policia", "abre_kit": true }
+      ]
+    },
+    {
+      "id": "documentos",
+      "titulo": "Passei CPF, documentos ou selfie",
+      "resumo": "Seus dados podem ser usados para abrir contas ou pedir crédito.",
+      "passos": [
+        { "urgencia": "hoje", "titulo": "Consulte o Registrato", "texto": "No site do Banco Central (Meu BC), com conta gov.br prata ou ouro: veja contas, empréstimos e chaves Pix no seu CPF. É gratuito.", "por_que": "Mostra se abriram algo em seu nome.", "fonte": "registrato" },
+        { "urgencia": "hoje", "titulo": "Proteja sua conta gov.br", "texto": "No app gov.br, em 'Segurança da conta', ative a verificação em duas etapas e troque a senha.", "por_que": "A conta gov.br dá acesso a muitos serviços em seu nome.", "fonte": "govbr_2fa" },
+        { "urgencia": "hoje", "titulo": "Registre BO", "texto": "Informe quais documentos foram enviados e para onde.", "por_que": "O BO ajuda a contestar contas ou dívidas abertas em seu nome.", "fonte": "policia", "abre_kit": true },
+        { "urgencia": "depois", "titulo": "Repita a consulta", "texto": "Volte ao Registrato nas próximas semanas e avise o banco se aparecer algo que não é seu.", "por_que": "Fraudes com documentos podem aparecer depois.", "fonte": "registrato" }
+      ]
+    },
+    {
+      "id": "nao_sei",
+      "titulo": "Acho que caí, mas não sei",
+      "resumo": "Faça esta checagem rápida. Se algo aparecer, escolha a situação certa acima.",
+      "checagem": true,
+      "passos": [
+        { "urgencia": "hoje", "titulo": "Extrato e fatura", "texto": "Há Pix, compra ou empréstimo que você não reconhece?", "por_que": "Se sim: situação 'Fiz um Pix ou pagamento' ou 'Passei senha'.", "fonte": null, "vai_para": "pix" },
+        { "urgencia": "hoje", "titulo": "Registrato", "texto": "Há conta, empréstimo ou chave Pix que você não abriu?", "por_que": "Se sim: situação 'Passei CPF, documentos ou selfie'.", "fonte": "registrato", "vai_para": "documentos" },
+        { "urgencia": "hoje", "titulo": "Aparelhos conectados", "texto": "No WhatsApp, no e-mail e no app do banco: há aparelho que não é seu?", "por_que": "Se sim: desconecte e troque a senha.", "fonte": null, "vai_para": "dados_bancarios" },
+        { "urgencia": "hoje", "titulo": "Apps instalados", "texto": "Há app que você não lembra de ter instalado, principalmente de acesso remoto?", "por_que": "Se sim: situação 'Passei senha, código ou instalei algo'.", "fonte": null, "vai_para": "dados_bancarios" }
+      ]
+    }
+  ],
+
+  "se_nao_resolver": {
+    "titulo": "Se o banco negou ou o prazo passou",
+    "passos": [
+      "Peça a resposta por escrito e o número do protocolo.",
+      "Reclame na ouvidoria do banco.",
+      "Registre reclamação no Banco Central (Meu BC, com conta gov.br, ou telefone 145).",
+      "Procure o Procon do seu estado ou o consumidor.gov.br.",
+      "Para orientação jurídica gratuita, procure a Defensoria Pública."
+    ],
+    "nota": "Falamos em caminhos, não em garantias: cada caso é avaliado pelo banco e pelos órgãos.",
+    "fonte": "bc_reclamacao"
+  },
+
+  "apoio": {
+    "titulo": "Cair em golpe não é culpa sua",
+    "texto": "Golpes são feitos por profissionais para enganar qualquer pessoa. 76% das vítimas relatam impacto no bem-estar (GASA 2026). Se estiver difícil, converse com alguém de confiança ou ligue para o CVV: 188, gratuito, 24 horas.",
+    "fonte": "cvv"
+  }
+}

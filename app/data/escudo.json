@@ -1,0 +1,116 @@
+{
+  "_sobre": "Escudo do Anzol: 8 cartões de cerca de 60 segundos + checklist de 5 ações reais. Conteúdo PRÓPRIO (a Cartilha do CERT.br é CC BY-NC-ND: só indicamos o link). Cada cartão mostra fonte e data da última verificação, porque as regras mudam.",
+  "_versao": "0.1.0",
+  "_atualizado_em": "2026-11-06",
+
+  "cartoes": [
+    {
+      "id": "contas",
+      "titulo": "Contas e acesso",
+      "frase": "Senha sozinha não basta.",
+      "itens": [
+        "Ative a verificação em duas etapas no WhatsApp, no e-mail, no app do banco e na conta gov.br.",
+        "Use senhas diferentes nas contas importantes. Um gerenciador de senhas ajuda a lembrar.",
+        "Código que chega por SMS é como a chave da sua casa: não se passa para ninguém."
+      ],
+      "fonte": { "nome": "gov.br — verificação em duas etapas pelo app (guias de imprensa) · CERT.br, fascículo Autenticação (leitura recomendada)", "url": "https://olhardigital.com.br/2024/06/23/dicas-e-tutoriais/como-ativar-a-verificacao-em-duas-etapas-na-conta-gov-br/" },
+      "verificado_em": "2026-11-06"
+    },
+    {
+      "id": "aparelho",
+      "titulo": "Seu aparelho",
+      "frase": "Quem controla o celular controla o banco.",
+      "itens": [
+        "Mantenha o sistema e os apps atualizados.",
+        "Instale apps só da loja oficial do celular.",
+        "Nunca instale app nem compartilhe a tela a pedido de quem ligou ou mandou mensagem."
+      ],
+      "fonte": { "nome": "CERT.br — Cartilha de Segurança para Internet (leitura recomendada)", "url": "https://cartilha.cert.br/" },
+      "verificado_em": "2026-11-06"
+    },
+    {
+      "id": "mensagens",
+      "titulo": "Mensagens e links",
+      "frase": "Antes de agir, 4 perguntas.",
+      "itens": [
+        "Quem pede? O que pede? Por onde veio? Como confirmo por outro caminho?",
+        "Não clique: digite você mesmo o endereço oficial ou use o app que já tem.",
+        "O cadeado no navegador não prova que o site é de quem diz ser."
+      ],
+      "fonte": { "nome": "GASA — O Estado dos Golpes Brasil 2026 (o pedido e o canal protegem mais que a aparência)", "url": "https://static.poder360.com.br/uploads/2026/08/estudo-golpes-digitais-GASA-O-Estado-dos-Golpes-Brasil-2026-pdf.pdf" },
+      "verificado_em": "2026-11-05"
+    },
+    {
+      "id": "dinheiro",
+      "titulo": "Dinheiro e Pix",
+      "frase": "Pix é instantâneo. A pressa é do golpista.",
+      "itens": [
+        "Ninguém paga taxa para receber prêmio, indenização, salário ou 'valor liberado'.",
+        "Comprovante é só uma imagem: o que vale é o dinheiro no seu extrato.",
+        "Caiu num golpe com Pix? Fale com o banco na hora e peça o MED (até 80 dias, mas quanto antes melhor)."
+      ],
+      "fonte": { "nome": "Agência Brasil — nova regra do Pix (set/2026)", "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-09/nova-regra-do-pix-amplia-prazo-para-contestar-golpe" },
+      "verificado_em": "2026-11-05"
+    },
+    {
+      "id": "ligacoes",
+      "titulo": "Ligações",
+      "frase": "Desligue e ligue você.",
+      "itens": [
+        "Banco não pede senha, código nem que você faça transferência para 'conta segura'.",
+        "O número que aparece na tela pode ser falsificado e ser igual ao do banco.",
+        "Na dúvida, desligue e ligue para o número do verso do cartão."
+      ],
+      "fonte": { "nome": "Anatel — Resolução 777/2025 (autenticação de chamadas, em implantação), via Olhar Digital", "url": "https://olhardigital.com.br/2024/09/23/seguranca/anatel-estabelece-novas-medidas-contra-fraudes-e-golpes-telefonicos/" },
+      "verificado_em": "2026-11-05"
+    },
+    {
+      "id": "dados",
+      "titulo": "Dados pessoais",
+      "frase": "Saber seus dados não prova nada.",
+      "itens": [
+        "Golpistas usam dados verdadeiros (CPF, número de processo) para parecer oficiais.",
+        "Não envie selfie nem foto de documento para quem te procurou.",
+        "Consulte o Registrato (Banco Central) para ver contas e chaves Pix no seu CPF."
+      ],
+      "fonte": { "nome": "Banco Central — Registrato no Meu BC (conta gov.br prata/ouro), via imprensa", "url": "https://viva.com.br/dinheiro/banco-central-cria-nova-ferramenta-para-evitar-fraudes-com-chaves-pix.html" },
+      "verificado_em": "2026-11-06"
+    },
+    {
+      "id": "compras",
+      "titulo": "Compras e vendas",
+      "frase": "Preço bom demais é isca.",
+      "itens": [
+        "Pague pela própria plataforma; desconfie de quem pede Pix por fora.",
+        "Confira o endereço do site letra por letra e procure a loja pelo app oficial.",
+        "Vendendo? Só entregue depois de ver o valor no seu extrato."
+      ],
+      "fonte": { "nome": "GASA 2026 — compras é o tipo de golpe com mais interações (22%)", "url": "https://static.poder360.com.br/uploads/2026/08/estudo-golpes-digitais-GASA-O-Estado-dos-Golpes-Brasil-2026-pdf.pdf" },
+      "verificado_em": "2026-11-05"
+    },
+    {
+      "id": "familia",
+      "titulo": "Família",
+      "frase": "Combine uma palavra de segurança.",
+      "itens": [
+        "Escolha com a família uma palavra que só vocês sabem, para pedir em caso de dúvida.",
+        "'Troquei de número' + pedido de dinheiro: ligue para o número antigo antes de qualquer Pix.",
+        "Vozes já podem ser imitadas por computador: a palavra de segurança vale também em ligações."
+      ],
+      "fonte": { "nome": "Padrão do golpe do falso parente e versões com voz clonada (casos de 2026 reunidos no documento-base do projeto)", "url": null },
+      "verificado_em": "2026-11-05"
+    }
+  ],
+
+  "checklist": {
+    "titulo": "5 ações reais (faça hoje)",
+    "nota": "Marque só quando fizer de verdade. Fica só neste aparelho.",
+    "itens": [
+      { "id": "zap-2fa", "texto": "Ativei a verificação em duas etapas no WhatsApp", "como": "WhatsApp > Configurações > Conta > Verificação em duas etapas. Cadastre um e-mail de recuperação." },
+      { "id": "contas-2fa", "texto": "Ativei a verificação em duas etapas no e-mail, no banco e no gov.br", "como": "Nas configurações de segurança de cada um. No gov.br, pelo app: Segurança da conta." },
+      { "id": "aparelhos", "texto": "Revisei os aparelhos conectados", "como": "WhatsApp > Aparelhos conectados; no e-mail e no app do banco, procure 'dispositivos' ou 'sessões ativas'. Desconecte o que não reconhecer." },
+      { "id": "registrato", "texto": "Consultei o Registrato", "como": "Site do Banco Central > Meu BC > Registrato, com conta gov.br prata ou ouro. É gratuito." },
+      { "id": "palavra", "texto": "Combinei uma palavra de segurança com a família", "como": "Uma palavra fácil de lembrar e difícil de adivinhar. Não escreva em grupos de mensagem." }
+    ]
+  }
+}

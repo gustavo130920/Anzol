@@ -54,7 +54,7 @@
 
   function iniciar() {
     Promise.all([lerJSON('data/signals.json'), lerJSON('data/scanner-config.json'), lerJSON('data/scenarios.json'), lerJSON('data/jogo-config.json'),
-                 lerJSON('data/radar-config.json'), lerJSON('data/radar-semente.json')])
+                 lerJSON('data/radar-config.json'), lerJSON('data/radar-semente.json'), lerJSON('data/socorro.json'), lerJSON('data/escudo.json')])
       .then(function (d) {
         estado.radar = AnzolRadar.criarRadar({
           semente: d[5], config: d[4],
@@ -79,6 +79,8 @@
         montarExemplos(d[2]);
         if (window.AnzolJogoUI) AnzolJogoUI.iniciar({ sinais: d[0], conteudo: d[2], jogoConfig: d[3], scanner: estado.scanner });
         if (window.AnzolRadarUI) AnzolRadarUI.iniciar({ radar: estado.radar, conteudo: d[2] });
+        if (window.AnzolSocorroUI) AnzolSocorroUI.iniciar({ socorro: d[6], escudo: d[7] });
+        if (window.AnzolKitUI) AnzolKitUI.iniciar({ scanner: estado.scanner, radar: estado.radar });
         rotear();
       })
       .catch(function (erro) {
@@ -108,7 +110,7 @@
   // Navegação entre abas pelo endereço (#scanner, #testes)
   function rotear() {
     var vista = (location.hash || '#scanner').slice(1);
-    if (['scanner', 'testes', 'radar'].indexOf(vista) === -1) vista = 'scanner';
+    if (['scanner', 'testes', 'radar', 'socorro', 'kit', 'escudo'].indexOf(vista) === -1) vista = 'scanner';
     document.querySelectorAll('.vista').forEach(function (v) { v.hidden = v.id !== 'vista-' + vista; });
     document.querySelectorAll('.aba[data-vista]').forEach(function (a) {
       var ativa = a.getAttribute('data-vista') === vista;
@@ -117,6 +119,11 @@
     });
     if (vista === 'testes' && window.AnzolJogoUI) AnzolJogoUI.mostrar();
     if (vista === 'radar' && window.AnzolRadarUI) AnzolRadarUI.mostrar();
+    if (vista === 'socorro' && window.AnzolSocorroUI) AnzolSocorroUI.mostrarSocorro();
+    if (vista === 'escudo' && window.AnzolSocorroUI) AnzolSocorroUI.mostrarEscudo();
+    if (vista === 'kit' && window.AnzolKitUI) AnzolKitUI.mostrar();
+    // O Kit é parte do "Caí no golpe": destaca essa aba
+    if (vista === 'kit') { var as = document.querySelector('.aba[data-vista="socorro"]'); if (as) { as.classList.add('ativa'); as.setAttribute('aria-current', 'page'); } }
   }
   window.addEventListener('hashchange', rotear);
 
@@ -388,7 +395,7 @@
     var socorro = el('button', 'btn-secundario', 'Já cliquei ou paguei — e agora?');
     socorro.type = 'button';
     socorro.addEventListener('click', function () {
-      alert('Primeiros socorros chega na próxima etapa do protótipo.\n\nSe você fez um Pix: fale AGORA com o seu banco pelo app ou canal oficial e peça a devolução pelo MED. Guarde prints e comprovantes. Ninguém deve pagar para "recuperar" dinheiro.');
+      location.hash = '#socorro';
     });
     links.appendChild(socorro);
     ga.appendChild(links);

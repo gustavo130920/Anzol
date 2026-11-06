@@ -25,6 +25,7 @@ Protótipo acadêmico — Global Solution FIAP 2026 (CitizenTech).
 | Listas públicas de phishing (sem rede, sem domínios reais) | `node tests/listas.test.js` |
 | Jogo (XP, níveis, selos, sequência, reteste) | `node tests/jogo.test.js` |
 | Radar (estados, comparação, relato, moderação, privacidade) | `node tests/radar.test.js` |
+| Kit de provas + conteúdo de Primeiros socorros e Escudo | `node tests/kit.test.js` |
 | Atualizar o recorte `.br` do Phishing.Database | `node tools/atualizar-listas.js` |
 | Scanner pelo navegador | servidor ligado → `http://localhost:8080/tests/` |
 | Dados (cenários, pistas, só domínios reservados) | `powershell -ExecutionPolicy Bypass -File tests\validar-dados.ps1` |
@@ -49,6 +50,10 @@ tools/                servidor local e gerador de documentação
 ## O que é regra e o que é IA
 
 O **Radar** usa **IA leve** para agrupar variantes da mesma campanha (trigramas + TF-IDF + similaridade do cosseno); estados, limiares e revisão humana são **regras**. O Scanner é **100% regras explicáveis** (cada motivo aponta para uma pista do motor de sinais), mais uma camada de **listas públicas de phishing**. O "teste do dia" do jogo também é **regra** (mira a pista que a pessoa mais deixou passar). As partes de IA (agrupar variantes de campanhas no Radar) e de visão computacional (ler prints) entram nas próximas etapas.
+
+## Única biblioteca externa: OCR
+
+O **Kit de provas** usa o [Tesseract.js](https://github.com/naptha/tesseract.js) 5.1.1 (licença Apache-2.0) para ler o texto dos prints. Ele é baixado **só quando a pessoa clica em "Ler texto do print"** e roda **no aparelho**: a imagem não é enviada. Sem internet, o exemplo usa um texto pré-extraído (rotulado SIMULAÇÃO).
 
 ## Listas públicas de phishing (créditos)
 
