@@ -60,10 +60,10 @@
       "itens": [
         "Banco não pede senha, código nem que você faça transferência para 'conta segura'.",
         "O número que aparece na tela pode ser falsificado e ser igual ao do banco.",
-        "Na dúvida, desligue e ligue para o número do verso do cartão."
+        "Na dúvida, desligue e ligue para o número do verso do cartão, de preferência de outro telefone: o golpista pode manter a linha aberta e você cair de novo nele."
       ],
-      "fonte": { "nome": "Anatel — Resolução 777/2025 (autenticação de chamadas, em implantação), via Olhar Digital", "url": "https://olhardigital.com.br/2024/09/23/seguranca/anatel-estabelece-novas-medidas-contra-fraudes-e-golpes-telefonicos/" },
-      "verificado_em": "2026-11-05"
+      "fonte": { "nome": "Sicredi — golpe da falsa central (o golpista pode manter a linha aberta; ligue de outro aparelho), orientação também atribuída à Febraban pela imprensa · Anatel — Resolução 777/2025 (autenticação de chamadas, em implantação), via Olhar Digital", "url": "https://www.sicredi.com.br/site/blog/seguranca/golpe-falsa-central/" },
+      "verificado_em": "2026-11-06"
     },
     {
       "id": "dados",
@@ -72,9 +72,9 @@
       "itens": [
         "Golpistas usam dados verdadeiros (CPF, número de processo) para parecer oficiais.",
         "Não envie selfie nem foto de documento para quem te procurou.",
-        "Consulte o Registrato (Banco Central) para ver contas e chaves Pix no seu CPF."
+        "Consulte o Registrato e ligue o BC Protege+ (Banco Central) para impedir contas novas no seu nome."
       ],
-      "fonte": { "nome": "Banco Central — Registrato no Meu BC (relatórios gratuitos de contas, empréstimos e chaves Pix; conta gov.br prata ou ouro com verificação em duas etapas)", "url": "https://www.bcb.gov.br/meubc/registrato" },
+      "fonte": { "nome": "Banco Central — BC Protege+ (bcb.gov.br/meubc/bcprotege) e Registrato no Meu BC (relatórios gratuitos de contas, empréstimos e chaves Pix; conta gov.br prata ou ouro com verificação em duas etapas)", "url": "https://www.bcb.gov.br/meubc/registrato" },
       "verificado_em": "2026-11-06"
     },
     {
