@@ -5,7 +5,7 @@
 const { spawnSync } = require('child_process');
 const path = require('path');
 
-const testes = ['dados', 'scanner', 'listas', 'jogo', 'radar', 'kit'];
+const testes = ['dados', 'scanner', 'listas', 'jogo', 'radar', 'kit', 'senha'];
 let falhou = [];
 for (const t of testes) {
   const r = spawnSync(process.execPath, [path.join(__dirname, t + '.test.js')], { encoding: 'utf8' });

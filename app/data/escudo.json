@@ -102,6 +102,75 @@
     }
   ],
 
+  "contas": {
+    "titulo": "Proteja suas contas",
+    "intro": "O golpe quase sempre pede a senha ou o código a você. Mas, se uma senha vazar de algum site, estas práticas fazem a diferença.",
+    "simulador": {
+      "titulo": "Quanto tempo para adivinhar uma senha?",
+      "explica": "Escolha o tamanho e os tipos de caractere. Não digite nenhuma senha: o simulador só faz a conta.",
+      "aviso_nunca_digite": "Nunca digite sua senha real em um site para 'testar a força'. Por isso aqui não tem campo de senha."
+    },
+    "tipos": [
+      { "id": "minusculas", "nome": "letras minúsculas", "quantidade": 26 },
+      { "id": "maiusculas", "nome": "letras maiúsculas", "quantidade": 26 },
+      { "id": "numeros", "nome": "números", "quantidade": 10 },
+      { "id": "simbolos", "nome": "símbolos do teclado e espaço", "quantidade": 33 }
+    ],
+    "frase_senha": {
+      "palavras_na_lista": 7776,
+      "explica": "Frase-senha: palavras SORTEADAS de uma lista de 7.776 palavras (método Diceware). Fácil de lembrar, difícil de adivinhar. Não vale frase famosa, letra de música nem dado pessoal.",
+      "fonte": { "nome": "EFF — listas de palavras para frase-senha (7.776 palavras)", "url": "https://www.eff.org/dice" }
+    },
+    "ataque": {
+      "tentativas_por_segundo": 138675,
+      "descricao": "Estimativa no PIOR caso: senha aleatória, roubada de um site que guarda senhas com bcrypt (custo 10), atacada por uma frota alugada de placas de vídeo RTX 5090 que testa cerca de 138 mil senhas por segundo. Sites que guardam senhas de forma fraca caem muito mais rápido.",
+      "fonte": { "nome": "Hive Systems — Password Table 2026 (velocidade medida, publicada em 14/07/2026)", "url": "https://www.hivesystems.com/blog/are-your-passwords-in-the-green" },
+      "verificado_em": "2026-11-06"
+    },
+    "avisos": [
+      "A conta vale para senha ALEATÓRIA. Palavras, nomes, datas e trocas óbvias (a→@, o→0) caem em minutos.",
+      "Senha que já vazou ou que você repete em outro site cai na hora, qualquer que seja o tamanho. Use uma senha diferente para cada conta importante.",
+      "Tamanho pesa mais que símbolo: cada caractere a mais multiplica as combinações."
+    ],
+    "regras": {
+      "titulo": "O que mudou nas regras de senha",
+      "itens": [
+        "Prefira senhas LONGAS: 15 caracteres ou mais quando a senha é a única proteção (8 é o mínimo quando há verificação em duas etapas).",
+        "Misturar maiúscula, número e símbolo deixou de ser exigência: o tamanho conta mais.",
+        "Não precisa trocar a senha de tempos em tempos. Troque quando houver sinal de vazamento.",
+        "Use um gerenciador de senhas: ele cria e lembra senhas longas e diferentes para cada conta."
+      ],
+      "fonte": { "nome": "NIST SP 800-63B-4 (norma dos EUA para autenticação digital, versão final de julho/2025), seção de senhas", "url": "https://pages.nist.gov/800-63-4/sp800-63b/authenticators/" },
+      "verificado_em": "2026-11-06"
+    },
+    "duas_etapas": {
+      "titulo": "Verificação em duas etapas: da mais forte para a mais fraca",
+      "itens": [
+        { "nome": "Chave de acesso (passkey)", "texto": "Você entra com a digital, o rosto ou o bloqueio de tela do celular. Não existe senha para roubar nem código para repassar. O WhatsApp já oferece: Configurações > Conta > Chaves de acesso." },
+        { "nome": "App autenticador", "texto": "Apps como Google Authenticator ou Microsoft Authenticator geram o código no próprio celular, a cada 30 segundos. O código não passa pela operadora, então não é desviado se clonarem o seu chip." },
+        { "nome": "Código por SMS", "texto": "Melhor do que nada, mas pode ser desviado se o golpista conseguir um chip com o seu número." }
+      ],
+      "dicas": [
+        "Comece pelo e-mail: ele é a chave mestra que redefine as outras senhas.",
+        "Guarde os códigos de recuperação (aqueles códigos de reserva) em papel, num lugar seguro.",
+        "Nenhum banco, loja ou órgão pede o código do autenticador. Se pediram, é golpe."
+      ],
+      "fonte": { "nome": "WhatsApp — blog oficial sobre chaves de acesso e verificação em duas etapas", "url": "https://blog.whatsapp.com/one-billion-people-are-now-protected-with-passkeys-on-whatsapp-plus-more-account-security-features?lang=pt_br" },
+      "verificado_em": "2026-11-06"
+    },
+    "pouco_conhecidas": {
+      "titulo": "Proteções gratuitas que pouca gente usa",
+      "itens": [
+        { "nome": "BC Protege+ (Banco Central)", "texto": "Avisa a todos os bancos que você não quer abrir conta agora. Com ele ligado, ninguém abre conta no seu nome. Quando você precisar abrir uma, desliga e já agenda a volta. Meu BC, com gov.br prata ou ouro.", "fonte": { "nome": "Banco Central — BC Protege+", "url": "https://www.bcb.gov.br/meubc/bcprotege" }, "verificado_em": "2026-11-06" },
+        { "nome": "Celular Seguro (governo federal)", "texto": "Cadastre seu celular e 'contatos de confiança', que podem bloquear o aparelho por você se ele for roubado. Também consulta o IMEI antes de você comprar um usado.", "fonte": { "nome": "Ministério da Justiça — Celular Seguro", "url": "https://celularseguro.mj.gov.br" }, "verificado_em": "2026-11-06" },
+        { "nome": "Limite do Pix mais baixo", "texto": "No app do banco, baixe o limite do Pix para o que você usa no dia a dia. Baixar vale na hora; aumentar leva no mínimo 24 horas, o que atrapalha quem está com pressa: o golpista.", "fonte": { "nome": "Banco Central — Relatório de Gestão do Pix (regra de limites: aumento em no mínimo 24 h; R$ 1.000 entre 20h e 6h por padrão)", "url": "https://www.bcb.gov.br/content/estabilidadefinanceira/pix/relatorio_de_gestao_pix/relatorio_gestao_pix_2026.pdf" }, "verificado_em": "2026-11-06" },
+        { "nome": "Proteção contra roubo do celular", "texto": "Android: Configurações > Google > Todos os serviços > Proteção contra roubo (bloqueia a tela se arrancarem o celular da sua mão). iPhone: Ajustes > Face ID e Código > Proteção de Dispositivo Roubado. Os nomes podem variar por modelo.", "fonte": { "nome": "Google — blog oficial sobre a Proteção contra roubo do Android; iPhone: guias de imprensa (Tecnoblog)", "url": "https://blog.google/intl/pt-br/produtos/android-chrome-play/protecao-contra-roubo-do-android-fica-mais-forte-e-inteligente/" }, "verificado_em": "2026-11-06" },
+        { "nome": "PIN do chip", "texto": "Ative e troque o PIN que vem no cartão do chip. Se roubarem o celular, o ladrão não usa o seu chip em outro aparelho para receber os códigos por SMS.", "fonte": { "nome": "CERT.br — fascículo 'Furto de celular' (leitura recomendada; texto do Anzol é próprio)", "url": "https://cartilha.cert.br/fasciculos/furto-de-celular/fasciculo-furto-de-celular.pdf" }, "verificado_em": "2026-11-06" },
+        { "nome": "Notificações na tela bloqueada", "texto": "Esconda o conteúdo das notificações quando o celular está bloqueado. Assim, quem pegar o aparelho não lê os códigos que chegam por SMS.", "fonte": null, "verificado_em": "2026-11-06" }
+      ]
+    }
+  },
+
   "checklist": {
     "titulo": "5 ações reais (faça hoje)",
     "nota": "Marque só quando fizer de verdade. Fica só neste aparelho.",
@@ -111,6 +180,11 @@
       { "id": "aparelhos", "texto": "Revisei os aparelhos conectados", "como": "WhatsApp > Aparelhos conectados; no e-mail e no app do banco, procure 'dispositivos' ou 'sessões ativas'. Desconecte o que não reconhecer." },
       { "id": "registrato", "texto": "Consultei o Registrato", "como": "Site do Banco Central > Meu BC > Registrato, com conta gov.br prata ou ouro. É gratuito." },
       { "id": "palavra", "texto": "Combinei uma palavra de segurança com a família", "como": "Uma palavra fácil de lembrar e difícil de adivinhar. Não escreva em grupos de mensagem." }
+    ],
+    "extras_titulo": "Mais 2, se quiser ir além",
+    "extras": [
+      { "id": "bc-protege", "texto": "Liguei o BC Protege+", "como": "Site do Banco Central > Meu BC > BC Protege+, com conta gov.br prata ou ouro. Desligue só quando for abrir uma conta." },
+      { "id": "autenticador", "texto": "Troquei o SMS por app autenticador ou chave de acesso no e-mail", "como": "Nas configurações de segurança do e-mail, procure verificação em duas etapas > app autenticador ou chave de acesso." }
     ]
   }
 }

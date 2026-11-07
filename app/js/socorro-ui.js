@@ -167,22 +167,29 @@
     var barra = el('progress', 'barra-xp'); barra.max = escudo.checklist.itens.length; barra.value = feitos;
     barra.setAttribute('aria-label', 'Ações concluídas');
     ck.appendChild(barra);
-    var ul = el('ul', 'checklist');
-    escudo.checklist.itens.forEach(function (i) {
-      var li = el('li');
-      var lab = el('label', 'passo-topo');
-      var cb = el('input'); cb.type = 'checkbox'; cb.checked = !!est.checklist[i.id];
-      cb.addEventListener('change', function () {
-        var e = lerLocal(CH_E, { checklist: {} });
-        if (cb.checked) e.checklist[i.id] = new Date().toISOString().slice(0, 10); else delete e.checklist[i.id];
-        gravarLocal(CH_E, e); renderEscudo();
+    function listaAcoes(itens) {
+      var ul = el('ul', 'checklist');
+      itens.forEach(function (i) {
+        var li = el('li');
+        var lab = el('label', 'passo-topo');
+        var cb = el('input'); cb.type = 'checkbox'; cb.checked = !!est.checklist[i.id];
+        cb.addEventListener('change', function () {
+          var e = lerLocal(CH_E, { checklist: {} });
+          if (cb.checked) e.checklist[i.id] = new Date().toISOString().slice(0, 10); else delete e.checklist[i.id];
+          gravarLocal(CH_E, e); renderEscudo();
+        });
+        lab.appendChild(cb); lab.appendChild(el('strong', null, ' ' + i.texto));
+        li.appendChild(lab);
+        li.appendChild(el('p', 'motivo-desc', 'Como: ' + i.como));
+        ul.appendChild(li);
       });
-      lab.appendChild(cb); lab.appendChild(el('strong', null, ' ' + i.texto));
-      li.appendChild(lab);
-      li.appendChild(el('p', 'motivo-desc', 'Como: ' + i.como));
-      ul.appendChild(li);
-    });
-    ck.appendChild(ul);
+      return ul;
+    }
+    ck.appendChild(listaAcoes(escudo.checklist.itens));
+    if (escudo.checklist.extras) {
+      ck.appendChild(el('h4', null, escudo.checklist.extras_titulo));
+      ck.appendChild(listaAcoes(escudo.checklist.extras));
+    }
     ck.appendChild(el('p', 'motivo-desc', escudo.checklist.nota));
     raizE.appendChild(ck);
 
@@ -201,6 +208,108 @@
       g.appendChild(d);
     });
     raizE.appendChild(g);
+    if (escudo.contas) secaoContas(escudo.contas);
+  }
+
+  function fonteItem(f, data) {
+    if (!f) return el('p', 'fonte', 'Conteúdo próprio do Anzol (boa prática) · revisado em ' + dataBR(data));
+    return el('p', 'fonte', 'Fonte: ' + f.nome + (f.url ? ' — ' + f.url : '') + (data ? ' · verificado em ' + dataBR(data) : ''));
+  }
+
+  // "Proteja suas contas": simulador de senha (sem campo de senha) + duas etapas + proteções pouco conhecidas
+  function secaoContas(c) {
+    var sec = el('section', 'cartao secao-contas');
+    sec.setAttribute('aria-labelledby', 'titulo-contas');
+    var h = el('h2', null, c.titulo); h.id = 'titulo-contas'; sec.appendChild(h);
+    sec.appendChild(el('p', 'apoio', c.intro));
+
+    // Simulador
+    var sim = el('div', 'simulador');
+    sim.appendChild(el('h3', null, c.simulador.titulo));
+    sim.appendChild(el('p', 'motivo-desc', c.simulador.explica));
+    var escolha = { modo: 'caracteres', tamanho: 8, tipos: ['minusculas', 'numeros'], palavras: 4 };
+
+    var modos = el('div', 'modos-senha'); modos.setAttribute('role', 'group'); modos.setAttribute('aria-label', 'Tipo de senha');
+    var bCar = botao('Senha de caracteres', 'btn-leve', function () { escolha.modo = 'caracteres'; atualizar(); });
+    var bFra = botao('Frase-senha (palavras)', 'btn-leve', function () { escolha.modo = 'frase'; atualizar(); });
+    modos.appendChild(bCar); modos.appendChild(bFra); sim.appendChild(modos);
+
+    function controleFaixa(rotulo, min, max, chave) {
+      var lab = el('label', 'faixa');
+      var txt = el('span'); lab.appendChild(txt);
+      var r = el('input'); r.type = 'range'; r.min = min; r.max = max; r.value = escolha[chave];
+      r.addEventListener('input', function () { escolha[chave] = Number(r.value); atualizar(); });
+      lab.appendChild(r);
+      return { no: lab, texto: function () { txt.textContent = rotulo + ': ' + escolha[chave]; } };
+    }
+    var cTam = controleFaixa('Tamanho (caracteres)', 6, 20, 'tamanho');
+    var cPal = controleFaixa('Quantidade de palavras', 3, 6, 'palavras');
+    var caixaCar = el('div'); caixaCar.appendChild(cTam.no);
+    var tiposF = el('fieldset', 'tipos-senha'); tiposF.appendChild(el('legend', null, 'Tipos de caractere'));
+    c.tipos.forEach(function (t) {
+      var l = el('label'); var cb = el('input'); cb.type = 'checkbox'; cb.checked = escolha.tipos.indexOf(t.id) >= 0;
+      cb.addEventListener('change', function () {
+        escolha.tipos = cb.checked ? escolha.tipos.concat(t.id) : escolha.tipos.filter(function (x) { return x !== t.id; });
+        if (!escolha.tipos.length) { escolha.tipos = [t.id]; cb.checked = true; } // pelo menos um tipo
+        atualizar();
+      });
+      l.appendChild(cb); l.appendChild(document.createTextNode(' ' + t.nome + ' (' + t.quantidade + ')'));
+      tiposF.appendChild(l);
+    });
+    caixaCar.appendChild(tiposF);
+    var caixaFra = el('div'); caixaFra.appendChild(cPal.no); caixaFra.appendChild(el('p', 'motivo-desc', c.frase_senha.explica));
+    sim.appendChild(caixaCar); sim.appendChild(caixaFra);
+
+    var res = el('div', 'resultado-senha'); res.setAttribute('aria-live', 'polite');
+    sim.appendChild(res);
+    sim.appendChild(el('p', 'motivo-desc', c.ataque.descricao));
+    sim.appendChild(fonteItem(c.ataque.fonte, c.ataque.verificado_em));
+    var av = el('ul', 'avisos'); c.avisos.forEach(function (a) { av.appendChild(el('li', null, a)); });
+    sim.appendChild(av);
+    sim.appendChild(el('p', 'aviso-forte', c.simulador.aviso_nunca_digite));
+    sec.appendChild(sim);
+
+    function atualizar() {
+      var frase = escolha.modo === 'frase';
+      bCar.setAttribute('aria-pressed', String(!frase)); bFra.setAttribute('aria-pressed', String(frase));
+      caixaCar.hidden = frase; caixaFra.hidden = !frase;
+      cTam.texto(); cPal.texto();
+      var r = window.AnzolSenha.avaliar(c, escolha);
+      res.textContent = '';
+      var grande = el('p', 'tempo-senha', r.tempo); res.appendChild(grande);
+      res.appendChild(el('p', null, 'para testar todas as combinações (' + r.combinacoes + ').'));
+      res.appendChild(el('p', 'motivo-desc', 'Cada ' + r.unidade + ' a mais multiplica o trabalho do atacante por ' + r.vezes_por_unidade.toLocaleString('pt-BR') + '.'));
+    }
+    atualizar();
+
+    // Regras atuais de senha
+    var rg = el('div'); rg.appendChild(el('h3', null, c.regras.titulo));
+    var ulr = el('ul', 'passos'); c.regras.itens.forEach(function (t) { ulr.appendChild(el('li', null, t)); }); rg.appendChild(ulr);
+    rg.appendChild(fonteItem(c.regras.fonte, c.regras.verificado_em));
+    sec.appendChild(rg);
+
+    // Duas etapas
+    var de = el('div'); de.appendChild(el('h3', null, c.duas_etapas.titulo));
+    var ol = el('ol', 'passos');
+    c.duas_etapas.itens.forEach(function (i) { var li = el('li'); li.appendChild(el('strong', null, i.nome + ': ')); li.appendChild(document.createTextNode(i.texto)); ol.appendChild(li); });
+    de.appendChild(ol);
+    var uld = el('ul', 'passos'); c.duas_etapas.dicas.forEach(function (t) { uld.appendChild(el('li', null, t)); }); de.appendChild(uld);
+    de.appendChild(fonteItem(c.duas_etapas.fonte, c.duas_etapas.verificado_em));
+    sec.appendChild(de);
+
+    // Pouco conhecidas
+    var pc = el('div'); pc.appendChild(el('h3', null, c.pouco_conhecidas.titulo));
+    var g2 = el('div', 'grade-cartoes');
+    c.pouco_conhecidas.itens.forEach(function (i) {
+      var d = el('article', 'cartao cartao-escudo');
+      d.appendChild(el('h4', null, i.nome));
+      d.appendChild(el('p', null, i.texto));
+      d.appendChild(fonteItem(i.fonte, i.verificado_em));
+      g2.appendChild(d);
+    });
+    pc.appendChild(g2);
+    sec.appendChild(pc);
+    raizE.appendChild(sec);
   }
 
   window.AnzolSocorroUI = {
@@ -213,7 +322,8 @@
       var d = lerLocal(CH_S, { aberturas: [] });
       var tempos = d.aberturas.filter(function (a) { return a.contato_banco_em; }).map(function (a) { return (a.contato_banco_em - a.aberta_em) / 60000; });
       var e = lerLocal(CH_E, { checklist: {} });
-      return { aberturas: d.aberturas.length, minutos_ate_banco: tempos, checklist_feitos: Object.keys(e.checklist).length };
+      var principais = escudo ? escudo.checklist.itens.filter(function (i) { return e.checklist[i.id]; }).length : Object.keys(e.checklist).length;
+      return { aberturas: d.aberturas.length, minutos_ate_banco: tempos, checklist_feitos: principais };
     }
   };
 })();

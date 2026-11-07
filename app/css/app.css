@@ -330,3 +330,17 @@ input[type="file"] { font: inherit; font-size: .9rem; max-width: 100%; }
   #resultado:not([hidden]) { animation: surgir .25s ease-out; }
   @keyframes surgir { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 }
+
+/* Escudo · Proteja suas contas (simulador de senha) */
+.secao-contas { margin-top: 24px; }
+.secao-contas h3 { margin-top: 22px; }
+.simulador { border: 1px solid var(--borda); border-radius: 14px; padding: 16px; margin: 12px 0; }
+.modos-senha { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; }
+.faixa { display: grid; gap: 6px; font-weight: 700; margin: 8px 0; }
+.faixa input[type=range] { width: 100%; accent-color: var(--marca); touch-action: pan-y; }
+.tipos-senha { border: 0; padding: 0; margin: 8px 0; display: grid; gap: 6px; }
+.tipos-senha legend { font-weight: 700; margin-bottom: 4px; }
+.tipos-senha input, .checklist input { accent-color: var(--marca); }
+.resultado-senha { background: var(--fundo); border-radius: 12px; padding: 12px 14px; margin: 12px 0; }
+.tempo-senha { font-size: 1.6rem; font-weight: 700; color: var(--marca); margin: 0; font-variant-numeric: tabular-nums; text-wrap: balance; }
+.aviso-forte { font-weight: 700; border-left: 4px solid var(--marca); padding-left: 10px; }
