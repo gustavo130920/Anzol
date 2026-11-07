@@ -58,5 +58,5 @@
 
 - [x] Abrir a página do Despacho nº 2/SCD no DOU e conferir número e página (06/11/2026: confere; DOU edição 207, seção 1, p. 8).
 - [ ] Ver se há edição de 2026 do Observatório Febraban com números novos.
-- [ ] Canal oficial de suporte do WhatsApp para conta roubada.
+- [x] Canal oficial de suporte do WhatsApp para conta roubada (06/11/2026: a página oficial indica "Fale conosco", whatsapp.com/contact; sem e-mail nem formulário específico).
 - [ ] Testar por dentro o Google "Evite Golpes" e o GolpeZero antes de compará-los no vídeo.
