@@ -8,10 +8,11 @@
       "id": "contas",
       "titulo": "Contas e acesso",
       "frase": "Senha sozinha não basta.",
+      "veja_tambem": "contas",
       "itens": [
         "Ative a verificação em duas etapas no WhatsApp, no e-mail, no app do banco e na conta gov.br.",
         "Use senhas diferentes nas contas importantes. Um gerenciador de senhas ajuda a lembrar.",
-        "Código que chega por SMS é como a chave da sua casa: não se passa para ninguém."
+        "Código que chega por SMS ou aparece no app autenticador é como a chave da sua casa: não se passa para ninguém."
       ],
       "fonte": { "nome": "gov.br — verificação em duas etapas pelo app (guias de imprensa) · CERT.br, fascículo Autenticação (leitura recomendada)", "url": "https://olhardigital.com.br/2024/06/23/dicas-e-tutoriais/como-ativar-a-verificacao-em-duas-etapas-na-conta-gov-br/" },
       "verificado_em": "2026-11-06"

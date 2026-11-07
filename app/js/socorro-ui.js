@@ -204,6 +204,11 @@
       c.itens.forEach(function (t) { l.appendChild(el('li', null, t)); });
       d.appendChild(l);
       d.appendChild(el('p', 'fonte', 'Fonte: ' + c.fonte.nome + (c.fonte.url ? ' — ' + c.fonte.url : '') + ' · verificado em ' + dataBR(c.verificado_em)));
+      if (c.veja_tambem === 'contas' && escudo.contas) {
+        d.appendChild(botao('Mais em "' + escudo.contas.titulo + '", abaixo', 'btn-leve', function () {
+          var alvo = document.getElementById('titulo-contas'); if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }));
+      }
       if ('speechSynthesis' in window) d.appendChild(botao('Ouvir', 'btn-leve', function () { falar(c.titulo + '. ' + c.frase + ' ' + c.itens.join(' ')); }));
       g.appendChild(d);
     });
