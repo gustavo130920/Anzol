@@ -59,4 +59,4 @@
 - [x] Abrir a página do Despacho nº 2/SCD no DOU e conferir número e página (06/11/2026: confere; DOU edição 207, seção 1, p. 8).
 - [ ] Ver se há edição de 2026 do Observatório Febraban com números novos.
 - [x] Canal oficial de suporte do WhatsApp para conta roubada (06/11/2026: a página oficial indica "Fale conosco", whatsapp.com/contact; sem e-mail nem formulário específico).
-- [ ] Testar por dentro o Google "Evite Golpes" e o GolpeZero antes de compará-los no vídeo.
+- [x] Google "Evite Golpes" e GolpeZero: conferidos só pelas descrições públicas (06/11/2026), sem instalar. GolpeZero (App Store): IA que classifica como "ALTO RISCO (Golpe)" ou "SEGURO", com quiz de 60 perguntas, treino, botão de emergência para a família e planos pagos de R$ 9,90 a R$ 199,90; não mostra radar comunitário. No vídeo, falar só do padrão ("apps que dão um veredito"), sem afirmar o que eles não fazem.

@@ -42,7 +42,7 @@
 
 | Força | Intensidade | Por quê | O que o Anzol faz |
 |---|---|---|---|
-| **Rivalidade entre concorrentes** | Média | Mercado fragmentado: campanhas (Febraban), jogos (Google), apps de veredito (GolpeZero), treinamento B2B (Hacker Rangers). Nenhum combina treino + scanner explicável + radar + pós-golpe | Diferenciar pela combinação, pela explicação e pela confiança (privacidade) |
+| **Rivalidade entre concorrentes** | Média | Mercado fragmentado: campanhas (Febraban), jogos (Google), apps de veredito (GolpeZero), treinamento B2B (Hacker Rangers). Não encontramos, nas descrições públicas, quem combine treino + scanner explicável + radar + pós-golpe (o GolpeZero junta veredito por IA, quiz e treino) | Diferenciar pela combinação, pela explicação e pela confiança (privacidade) |
 | **Ameaça de novos entrantes** | Alta para quiz/app de checagem; baixa para um radar com rede | Um quiz ou um "detector com IA" é fácil de copiar; uma base de indicadores alimentada por relatos independentes tem **efeito de rede** | Construir a base de relatos e as parcerias cedo; o Radar é o fosso |
 | **Ameaça de substitutos** | Alta | Chatbots de IA gerais, avisos do próprio banco (alerta no Pix), campanhas | Ser complemento, não rival: explicar o porquê, cobrir o pós-golpe e indicar o canal oficial |
 | **Poder dos fornecedores** | Baixo a médio | Hospedagem e CI gratuitas e substituíveis; dependência de listas públicas e da CDN do OCR | Versões fixadas, verificação de integridade, fallback local, troca de provedor simples |

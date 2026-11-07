@@ -80,7 +80,7 @@
 | Campanhas (Febraban), jogos (Google "Evite Golpes"), apps de veredito (GolpeZero) | Pesquisa de concorrentes | 06/11/2026 |
 | "Combinamos" (nunca "ninguém faz") | Regra do projeto | — |
 
-**Antes de gravar:** testar por dentro o Google "Evite Golpes" e o GolpeZero (R8).
+**Concorrentes:** conferidos pelas descrições públicas em 06/11/2026 (sem instalar). A fala fica no nível do padrão; não afirmar o que eles não fazem. O GolpeZero também tem quiz e treino, por isso a fala diz "combinamos" e "não costumam andar juntas".
 
 ---
 
