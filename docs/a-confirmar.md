@@ -25,7 +25,7 @@
 
 | # | Item | Quem | Como resolver |
 |---|---|---|---|
-| 14 | Número e texto do ato de 04/11/2026 (SMS) | Pesquisa | Buscar no DOU (in.gov.br) por "códigos curtos" e "SMS", novembro/2026 |
+| 14 | Número e texto do ato de 04/11/2026 (SMS) | ✅ | Resolvido: ver 7/14 abaixo |
 | 15 | Central de Ajuda do WhatsApp (conta roubada, PIN, 7 dias) | Pesquisa / **Gustavo** | 🟡 06/11: caminho da verificação em duas etapas (Configurações > Conta) e "reverificar o número desconecta o invasor" confirmados por vários guias; **espera de 7 dias** segue só em fontes secundárias — no app está marcada "A CONFIRMAR". A busca não trouxe a página oficial: abrir faq.whatsapp.com no celular (Ajuda dentro do app) e citar |
 | 16 | Cartão virtual, limites do Pix, como contestar boleto ou TED (o MED é só para Pix) | Pesquisa | Páginas do Banco Central (bcb.gov.br: Pix, MED) e da Febraban; registrar a data |
 | 17 | Detalhes do MED 2.0 e da atualização de 03/09/2026 (anexar documentos) | Pesquisa | Buscar a resolução ou comunicado oficial do BC; hoje a fonte é um escritório de advocacia |
@@ -45,7 +45,7 @@
 
 | # | Item | Status | Resultado | Fonte oficial |
 |---|---|---|---|---|
-| 7/14 | Ato das regras contra golpes por SMS | ✅ | **Despacho Decisório nº 2/SCD, de 03/11/2026, do Conselho Diretor da Anatel** (DOU 04/11/2026). Diretório de códigos curtos e bloqueio de SMS de código não cadastrado em 90 dias (+30); medidas das operadoras em 60 dias. **Ainda não vigente em nov/2026** (≈ fev/2027). Sem multa específica no texto | https://www.in.gov.br/web/dou/-/despacho-decisorio-n-2/scd-de-3-de-novembro-de-2026-741546049 |
+| 7/14 | Ato das regras contra golpes por SMS | ✅ (conferido na página do DOU em 06/11/2026) | **Despacho Decisório nº 2/SCD, de 03/11/2026, do Conselho Diretor da Anatel** (DOU 04/11/2026, edição 207, seção 1, página 8; processo 53500.104806/2025-68; assina Carlos Manuel Baigorri, presidente do Conselho). Art. 1º: diretório centralizado de códigos curtos e SMS A2P só para empresas cadastradas, em 90 dias. Art. 2º: medidas das operadoras (código exclusivo por empresa, política de segurança, monitoramento) em 60 dias, prorrogáveis por igual período. Art. 3º: bloquear SMS de código não cadastrado em 90 dias, prorrogáveis por 30. Art. 9º: deveres de agregadores e plataformas digitais (arts. 5º a 7º) em 90 dias. **Ainda não vigente em nov/2026** (≈ fev/2027). Sem multa específica no texto | https://www.in.gov.br/web/dou/-/despacho-decisorio-n-2/scd-de-3-de-novembro-de-2026-741546049 |
 | 8/15 | WhatsApp clonado | ✅ (suporte: 🟡) | Reverificar o número com o código desconecta o invasor; PIN desconhecido → **aguardar sete dias**; avisar contatos; **denunciar a própria conta pode levar ao banimento — recuperar antes**. A página não indica suporte como passo | https://faq.whatsapp.com/1131652977717250/?locale=pt_BR |
 | 17 | MED 2.0 e mudanças de 2026 | ✅ | MED 2.0 (recuperação em várias contas): **Res. BCB 493/2025**, obrigatório desde **02/02/2026**. 30→80 dias (01/09/2026): **IN BCB 766/2026** — prazo do **recebedor** para contestar a devolução, não da vítima. Relato detalhado + anexos: **IN BCB 774** (03/09/2026), vigente só em **01/03/2027**. Prazo da vítima: 80 dias da transação (Agência Brasil citando o BC) | https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20BCB&numero=493 |
 | 16/28 | Cartão, boleto e TED | 🟡 | Cartão: avisar banco/bandeira, bloquear, contestar a compra, avisar a loja. Boleto: avisar o banco emissor e a loja/marketplace. TED: **sem mecanismo oficial como o MED**. Chargeback é regra das bandeiras (não do BC) | Ministério da Justiça, "Sofri um golpe, e agora?": https://www.gov.br/mj/pt-br/acesso-a-informacao/acoes-e-programas/sofri-um-golpe-e-agora/paguei-boletos-ou-ofertas-que-se-mostraram-falsos |
@@ -56,7 +56,7 @@
 
 ### Checagens antes da gravação
 
-- [ ] Abrir a página do Despacho nº 2/SCD no DOU e conferir número e página.
+- [x] Abrir a página do Despacho nº 2/SCD no DOU e conferir número e página (06/11/2026: confere; DOU edição 207, seção 1, p. 8).
 - [ ] Ver se há edição de 2026 do Observatório Febraban com números novos.
 - [ ] Canal oficial de suporte do WhatsApp para conta roubada.
 - [ ] Testar por dentro o Google "Evite Golpes" e o GolpeZero antes de compará-los no vídeo.
