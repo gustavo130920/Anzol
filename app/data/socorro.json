@@ -99,13 +99,15 @@
     {
       "id": "nao_sei",
       "titulo": "Acho que caí, mas não sei",
-      "resumo": "Faça esta checagem rápida. Se algo aparecer, escolha a situação certa acima.",
+      "resumo": "Faça esta checagem rápida. Se algo aparecer, escolha a situação certa acima. Se tudo estiver normal, ótimo, mas continue de olho no extrato por alguns dias.",
       "checagem": true,
       "passos": [
         { "urgencia": "hoje", "titulo": "Extrato e fatura", "texto": "Há Pix, compra ou empréstimo que você não reconhece?", "por_que": "Se sim: situação 'Fiz um Pix ou pagamento' ou 'Passei senha'.", "fonte": null, "vai_para": "pix" },
         { "urgencia": "hoje", "titulo": "Registrato", "texto": "Há conta, empréstimo ou chave Pix que você não abriu?", "por_que": "Se sim: situação 'Passei CPF, documentos ou selfie'.", "fonte": "registrato", "vai_para": "documentos" },
         { "urgencia": "hoje", "titulo": "Aparelhos conectados", "texto": "No WhatsApp, no e-mail e no app do banco: há aparelho que não é seu?", "por_que": "Se sim: desconecte e troque a senha.", "fonte": null, "vai_para": "dados_bancarios" },
-        { "urgencia": "hoje", "titulo": "Apps instalados", "texto": "Há app que você não lembra de ter instalado, principalmente de acesso remoto?", "por_que": "Se sim: situação 'Passei senha, código ou instalei algo'.", "fonte": null, "vai_para": "dados_bancarios" }
+        { "urgencia": "hoje", "titulo": "Apps instalados", "texto": "Há app que você não lembra de ter instalado, principalmente de acesso remoto?", "por_que": "Se sim: situação 'Passei senha, código ou instalei algo'.", "fonte": null, "vai_para": "dados_bancarios" },
+        { "urgencia": "hoje", "titulo": "Avisos que você não pediu", "texto": "Chegou código por SMS, e-mail de 'novo acesso' ou aviso de 'senha alterada' sem você ter pedido?", "por_que": "Muitas vezes é o primeiro sinal de que alguém está tentando entrar. Se sim: troque a senha dessa conta e siga a situação 'Passei senha, código, dados do cartão ou instalei algo'.", "fonte": null, "vai_para": "dados_bancarios" },
+        { "urgencia": "hoje", "titulo": "E-mail mexido por dentro", "texto": "No seu e-mail, há regra de encaminhamento automático, ou e-mail ou telefone de recuperação, que você não colocou?", "por_que": "Quem invade um e-mail costuma deixar um encaminhamento escondido para continuar recebendo os códigos mesmo depois da troca de senha. Se sim: apague, troque a senha e ative a verificação em duas etapas.", "fonte": null, "vai_para": "dados_bancarios" }
       ]
     }
   ],
