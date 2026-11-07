@@ -65,7 +65,7 @@
       "titulo": "Só cliquei no link",
       "resumo": "Calma: o risco maior é digitar dados ou instalar algo. Veja o que fazer.",
       "passos": [
-        { "urgencia": "agora", "titulo": "Feche a página", "texto": "Não digite nada e não baixe nada. Se baixou um arquivo, não abra: apague.", "por_que": "A maioria dos golpes depende do que você digita ou instala depois do clique.", "fonte": null },
+        { "urgencia": "agora", "titulo": "Feche a página", "texto": "Não digite nada e não baixe nada. Se baixou um arquivo, não abra: apague. Instalou algo que a página pediu ou deu alguma permissão? Vá para a situação 'Passei senha, código, dados do cartão ou instalei algo'.", "por_que": "A maioria dos golpes depende do que você digita ou instala depois do clique.", "fonte": null },
         { "urgencia": "agora", "titulo": "Digitou senha ou dados?", "texto": "Troque a senha agora pelo app ou site oficial (digitado por você) e siga a situação 'Passei senha, código ou dados'.", "por_que": "Senha digitada em site falso deve ser considerada vazada.", "fonte": null },
         { "urgencia": "depois", "titulo": "Fique de olho", "texto": "Acompanhe extrato e avisos do banco por alguns dias. Relate o link no Scanner para avisar outras pessoas.", "por_que": "Ajuda a pegar qualquer movimentação estranha cedo.", "fonte": null }
       ]
