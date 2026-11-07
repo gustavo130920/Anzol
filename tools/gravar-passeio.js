@@ -81,7 +81,8 @@ window.__p = (function () {
     return e;
   }
   async function focar(e, bloco) {
-    e.scrollIntoView({ behavior: 'smooth', block: bloco || 'center' }); await w(650);
+    e.scrollIntoView({ behavior: 'smooth', block: bloco || 'center', inline: 'nearest' }); await w(650);
+    if (window.scrollX) window.scrollTo({ left: 0, top: window.scrollY }); // nunca rolar de lado no vídeo
     const r = e.getBoundingClientRect();
     cur.style.left = (r.left + Math.min(r.width / 2, 60)) + 'px'; cur.style.top = (r.top + r.height / 2) + 'px'; await w(500);
   }
@@ -202,6 +203,14 @@ const PASSOS = [
     await __p.clicar(document.querySelectorAll('#escudo-raiz input[type=checkbox]')[0], null, 800);
     await __p.clicar(document.querySelectorAll('#escudo-raiz input[type=checkbox]')[1], null, 1200);
     await __p.rolar(450, 2500); await __p.rolar(450, 2500);`],
+  ['Escudo: contas', `
+    await __p.legenda('Proteja suas contas: simulador de senha, sem campo de senha');
+    await __p.focar(document.getElementById('titulo-contas'), 'start'); await __p.w(1500);
+    const faixa = document.querySelector('.secao-contas input[type=range]');
+    await __p.focar(faixa); await __p.w(800);
+    for (const v of [10, 12, 15, 16]) { faixa.value = v; faixa.dispatchEvent(new Event('input', { bubbles: true })); await __p.w(900); }
+    await __p.legenda('Tamanho pesa mais que símbolo; duas etapas e mais proteções');
+    await __p.rolar(450, 2500); await __p.rolar(450, 2500); await __p.rolar(450, 2500);`],
   ['Painel', `
     location.hash = 'painel'; await __p.w(1000); await __p.topo();
     await __p.legenda('8 · Painel: cada número diz de onde vem (real, simulação, aparelho)');

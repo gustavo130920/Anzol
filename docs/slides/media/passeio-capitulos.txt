@@ -9,5 +9,6 @@
 1:28  Kit de provas
 1:33  Kit: resultado
 1:41  Escudo
-1:49  Painel
-1:58  Acessibilidade
+1:49  Escudo: contas
+2:00  Painel
+2:09  Acessibilidade
