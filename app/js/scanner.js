@@ -263,6 +263,12 @@
           linksSuspeitos.length ? 'Órgão público ou banco mandando link por mensagem: esse não é o canal que costumam usar.'
                        : 'Órgão público ou banco pedindo código, taxa ou instalação por mensagem/ligação.');
       }
+      // Pressão (prazo, medo ou prêmio) para abrir um link que não é de referência oficial: padrão central do golpe por SMS.
+      var pressao = ['urgencia', 'ameaca-medo', 'ganancia-oferta'].filter(function (id) { return achados[id]; });
+      if (linksSuspeitos.length && pressao.length) {
+        anotar('link-sob-pressao', linksSuspeitos[0].original,
+          'Pressão para abrir ' + linksSuspeitos[0].registravel + ', que não é um endereço oficial conhecido. Abra o app ou digite o site oficial você mesmo.');
+      }
       refs.forEach(function (r) {
         var pos = -1, tam = 0;
         r.apelidos.some(function (a) {

@@ -23,9 +23,9 @@
   "texto": {
     "_nota": "Trechos procurados no texto já normalizado (minúsculas, sem acentos). Cada lista aponta para um id de signals.json. Use \\b para palavra inteira.",
     "padroes": {
-      "urgencia": ["\\burgente", "\\bimediatamente\\b", "\\bagora mesmo\\b", "regularize agora", "\\bso hoje\\b", "ate hoje", "\\bem 24 ?h", "\\bem 48 ?h", "ultimas horas", "ultimo dia", "\\bexpira", "prazo final", "\\bpressa\\b"],
-      "ameaca-medo": ["\\bsuspens\\w*","bloquead", "\\bbloqueio\\b", "cancelad", "\\bmulta\\b", "\\bcassad", "\\bpendencia", "\\birregular", "negativad", "\\bprisao\\b", "\\bmandado\\b", "compra suspeita", "acesso suspeito"],
-      "autoridade": ["\\bdepartamento\\b", "\\bgoverno\\b", "\\bministerio\\b", "\\breceita\\b", "\\bpolicia\\b", "\\bjustica\\b", "\\btribunal\\b", "\\badvogad", "\\badvocacia\\b", "\\bprocesso n", "\\balvara\\b", "central de seguranca", "setor de seguranca", "\\bdetran", "\\bprefeitura\\b"],
+      "urgencia": ["\\burgente", "\\bimediatamente\\b", "\\bagora mesmo\\b", "regularize agora", "\\bso hoje\\b", "ate hoje", "\\bem 24 ?h", "\\bem 48 ?h", "ultimas horas", "ultimo dia", "\\bexpira", "prazo final", "\\bpressa\\b", "ultimo aviso", "ligue agora"],
+      "ameaca-medo": ["\\bsuspens\\w*","bloquead", "\\bretid[ao]", "\\brestricao\\b","\\bbloqueio\\b", "cancelad", "\\bmulta\\b", "\\bcassad", "\\bpendencia", "\\birregular", "negativad", "\\bprisao\\b", "\\bmandado\\b", "compra suspeita", "acesso suspeito"],
+      "autoridade": ["\\bdepartamento\\b", "\\bgoverno\\b", "\\bministerio\\b", "\\breceita\\b", "\\bpolicia\\b", "\\bjustica\\b", "\\btribunal\\b", "\\badvogad", "\\badvocacia\\b", "\\bprocesso n", "\\balvara\\b", "central de seguranca", "setor de seguranca", "\\bdetran", "\\bprefeitura\\b", "notificacao extrajudicial"],
       "ganancia-oferta": ["\\bpremio\\b", "\\bganhou\\b", "\\bsorteado", "\\breembolso\\b", "\\brestituicao\\b", "valores? a receber", "valores esquecidos", "dinheiro esquecido", "em seu nome", "\\bresgat", "\\bliquidacao\\b", "\\bgratis\\b", "\\bbonus\\b", "r\\$ ?[0-9.]+ por r\\$", "por dia\\b", "selecionad"],
       "sigilo": ["nao conte", "nao fale (com|para) ninguem", "\\bsigilo", "\\bsegredo\\b", "so entre nos", "nao ligue"],
       "apelo-afetivo": ["^oi,? (mae|pai|vo|vovo|tia|tio)\\b", "\\boi (mae|pai)\\b", "sou eu,? (seu|sua) (filho|filha|neto|neta)"],
@@ -35,6 +35,7 @@
       "pede-codigo-senha": ["\\bsenha\\b", "codigo que (chegou|recebeu)", "me (passa|passe|confirme|confirma|informe|diga) o codigo", "confirme o codigo", "\\btoken\\b", "\\bpin\\b", "codigo de (seguranca|verificacao) que", "codigo .{0,40}(me confirme|me confirma|confirmar|me passe|me passa|informar|me diga)"],
       "pede-dados-pessoais": ["\\bcpf\\b", "\\brg\\b", "\\bselfie\\b", "confirme seus dados", "atualize seus dados", "dados do cartao", "\\bcvv\\b", "data de nascimento", "foto do documento"],
       "pede-instalar-app": ["\\binstale\\b", "\\binstalar\\b", "baixe o (app|aplicativo)", "acesso remoto", "compartilh\\w* (a )?tela", "\\banydesk\\b", "\\bteamviewer\\b"],
+      "ligar-numero-da-mensagem": ["\\bligue (agora )?(para )?(o |a )?(0800|0300|4004|\\(?[0-9]{2}\\)? ?9?[0-9]{4})", "(ligue|ligar|retorne|entre em contato) (agora )?(no|para o|pelo) (numero|telefone|0800) (abaixo|a seguir|informado|desta mensagem)"],
       "pagamento-fora-plataforma": ["fora da plataforma", "me chama no (whats|zap)", "pague direto", "apenas por pix", "somente (por|via) pix", "so (aceito|por) pix"],
       "numero-novo": ["troquei de numero", "numero novo", "novo numero", "salva esse", "salve esse (numero|contato)", "(celular|telefone) (caiu|quebrou|foi roubado)"],
       "evita-confirmacao": ["nao posso (falar|atender)", "te explico depois", "depois te explico", "sem tempo (agora|pra falar)", "nao da pra ligar"],
@@ -42,7 +43,7 @@
       "sem-link-pagamento": ["nao enviamos links?", "nao cobramos taxas? por mensagem", "pelo (app|aplicativo|internet banking) que voce ja usa", "acompanhe pelo app"]
     },
     "_regras_combinadas": "canal-incompativel = (autoridade pública ou banco) + (link ou pedido de pagamento/código) na mesma mensagem. remetente-nao-bate = mensagem cita uma organização de referência, mas o link aponta para outro domínio. sem-link-pagamento só conta se NÃO houver link nem pedido de pagamento.",
-    "orgaos_publicos_e_bancos": ["\\bdepartamento\\b", "\\bgoverno\\b", "\\bministerio\\b", "\\breceita\\b", "\\bpolicia\\b", "\\btribunal\\b", "\\bjustica\\b", "\\bdetran", "\\bprefeitura\\b", "\\bbanco\\b", "central de seguranca", "\\bdetex\\b"]
+    "orgaos_publicos_e_bancos": ["\\bdepartamento\\b", "\\bgoverno\\b", "\\bministerio\\b", "\\breceita\\b", "\\bpolicia\\b", "\\btribunal\\b", "\\bjustica\\b", "\\bdetran", "\\bprefeitura\\b", "\\bbanco\\b", "central de seguranca", "\\bdetex\\b", "\\bcnh\\b", "\\bhabilitacao\\b", "\\binss\\b", "\\bcorreios\\b", "alfandeg"]
   },
 
   "dominio": {
