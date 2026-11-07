@@ -70,7 +70,7 @@
       { "nome": "Loja Vitrine", "apelidos": ["loja vitrine"], "dominio": "lojavitrine.example", "ficticio": true },
       { "nome": "Prefeitura Exemplo", "apelidos": ["prefeitura exemplo"], "dominio": "prefeituraexemplo.example", "ficticio": true },
       { "nome": "Entregas Rápidas Exemplo", "apelidos": ["entregas rapidas exemplo"], "dominio": "entregasrapidas.example", "ficticio": true },
-      { "nome": "Portal gov.br", "apelidos": ["gov.br"], "dominio": "gov.br", "ficticio": false },
+      { "nome": "Portal gov.br (inclui Detrans, Receita Federal e INSS)", "apelidos": ["gov.br", "detran", "receita federal", "inss", "governo federal"], "dominio": "gov.br", "ficticio": false },
       { "nome": "Banco Central", "apelidos": ["banco central"], "dominio": "bcb.gov.br", "ficticio": false },
       { "nome": "Correios", "apelidos": ["correios"], "dominio": "correios.com.br", "ficticio": false },
       { "nome": "Caixa", "apelidos": ["caixa economica"], "dominio": "caixa.gov.br", "ficticio": false },

@@ -66,6 +66,12 @@
   // Finais que indicam que um texto é um domínio (usado para separar e-mail de truque com "@")
   var FINAIS_DE_DOMINIO = ['com', 'br', 'net', 'org', 'gov', 'edu', 'io', 'app', 'info', 'site', 'online', 'top', 'xyz', 'example', 'test', 'invalid'];
 
+  // O endereço pertence à referência oficial? Vale o próprio domínio e os subdomínios dele
+  // (ex.: detran.sp.gov.br pertence a gov.br; bb.com.br.golpe.test NÃO pertence a bb.com.br).
+  function ehOficial(e, r) {
+    return e.registravel === r.dominio || e.host === r.dominio || e.host.slice(-(r.dominio.length + 1)) === '.' + r.dominio;
+  }
+
   function dominioRegistravel(labels, sufixos) {
     if (labels.length >= 3 && sufixos.indexOf(labels.slice(-2).join('.')) !== -1) return labels.slice(-3).join('.');
     return labels.slice(-2).join('.');
@@ -154,7 +160,7 @@
       if (e.ip) return e;
 
       refs.forEach(function (r) {
-        if (e.registravel === r.dominio) { e.referencia_oficial = r.nome; return; }
+        if (ehOficial(e, r)) { e.referencia_oficial = r.nome; return; }
         var subLabels = e.subdominio ? e.subdominio.split('.') : [];
         var subComReferencia = ('.' + e.subdominio + '.').indexOf('.' + r.dominio + '.') !== -1;
         if (subComReferencia || subLabels.indexOf(r.rotulo) !== -1) {
@@ -234,6 +240,8 @@
       var brutos = extrairEnderecos(texto);
       var enderecos = brutos.map(function (b) { return analisarEndereco(decomporEndereco(b.bruto, cfg.dominio), anotar); });
       var links = enderecos.filter(function (e) { return !e.email; });
+      // Link que pertence a uma referência oficial não sustenta "autoridade" nem "canal incompatível"
+      var linksSuspeitos = links.filter(function (e) { return !e.referencia_oficial; });
 
       // 2. Texto (com os endereços apagados, para não confundir palavras do link com o texto)
       var semLinks = texto.split('');
@@ -250,9 +258,9 @@
       // 3. Regras combinadas
       var citaOrgao = reOrgaos.some(function (re) { return re.test(norm); });
       var pedidoForte = ['pede-codigo-senha', 'taxa-antecipada', 'pede-instalar-app'].filter(function (id) { return achados[id]; });
-      if (citaOrgao && (links.length || pedidoForte.length)) {
-        anotar('canal-incompativel', links.length ? links[0].original : achados[pedidoForte[0]].evidencias[0].trecho,
-          links.length ? 'Órgão público ou banco mandando link por mensagem: esse não é o canal que costumam usar.'
+      if (citaOrgao && (linksSuspeitos.length || pedidoForte.length)) {
+        anotar('canal-incompativel', linksSuspeitos.length ? linksSuspeitos[0].original : achados[pedidoForte[0]].evidencias[0].trecho,
+          linksSuspeitos.length ? 'Órgão público ou banco mandando link por mensagem: esse não é o canal que costumam usar.'
                        : 'Órgão público ou banco pedindo código, taxa ou instalação por mensagem/ligação.');
       }
       refs.forEach(function (r) {
@@ -265,9 +273,9 @@
         });
         if (pos === -1) return;
         // Citar a organização só é alerta quando o nome sustenta um pedido (link, código, taxa, app).
-        if (links.length || pedidoForte.length) anotar('autoridade', semLinks.substr(pos, tam), 'Usa o nome de ' + r.nome + ' para parecer oficial. Nome na mensagem não prova quem enviou.');
+        if (linksSuspeitos.length || pedidoForte.length) anotar('autoridade', semLinks.substr(pos, tam), 'Usa o nome de ' + r.nome + ' para parecer oficial. Nome na mensagem não prova quem enviou.');
         links.forEach(function (e) {
-          if (e.registravel !== r.dominio && !e.ip) {
+          if (!ehOficial(e, r) && !e.ip) {
             anotar('remetente-nao-bate', e.registravel, 'A mensagem fala em ' + r.nome + ', mas o link aponta para ' + e.registravel + ' (oficial: ' + r.dominio + ').');
           }
         });

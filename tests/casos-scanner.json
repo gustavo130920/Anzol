@@ -221,6 +221,10 @@
       "faixa": "medio",
       "deve_ter": ["dominio-parecido", "excesso-hifens"],
       "nao_pode_ter": []
-    }
+    },
+    {"id": "T27-detran-real-golpe", "origem": "R5", "texto": "DETRAN: sua CNH será suspensa. Regularize hoje: detran-regulariza-cnh.test", "faixa": "alto", "deve_ter": ["remetente-nao-bate", "canal-incompativel"], "nao_pode_ter": []},
+    {"id": "T28-detran-real-legitimo", "origem": "R5", "texto": "DETRAN-SP informa: agende seu exame em detran.sp.gov.br", "faixa": "baixo", "deve_ter": [], "nao_pode_ter": ["remetente-nao-bate", "canal-incompativel"]},
+    {"id": "T29-detran-subdominio-enganoso", "origem": "R5", "texto": "Detran: pague a multa em detran.sp.gov.br.multas-online.test", "faixa": "alto", "deve_ter": ["subdominio-enganoso", "remetente-nao-bate"], "nao_pode_ter": []},
+    {"id": "T30-link-oficial-com-pedido-de-taxa", "origem": "R5", "texto": "DETRAN: CNH suspensa. Pague a taxa de R$ 89 no Pix em detran.sp.gov.br", "faixa": "alto", "deve_ter": ["taxa-antecipada", "pede-pix-pagamento"], "nao_pode_ter": ["remetente-nao-bate"]}
   ]
 }

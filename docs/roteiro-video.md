@@ -90,7 +90,7 @@
 
 > Como saber se funciona? Medimos comportamento, não cliques.
 > Os indicadores: quantos golpes a pessoa trataria como legítimos no teste inicial e no reteste; quantas mensagens legítimas trataria como golpe, para não criar paranoia; o tempo entre abrir o "Caí no golpe" e falar com o banco; as ações de proteção concluídas; e, no Radar, o tempo do primeiro relato até o alerta e as contestações aceitas.
-> Validação: hoje são 135 verificações automáticas a cada publicação. O próximo passo é um piloto com 5 a 10 pessoas, com consentimento e sem dados pessoais. Sem valor estatístico, e a gente diz isso.
+> Validação: hoje são 167 verificações automáticas a cada publicação. O próximo passo é um piloto com 5 a 10 pessoas, com consentimento e sem dados pessoais. Sem valor estatístico, e a gente diz isso.
 > Implementação: o protótipo já está no ar, de graça.
 > Expansão: Radar compartilhado num banco na nuvem, golpes com voz clonada e alerta ativo só para campanhas confirmadas.
 > Sustentabilidade: gratuito para o cidadão, com custo por uso perto de zero, financiado por quem perde com o golpe: bancos, operadoras e prefeituras, com o painel do Radar e programas de educação digital.
@@ -99,7 +99,7 @@
 
 | Afirmação | Base | Verificado |
 |---|---|---|
-| 135 verificações automáticas | `node tests/rodar-todos.js` (6 conjuntos) | 06/11/2026 |
+| 167 verificações automáticas | `node tests/rodar-todos.js` mostra o total (7 conjuntos; cada linha "OK" = 1 verificação). Reconferir no dia da gravação, porque o número muda quando entram testes novos | 06/11/2026 |
 | Protótipo no ar | https://gustavo130920.github.io/Anzol/ | 06/11/2026 |
 | Custo por uso perto de zero | processamento no aparelho; GitHub Pages/Actions gratuitos em repositório público | 05–06/11/2026 |
 | Financiamento por bancos/operadoras/prefeituras | **HIPÓTESE** (dizer "pode ser financiado", se preferir) | — |
