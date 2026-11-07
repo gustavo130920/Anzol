@@ -159,11 +159,14 @@
       // Indicadores que nunca alertam sozinhos (ex.: número de ligação, que pode ser falsificado)
       var nenhumAlertaSozinho = tipos.length > 0 && tipos.every(function (x) { return x.pode_alertar_sozinho === false; });
       var precisaRevisao = soPessoa && !c.revisado_por_moderador && !nenhumAlertaSozinho;
-      var arquivadaPorTempo = ultimo != null && (t - ultimo) > regras.dias_sem_relato_para_arquivar * DIA;
+      // Validade por tipo de indicador: a campanha usa o MAIOR prazo entre os seus indicadores
+      var prazos = (c.indicadores || []).map(function (ind) { return (regras.validade_dias_por_tipo || {})[ind.tipo]; }).filter(function (d) { return d > 0; });
+      var diasValidade = prazos.length ? Math.max.apply(null, prazos) : regras.dias_sem_relato_para_arquivar;
+      var arquivadaPorTempo = ultimo != null && (t - ultimo) > diasValidade * DIA;
 
       var estado, motivo;
       if (c.contestacao_aceita) { estado = 'arquivada'; motivo = 'Contestação aceita na revisão.'; }
-      else if (arquivadaPorTempo) { estado = 'arquivada'; motivo = 'Sem relatos novos há mais de ' + regras.dias_sem_relato_para_arquivar + ' dias.'; }
+      else if (arquivadaPorTempo) { estado = 'arquivada'; motivo = 'Sem relatos novos há mais de ' + diasValidade + ' dias.'; }
       else if (nenhumAlertaSozinho && !c.fonte_oficial) { estado = 'em_observacao'; motivo = 'Indicador de baixa confiabilidade: o número de uma ligação pode ser falsificado e ser o de uma instituição real. O Radar alerta sobre o padrão do golpe, nunca sobre o número.'; }
       else if ((c.fonte_oficial || ativadaEm) && !precisaRevisao) { estado = 'alerta_ativo'; motivo = c.fonte_oficial ? 'Confirmado por fonte oficial.' : 'Vários relatos independentes em pouco tempo.'; }
       else if (precisaRevisao && (c.fonte_oficial || ativadaEm)) { estado = 'em_observacao'; motivo = 'Aguardando revisão humana (indicadores de pessoa: podem ser de vítima ou de terceiro).'; }
@@ -182,7 +185,8 @@
       c.ativada_em = ativadaEm;
       c.ultimo_relato = ultimo;
       c.primeiro_relato = rs.length ? rs[0].quando : null;
-      c.valida_ate = ultimo != null ? ultimo + regras.dias_sem_relato_para_arquivar * DIA : null;
+      c.valida_ate = ultimo != null ? ultimo + diasValidade * DIA : null;
+      c.dias_validade = diasValidade;
       c.total_relatos = rs.length;
       c.pessoas = Object.keys(independentes).length;
       c.ultimos_7_dias = ult7;

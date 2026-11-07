@@ -13,6 +13,14 @@
     "relatos_independentes_para_alerta": 3,
     "janela_alerta_horas": 24,
     "dias_sem_relato_para_arquivar": 30,
+    "validade_dias_por_tipo": {
+      "dominio": 14,
+      "telefone_mensagem": 30,
+      "telefone_ligacao": 30,
+      "chave_pix": 90,
+      "texto": 90
+    },
+    "_nota_validade": "Dias SEM relato novo até a campanha arquivar. Uma campanha com vários tipos de indicador usa o MAIOR prazo entre eles; tipo sem prazo usa dias_sem_relato_para_arquivar. Base (parâmetros iniciais, sem validação): DOMÍNIO 14 — sites de phishing vivem horas (mediana 5,46 h; média 54 h; os que mudam muito, mediana de 17 dias — estudo '7 Days Later', WWW 2025) e campanhas inteiras duraram em média 22 dias no 2º tri/2026 (Akamai); 14 dias de silêncio indicam campanha encerrada. CHAVE PIX 90 — conta de 'laranja' pode ser reaproveitada e a vítima tem até 80 dias para pedir o MED: o alerta precisa durar a janela do MED. TELEFONE 30 — chips trocam rápido e o número pode voltar ao dono (conta clonada recuperada). TEXTO 90 — modelos de mensagem são reaproveitados por meses (ex.: CNH suspensa em 18 estados + DF).",
     "limite_relatos_por_usuario_por_dia": 5,
     "_nota_independencia": "Relatos do mesmo usuário contam como UM só (independência).",
     "_nota_revisao": "Campanha cujos indicadores são só de pessoa (telefone, chave Pix) precisa de revisão humana antes de virar alerta ativo — pode ser vítima com conta clonada ou conta de 'laranja'."

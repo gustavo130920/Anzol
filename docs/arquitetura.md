@@ -41,7 +41,7 @@ Mensagem suspeita
 - O endereço colado no Scanner **nunca é enviado**: as listas são baixadas e comparadas no aparelho; o Scanner **nunca abre** o link.
 - Provas (prints) ficam **só na memória da página**; OCR roda no aparelho (o que vem da internet é o programa de leitura, não a imagem).
 - Ao Radar vai **só o indicador do golpista**, com prévia e consentimento; telefone e chave Pix como **HMAC com segredo** (no protótipo o segredo é de demonstração; em produção fica só no servidor).
-- Indicadores expiram (30 dias sem relato) e podem ser contestados; telefone/Pix exigem revisão humana; número de ligação nunca gera alerta.
+- Indicadores expiram por tipo, contados do último relato (domínio 14 dias; telefone 30; chave Pix e texto-modelo 90, para cobrir a janela de 80 dias do MED) e podem ser contestados; telefone/Pix exigem revisão humana; número de ligação nunca gera alerta.
 - Base legal (LGPD): legítimo interesse para prevenção à fraude (art. 7º, IX) — **premissa que precisa de validação jurídica**.
 
 ## 5. Custos e limites (verificados)

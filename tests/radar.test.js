@@ -108,8 +108,16 @@ const ok = (cond, msg) => { console.log((cond ? 'OK    ' : 'FALHA ') + msg); if 
 
   // 7. Arquivamento por tempo
   radar = criarRadar({ semente, config, agora, armazenamento: memoria() });
-  relogio += 40 * 86400000; // o tempo passa com o Radar aberto
-  ok(radar.campanhas().every((c) => c.estado === 'arquivada'), 'sem relatos por 30+ dias, todas as campanhas arquivam (inclusive as com fonte oficial: o alerta expira)');
+  const camp = (id) => radar.campanhas().find((c) => c.id === id);
+  relogio += 15 * 86400000; // 15 dias depois
+  ok(camp('C-LOJA').estado === 'arquivada' && camp('C-CNH').estado === 'arquivada', 'só domínio: arquiva após 14 dias sem relato (inclusive com fonte oficial: o alerta expira)');
+  ok(camp('C-PARENTE').estado !== 'arquivada', 'telefone de mensagem: ainda válido aos 15 dias (prazo 30)');
+  relogio += 25 * 86400000; // 40 dias no total
+  ok(camp('C-PARENTE').estado === 'arquivada', 'telefone de mensagem: arquiva após 30 dias');
+  ok(camp('C-ADV').estado !== 'arquivada' && camp('C-VALORES').estado !== 'arquivada', 'campanha com chave Pix: ainda válida aos 40 dias (prazo 90, cobre a janela de 80 dias do MED)');
+  ok(camp('C-VALORES').dias_validade === 90, 'campanha com domínio + chave Pix usa o maior prazo (90)');
+  relogio += 60 * 86400000; // 100 dias no total
+  ok(radar.campanhas().every((c) => c.estado === 'arquivada'), 'sem relatos por 100 dias, todas as campanhas arquivam');
 
   // 8. Privacidade
   const s = _util.sanitizar('Sra. Maria, CPF 123.456.789-00, ligue (11) 98888-7777 ou escreva para fulana@exemplo.test');

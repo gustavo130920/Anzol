@@ -245,6 +245,8 @@ Sempre diremos o que é **regra** e o que é **IA**.
 - Parcerias com bancos e operadoras.
 - Mais listas de reputação (URLhaus e PhishTank exigem chave/cadastro; uso comercial do OpenPhish exige autorização).
 - Agrupamento por IA em maior escala.
+- Radar compartilhado: independência dos relatos verificada por conta gov.br ou aparelho (no protótipo é um identificador por aparelho, fácil de burlar com contas falsas).
+- Calibrar com dados reais a validade por tipo de indicador (hoje: domínio 14 dias, telefone 30, chave Pix e texto-modelo 90; parâmetros iniciais em `app/data/radar-config.json`).
 
 ### 6.5 Sustentabilidade (**HIPÓTESES**, sem preço validado)
 - **Gratuito para o cidadão.**
