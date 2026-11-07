@@ -38,18 +38,18 @@
 
 ## 2. Público e mercado — 0:45 a 1:25
 
-**Tela:** três "cartões" de público (cidadão · família de idosos · pequeno vendedor) → número das perdas dos bancos.
+**Tela:** três "cartões" de público (cidadão · família de idosos · pequeno vendedor) → número das fraudes no sistema bancário.
 
 > O Anzol é para o cidadão comum com celular, com prioridade para quem menos confia em si mesmo: segundo a mesma pesquisa, a Geração X e as mulheres.
 > Também para quem cuida de pais idosos e para pequenos vendedores.
 > O hábito de checar já existe: 26% já perguntam a ferramentas de inteligência artificial se algo é golpe, e 18% usam app antigolpe.
-> Do outro lado, os bancos perderam 10,1 bilhões de reais com golpes e fraudes em 2024.
+> Do outro lado, fraudes e golpes no sistema bancário somaram 10,1 bilhões de reais em 2024, segundo a Febraban.
 > Bancos, operadoras, prefeituras e escolas têm interesse direto em cidadãos que caem menos.
 
 | Número | Fonte | Verificado |
 |---|---|---|
 | Geração X e mulheres menos confiantes; 26% IA; 18% app antigolpe | GASA 2026 | 04–05/11/2026 |
-| R$ 10,1 bi de perdas dos bancos em 2024 | Febraban, **via imprensa** — conferir relatório original antes de gravar (R8) | 04–05/11/2026 |
+| R$ 10,1 bi em fraudes e golpes no sistema bancário em 2024 (não dizer "os bancos perderam": a fonte não diz quem absorveu) | Febraban, divulgado em 11/03/2025, **via imprensa** (InfoMoney, Poder360); comunicado original não localizado | 06/11/2026 |
 
 ---
 
@@ -109,7 +109,7 @@
 
 ## Checklist antes de gravar
 
-- [ ] Fazer as 4 checagens do R8 (`docs/a-confirmar.md`), incluindo a fonte original do R$ 10,1 bi.
+- [ ] Fazer as 4 checagens do R8 (`docs/a-confirmar.md`), incluindo a fonte do R$ 10,1 bi (✅ 06/11: Febraban 11/03/2025 via imprensa; frase corrigida).
 - [ ] Ensaiar em voz alta com cronômetro: alvo 4:50 (máximo 5:00).
 - [ ] Gravar as telas separadas da narração (ver `docs/telas-gravacao.md`).
 - [ ] Legendas, se possível.

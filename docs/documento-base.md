@@ -39,7 +39,7 @@ E mais a **palavra de segurança em família**: uma palavra combinada que o fami
 | Vítimas com impacto no bem-estar | 76% | [F1] |
 | Recuperaram ou foram reembolsados | 20% | [F1] |
 | Estelionatos registrados em 2025 (**todos os tipos**, não só digitais) | 2.261.055; 258 por hora; +429,8% desde 2018 | [F2] Anuário FBSP 2026 |
-| Perdas dos bancos com golpes e fraudes, 2024 | R$ 10,1 bi (+17%); via Pix R$ 2,7 bi (+43%) | [F3] Febraban |
+| Fraudes e golpes no sistema bancário, 2024 (Febraban não diz quem absorveu a perda) | R$ 10,1 bi (+17%); via Pix R$ 2,7 bi (+43%) | [F3] Febraban |
 | Vítimas de golpes com Pix/boleto (jul/2024–jun/2025) | ~24 milhões; ~R$ 29 bi | [F3] FBSP/Datafolha |
 | Treinamento passivo | Diferença de 1,7% nas falhas entre treinados e não treinados; só módulos **interativos concluídos** reduziram 19% a chance de falha | [F4] UC San Diego Health |
 
@@ -64,7 +64,7 @@ E mais a **palavra de segurança em família**: uma palavra combinada que o fami
 | Ator | Interesse | Papel no Anzol |
 |---|---|---|
 | Cidadão | Não cair, saber o que fazer se cair | Usuário (gratuito) |
-| Bancos, fintechs, seguradoras | Reduzir perdas (R$ 10,1 bi em 2024 [F3]) | Possíveis financiadores (**HIPÓTESE**) |
+| Bancos, fintechs, seguradoras | Reduzir fraudes (R$ 10,1 bi no sistema bancário em 2024 [F3]) | Possíveis financiadores (**HIPÓTESE**) |
 | Operadoras | Cumprir regras de SMS e chamadas, reduzir abuso | Parceria futura (**HIPÓTESE**) |
 | Prefeituras, escolas, Procons | Educação digital, atendimento | Possível uso institucional (**HIPÓTESE**) |
 | Polícia, Detrans, OAB | Alertar sobre campanhas | Fontes oficiais para o Radar |
@@ -248,7 +248,7 @@ Sempre diremos o que é **regra** e o que é **IA**.
 
 ### 6.5 Sustentabilidade (**HIPÓTESES**, sem preço validado)
 - **Gratuito para o cidadão.**
-- Financiado por bancos, fintechs, seguradoras e operadoras: educação digital de clientes, painel/API do Radar. Contexto: perdas dos bancos de R$ 10,1 bi em 2024 [F3].
+- Financiado por bancos, fintechs, seguradoras e operadoras: educação digital de clientes, painel/API do Radar. Contexto: fraudes e golpes de R$ 10,1 bi no sistema bancário em 2024 [F3].
 - Prefeituras e escolas: programas de educação digital.
 - Custo de operação baixo por projeto: regras primeiro, modelo leve depois, modelo pesado só em exceção, e explicações pré-geradas.
 
@@ -296,7 +296,7 @@ Sempre diremos o que é **regra** e o que é **IA**.
 |---|---|---|
 | F1 | GASA — *O Estado dos Golpes Brasil 2026* (pesquisa online, 1.170 adultos, coleta 16/03–13/04/2026). https://static.poder360.com.br/uploads/2026/08/estudo-golpes-digitais-GASA-O-Estado-dos-Golpes-Brasil-2026-pdf.pdf | 04–05/11/2026 (conversa anterior) |
 | F2 | Anuário Brasileiro de Segurança Pública 2026, via Olhar Digital. https://olhardigital.com.br/2026/07/23/seguranca/o-golpe-que-mais-cresce-no-brasil-esta-no-seu-celular-entenda/ | 04–05/11/2026 |
-| F3 | Ranking de golpes: Observatório Febraban/IPESPE, jul/2025 (campo 12–26/06/2025, 3.000 entrevistas; percentuais entre quem sofreu golpe ou tentativa = 39% da amostra). https://cmsarquivos.febraban.org.br/Arquivos/documentos/PDF/observatorio%20julho%202025.pdf · perdas dos bancos e FBSP/Datafolha via imprensa | 06/11/2026 (relatório original lido) |
+| F3 | Ranking de golpes: Observatório Febraban/IPESPE, jul/2025 (campo 12–26/06/2025, 3.000 entrevistas; percentuais entre quem sofreu golpe ou tentativa = 39% da amostra). https://cmsarquivos.febraban.org.br/Arquivos/documentos/PDF/observatorio%20julho%202025.pdf · R$ 10,1 bi em fraudes e golpes no sistema bancário em 2024: Febraban, 11/03/2025, via imprensa (https://www.infomoney.com.br/?p=2789617 · https://www.poder360.com.br/poder-economia/golpes-causaram-prejuizo-de-r-101-bi-em-2024-diz-febraban/) · FBSP/Datafolha via imprensa | 06/11/2026 (relatório do ranking lido; R$ 10,1 bi conferido em 2 veículos) |
 | F4 | UC San Diego Health, via Tecnoblog. https://tecnoblog.net/noticias/aulas-contra-phishing-nao-funcionam-como-o-esperado-diz-estudo/ | 04–05/11/2026 |
 | F5 | Anatel — Despacho Decisório nº 2/SCD, de 03/11/2026, DOU 04/11/2026: https://www.in.gov.br/web/dou/-/despacho-decisorio-n-2/scd-de-3-de-novembro-de-2026-741546049 · Ministério das Comunicações https://www.gov.br/mcom/pt-br/noticias/2026/novembro/ministerio-das-comunicacoes-destaca-novas-medidas-para-combater-golpes-por-sms-e-proteger-consumidores · Olhar Digital https://olhardigital.com.br/2026/11/04/seguranca/governo-cria-regras-contra-golpes-por-sms-veja-o-que-muda | 05/11/2026 (trechos via busca) |
 | F6 | MED/Pix: Agência Brasil https://agenciabrasil.ebc.com.br/economia/noticia/2026-09/nova-regra-do-pix-amplia-prazo-para-contestar-golpe · Nubank https://blog.nubank.com.br/mecanismo-especial-de-devolucao-pix-como-funciona/ | 04–05/11/2026 |

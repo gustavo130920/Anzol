@@ -24,7 +24,7 @@
 ### Oportunidades (externas, a favor)
 
 - **Regulação em movimento:** regras da Anatel contra SMS (Despacho nº 2/SCD, vigência a partir de ≈ fev/2027) e MED 2.0 (obrigatório desde 02/02/2026) aumentam a necessidade de orientar o cidadão → conteúdo do Escudo/Caí no golpe sempre atualizado com essas regras.
-- **Perdas dos bancos** (R$ 10,1 bi em 2024, Febraban via imprensa) → proposta de valor para financiadores (**HIPÓTESE**).
+- **Fraudes e golpes no sistema bancário** (R$ 10,1 bi em 2024, Febraban via imprensa) → proposta de valor para financiadores (**HIPÓTESE**).
 - **Hábito de checar já existe:** 26% perguntam a IA, 18% usam app antigolpe (GASA 2026) → entrar onde a pessoa já procura ajuda.
 - **Educação digital** em prefeituras e escolas → parcerias institucionais.
 - **Canais oficiais novos** (página "Sofri um golpe, e agora?" do Ministério da Justiça) → integrar como destino dos Primeiros socorros.

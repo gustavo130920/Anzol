@@ -36,7 +36,7 @@ Arquivo: `docs/slides/index.html` (16 slides, preto e rosa, cada número com fon
 - Para regerar (com o servidor local ligado): `node tools/gravar-passeio.js`. Ele acelera o vídeo 1,6×; para outra velocidade: `VELOCIDADE=1.3 node tools/gravar-passeio.js` (1 = tempo real).
 - O vídeo inteiro é mais longo que o trecho do roteiro: na edição, use só os capítulos que couberem (prioridade: Scanner → Radar → Treino → Caí no golpe → Kit).
 
-**Antes de gravar o slide 7:** se a checagem do R8 achar outro valor ou outra fonte para o R$ 10,1 bi, corrija o slide e o roteiro juntos.
+**Slide 7:** R$ 10,1 bi conferido em 06/11/2026 (Febraban, 11/03/2025, via imprensa). Diga "fraudes e golpes no sistema bancário", nunca "os bancos perderam".
 
 ## Tomadas
 
