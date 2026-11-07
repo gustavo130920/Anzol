@@ -123,7 +123,7 @@
           return { id: sid, nome: sinais[sid].nome, familia: sinais[sid].familia };
         });
         if (!item.legitima) {
-          var errados = cfg.passos_errados.filter(function (p) { return r.temLupa || !p.precisa_link; });
+          var errados = cfg.passos_errados.filter(function (p) { return (r.temLupa || !p.precisa_link) && (!p.canais || p.canais.indexOf(c.canal) !== -1); });
           errados = embaralhar(errados, 'passo-' + id).slice(0, 2).map(function (p) { return { texto: p.texto, correto: false, explicacao: p.explicacao }; });
           r.opcoesPasso = embaralhar([{ texto: conteudo.decisoes[c.decisao_correta], correto: true, explicacao: c.feedback }].concat(errados), 'ordem-' + id);
         }

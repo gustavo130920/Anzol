@@ -61,7 +61,8 @@
     { "texto": "Clicar no link só para ver se é verdade.", "precisa_link": true, "explicacao": "Abrir o link já pode expor você. Confira pelo caminho oficial que você conhece." },
     { "texto": "Responder pelo mesmo canal pedindo mais detalhes.", "precisa_link": false, "explicacao": "Quem está do outro lado vai confirmar a história. Confirmar pelo mesmo canal não confirma." },
     { "texto": "Pagar logo para resolver e conferir depois.", "precisa_link": false, "explicacao": "Pagamento por Pix é instantâneo e difícil de desfazer. Primeiro confirme." },
-    { "texto": "Encaminhar para amigos e esperar a opinião deles.", "precisa_link": false, "explicacao": "Opinião ajuda, mas não confirma. E encaminhar pode espalhar o golpe." }
+    { "texto": "Encaminhar para amigos e esperar a opinião deles.", "precisa_link": false, "explicacao": "Opinião ajuda, mas não confirma. E encaminhar pode espalhar o golpe." },
+    { "texto": "Ligar para o número que veio na própria mensagem para confirmar.", "precisa_link": false, "canais": ["whatsapp", "sms", "ligacao_transcricao"], "explicacao": "Esse número é do golpista. Confirme pelo número que você já conhece: verso do cartão, site digitado por você ou contato salvo antes." }
   ],
 
   "mensagens": {

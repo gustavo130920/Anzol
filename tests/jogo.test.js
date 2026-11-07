@@ -39,7 +39,7 @@ ok(j.nivel(0).nome === 'Curioso' && j.nivel(59).nome === 'Curioso' && j.nivel(60
 ok(j.nivel(480).proximo === null && j.nivel(480).progresso === 1, 'nível máximo não tem próximo');
 
 // 2. Rodadas de todos os itens
-let todasValidas = true, deterministico = true, passosOk = true, semClicarSemLink = true;
+let todasValidas = true, deterministico = true, passosOk = true, semClicarSemLink = true, ligarNumeroAparece = false, ligarNumeroForaDoCanal = false;
 for (const item of j.itens) {
   const r = j.montarRodada(item.id);
   if (item.tipo !== 'mensagem') continue;
@@ -49,7 +49,12 @@ for (const item of j.itens) {
   if (JSON.stringify(j.montarRodada(item.id).candidatos) !== JSON.stringify(r.candidatos)) deterministico = false;
   if (item.legitima ? r.opcoesPasso : (!r.opcoesPasso || r.opcoesPasso.filter((p) => p.correto).length !== 1)) passosOk = false;
   if (!r.temLupa && r.opcoesPasso && r.opcoesPasso.some((p) => /link/i.test(p.texto) && !p.correto)) semClicarSemLink = false;
+  if (r.opcoesPasso && r.opcoesPasso.some((p) => /número que veio na própria mensagem/.test(p.texto))) {
+    if (['whatsapp', 'sms', 'ligacao_transcricao'].includes(item.dados.canal)) ligarNumeroAparece = true; else ligarNumeroForaDoCanal = true;
+  }
 }
+ok(!ligarNumeroForaDoCanal, '"ligar para o número da mensagem" só aparece em WhatsApp, SMS ou ligação');
+ok(ligarNumeroAparece, '"ligar para o número da mensagem" aparece em pelo menos um cenário');
 ok(todasValidas, 'cada mensagem tem todas as pistas certas + 3 distratoras, sem repetição, todas existentes');
 ok(deterministico, 'a ordem das pistas é sempre a mesma para o mesmo item');
 ok(passosOk, 'golpes têm 1 passo certo entre as opções; legítimas não têm pergunta de passo');
